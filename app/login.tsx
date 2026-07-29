@@ -1,4 +1,6 @@
-import {View, Image} from "react-native";
+import {View, Image, TouchableOpacity} from "react-native";
+
+import { useState } from "react";
 
 import {colors} from "../styles/colors";
 import {styles} from "../styles/login";
@@ -12,6 +14,9 @@ import AuthToggle from "../components/AuthToggle";
 import { Fontisto, EvilIcons, AntDesign } from "@expo/vector-icons";
 
 export default function LoginScreen() {
+
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <View style={styles.sectionLogin}>
         <Image 
@@ -51,14 +56,16 @@ export default function LoginScreen() {
               />
             }
             icon2={
-              < AntDesign
-              name="eye"
-              size={20}
-              color={colors.secondary}
-              />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                <AntDesign
+                name={showPassword ? "eye" : "eye-invisible"}
+                size={20}
+                color={colors.secondary}
+                />
+              </TouchableOpacity>
             }
             placeholder="Senha" 
-            secureTextEntry={true}
+            secureTextEntry={showPassword ? false : true}
             />
           <Button 
             title="Entrar"
