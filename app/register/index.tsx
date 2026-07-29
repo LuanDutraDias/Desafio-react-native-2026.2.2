@@ -15,6 +15,10 @@ import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 
 export default function RegisterScreen() {
 
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmedPassword, setConfirmedPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
 
@@ -32,6 +36,8 @@ export default function RegisterScreen() {
         </View>
         <View style={styles.containerForms}>
           <Input 
+            onChangeText={setUsername}
+            value={username}
             icon1={
               <Ionicons
                 name="person"
@@ -45,6 +51,8 @@ export default function RegisterScreen() {
             placeholder="Usuário" 
           />
           <Input 
+            onChangeText={setEmail}
+            value={email}
             icon1={
               <Fontisto
                 name="email"
@@ -59,6 +67,8 @@ export default function RegisterScreen() {
             keyboardType="email-address"
           />
           <Input
+            onChangeText={setPassword}
+            value={password}
             icon1={
               <EvilIcons
                 name="lock"
@@ -79,6 +89,8 @@ export default function RegisterScreen() {
             secureTextEntry={showPassword ? false : true}
           />
           <Input
+            onChangeText={setConfirmedPassword}
+            value={confirmedPassword}
             icon1={
               <EvilIcons
                 name="lock"
