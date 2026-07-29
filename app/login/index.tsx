@@ -10,6 +10,7 @@ import Button from "../../src/components/Button";
 import Input from "../../src/components/Input";
 import Subtitle from "../../src/components/Subtitle";
 import Title from "../../src/components/Title";
+import CheckboxWithText from "../../src/components/CheckboxWithText";
 
 import { AntDesign, EvilIcons, Fontisto } from "@expo/vector-icons";
 
@@ -18,6 +19,7 @@ export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   return (
     <View style={styles.sectionLogin}>
@@ -73,6 +75,7 @@ export default function LoginScreen() {
             placeholder="Senha" 
             secureTextEntry={showPassword ? false : true}
             />
+          <CheckboxWithText label="Lembrar de mim" onPress={() => setRememberMe(!rememberMe)} checked={rememberMe}/>
           <Button 
             title="Entrar"
           />
