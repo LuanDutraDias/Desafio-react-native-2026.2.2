@@ -12,6 +12,7 @@ import Title from "../../src/components/Title";
 import { useState } from "react";
 
 import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
+import CheckboxWithText from "@/src/components/CheckboxWithText";
 
 export default function RegisterScreen() {
 
@@ -21,6 +22,7 @@ export default function RegisterScreen() {
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   return (
     <View style={styles.sectionRegister}>
@@ -110,6 +112,7 @@ export default function RegisterScreen() {
             placeholder="Confirmar senha" 
             secureTextEntry={showConfirmedPassword ? false : true}
           />
+          <CheckboxWithText label="Aceito os Termos de Uso" onPress={() => setAcceptTerms(!acceptTerms)} checked={acceptTerms}/>
           <Button title="Cadastrar"/>
           <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
         </View>
