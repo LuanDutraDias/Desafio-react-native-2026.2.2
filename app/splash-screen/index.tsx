@@ -14,7 +14,7 @@ export default function SplashScreen() {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/images/splash-screen.png")}
+        source={require("../../src/assets/images/splashes/splash-screen.png")}
         style={styles.image}
         resizeMode="cover"
       />

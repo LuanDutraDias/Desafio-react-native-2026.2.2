@@ -2,7 +2,7 @@ import {Text} from "react-native";
 
 import {Link, LinkProps} from "expo-router";
 
-import {styles} from "../styles/login"
+import {styles} from "../AuthToggle/styles";
 
 type linkProps = LinkProps & {
     title: string,

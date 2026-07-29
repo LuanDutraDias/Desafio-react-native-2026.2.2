@@ -1,17 +1,17 @@
-import {View, Image, TouchableOpacity} from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 
 import { useState } from "react";
 
-import {colors} from "../styles/colors";
-import {styles} from "../styles/login";
+import { colors } from "../../src/constants/colors";
+import { styles } from "../../src/styles/login";
 
-import Title from "../components/Title";
-import Subtitle from "../components/Subtitle";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import AuthToggle from "../components/AuthToggle";
+import AuthToggle from "../../src/components/AuthToggle";
+import Button from "../../src/components/Button";
+import Input from "../../src/components/Input";
+import Subtitle from "../../src/components/Subtitle";
+import Title from "../../src/components/Title";
 
-import { Fontisto, EvilIcons, AntDesign } from "@expo/vector-icons";
+import { AntDesign, EvilIcons, Fontisto } from "@expo/vector-icons";
 
 export default function LoginScreen() {
 
@@ -23,7 +23,7 @@ export default function LoginScreen() {
     <View style={styles.sectionLogin}>
         <Image 
           style={styles.loginBanner} 
-          source={require("../assets/images/login-banner.png")}
+          source={require("../../src/assets/images/banners/login-banner.png")}
         />
       <View style={styles.containerContent}>
         <View style={styles.containerWelcome}>
@@ -36,6 +36,7 @@ export default function LoginScreen() {
         </View>
         <View style={styles.containerForms}>
           <Input 
+            value={email}
             onChangeText={setEmail}
             icon1={
               <Fontisto
@@ -51,6 +52,7 @@ export default function LoginScreen() {
             keyboardType="email-address"
             />
           <Input
+            value={password}
             onChangeText={setPassword}
             icon1={
               <EvilIcons

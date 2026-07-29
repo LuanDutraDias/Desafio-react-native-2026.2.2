@@ -1,6 +1,6 @@
 import { Text } from "react-native";
 
-import {styles} from "../styles/login";
+import {styles} from "../Subtitle/styles";
 
 type SubtitleProps = {
   children: string;

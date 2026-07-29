@@ -1,7 +1,7 @@
-import { TextInput, View, TextInputProps } from "react-native";
+import { TextInput, TextInputProps, View } from "react-native";
 
-import {colors} from "../styles/colors";
-import {styles} from "../styles/login";
+import { colors } from "../../constants/colors";
+import { styles } from "../Input/styles";
 
 type InputProps = TextInputProps & {
     icon1: React.ReactNode
