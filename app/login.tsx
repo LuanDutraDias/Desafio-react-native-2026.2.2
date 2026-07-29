@@ -16,6 +16,8 @@ import { Fontisto, EvilIcons, AntDesign } from "@expo/vector-icons";
 export default function LoginScreen() {
 
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <View style={styles.sectionLogin}>
@@ -34,6 +36,7 @@ export default function LoginScreen() {
         </View>
         <View style={styles.containerForms}>
           <Input 
+            onChangeText={setEmail}
             icon1={
               <Fontisto
               name="email"
@@ -48,6 +51,7 @@ export default function LoginScreen() {
             keyboardType="email-address"
             />
           <Input
+            onChangeText={setPassword}
             icon1={
               <EvilIcons
               name="lock"
@@ -69,7 +73,7 @@ export default function LoginScreen() {
             />
           <Button 
             title="Entrar"
-            />
+          />
           <AuthToggle 
             href="/register" 
             title="Não tem uma conta? " 
