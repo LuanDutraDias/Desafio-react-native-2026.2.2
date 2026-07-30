@@ -1,5 +1,7 @@
 import { Image, TouchableOpacity, View } from "react-native";
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 import { colors } from "../../src/constants/colors";
 import { styles } from "../../src/styles/register";
 
@@ -34,8 +36,17 @@ export default function RegisterScreen() {
       } = useRegister();
 
   return (
-    <View style={styles.sectionRegister}>
-        <Image style={styles.registerBanner} source={require("../../src/assets/images/banners/register-banner.png")}/>
+    <KeyboardAwareScrollView 
+      style={styles.sectionRegister}
+      contentContainerStyle={styles.scrollRegister}
+      enableOnAndroid
+      extraScrollHeight={200}
+      keyboardShouldPersistTaps="handled"
+    >
+      <Image 
+        style={styles.registerBanner} 
+        source={require("../../src/assets/images/banners/register-banner.png")}
+      />
       <View style={styles.containerContent}>
         <View style={styles.containerWelcome}>
           <Title>
@@ -126,6 +137,6 @@ export default function RegisterScreen() {
           <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
         </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
