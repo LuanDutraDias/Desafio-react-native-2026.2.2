@@ -9,20 +9,29 @@ import Input from "../../src/components/Input";
 import Subtitle from "../../src/components/Subtitle";
 import Title from "../../src/components/Title";
 
-import { useState } from "react";
+import {useRegister} from "@/hooks/useRegister";
 
 import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
-import CheckboxWithText from "@/src/components/CheckboxWithText";
+import CheckboxWithText from "@/components/CheckboxWithText";
 
 export default function RegisterScreen() {
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
-  const [acceptTerms, setAcceptTerms] = useState(false);
+  const {
+          username,
+          setUsername,
+          email,
+          setEmail,
+          password,
+          setPassword,
+          confirmedPassword,
+          setConfirmedPassword,
+          showPassword,
+          togglePassword,
+          showConfirmedPassword,
+          toggleConfirmedPassword,
+          acceptTerms,
+          toggleAcceptTerms,
+      } = useRegister();
 
   return (
     <View style={styles.sectionRegister}>
@@ -79,7 +88,7 @@ export default function RegisterScreen() {
               />
             }
             icon2={
-              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              <TouchableOpacity onPress={togglePassword}>
                 <AntDesign
                   name={showPassword ? "eye" : "eye-invisible"}
                   size={20}
@@ -101,7 +110,7 @@ export default function RegisterScreen() {
               />
             }
             icon2={
-              <TouchableOpacity onPress={() => setShowConfirmedPassword(!showConfirmedPassword)}>
+              <TouchableOpacity onPress={toggleConfirmedPassword}>
                 <AntDesign
                   name={showConfirmedPassword ? "eye" : "eye-invisible"}
                   size={20}
@@ -112,7 +121,7 @@ export default function RegisterScreen() {
             placeholder="Confirmar senha" 
             secureTextEntry={showConfirmedPassword ? false : true}
           />
-          <CheckboxWithText label="Aceito os Termos de Uso" onPress={() => setAcceptTerms(!acceptTerms)} checked={acceptTerms}/>
+          <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
           <Button title="Cadastrar"/>
           <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
         </View>
