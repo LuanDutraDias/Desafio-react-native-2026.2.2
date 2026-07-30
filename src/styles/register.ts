@@ -6,6 +6,10 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundScreen,
     },
+    scrollRegister: {
+        flexGrow: 1,
+        backgroundColor: colors.backgroundScreen,
+    },
     registerBanner: {
         height: 250,
         width: "100%",
