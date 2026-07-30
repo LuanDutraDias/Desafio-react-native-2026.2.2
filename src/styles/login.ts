@@ -6,6 +6,10 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundScreen,
     },
+    scrollLogin: {
+        flexGrow: 1,
+        backgroundColor: colors.backgroundScreen,
+    },
     loginBanner: {
         height: 330,
         width: "100%",
