@@ -1,5 +1,7 @@
 import { Image, TouchableOpacity, View } from "react-native";
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 import { router } from "expo-router";
 
 import { colors } from "../../src/constants/colors";
@@ -30,7 +32,13 @@ export default function LoginScreen() {
     } = useLogin();
 
   return (
-    <View style={styles.sectionLogin}>
+    <KeyboardAwareScrollView 
+    style={styles.sectionLogin}
+    contentContainerStyle={styles.scrollLogin}
+    enableOnAndroid
+    extraScrollHeight={200}
+    keyboardShouldPersistTaps="handled"
+    >
       <Image 
         style={styles.loginBanner} 
         source={require("../../src/assets/images/banners/login-banner.png")}
@@ -95,6 +103,6 @@ export default function LoginScreen() {
           />
       </View>
     </View>
-  </View>
+  </KeyboardAwareScrollView>
   );
 };
