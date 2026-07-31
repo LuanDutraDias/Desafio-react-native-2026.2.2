@@ -2,16 +2,18 @@ import { Image, TouchableOpacity, View } from "react-native";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { colors } from "../../src/constants/colors";
-import { styles } from "../../src/styles/register";
+import { colors } from "@/constants/colors";
+import { styles } from "@/styles/register";
 
-import AuthToggle from "../../src/components/AuthToggle";
-import Button from "../../src/components/Button";
-import Input from "../../src/components/Input";
-import Subtitle from "../../src/components/Subtitle";
-import Title from "../../src/components/Title";
+import AuthToggle from "@/components/AuthToggle";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import Subtitle from "@/components/Subtitle";
+import Title from "@/components/Title";
 
 import {useRegister} from "@/hooks/useRegister";
+
+import { register } from "@/api/auth";
 
 import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import CheckboxWithText from "@/components/CheckboxWithText";
@@ -19,8 +21,8 @@ import CheckboxWithText from "@/components/CheckboxWithText";
 export default function RegisterScreen() {
 
   const {
-          username,
-          setUsername,
+          name,
+          setName,
           email,
           setEmail,
           password,
@@ -35,6 +37,21 @@ export default function RegisterScreen() {
           toggleAcceptTerms,
       } = useRegister();
 
+  async function handleRegister(){
+    try {
+      const response = await register({
+        name,
+        email,
+        password,
+      });
+
+      console.log(response);
+
+    } catch (error: any) {
+    console.log(error.response?.data);
+}
+  }    
+
   return (
     <KeyboardAwareScrollView 
       style={styles.sectionRegister}
@@ -45,7 +62,7 @@ export default function RegisterScreen() {
     >
       <Image 
         style={styles.registerBanner} 
-        source={require("../../src/assets/images/banners/register-banner.png")}
+        source={require("@/assets/images/banners/register-banner.png")}
       />
       <View style={styles.containerContent}>
         <View style={styles.containerWelcome}>
@@ -58,8 +75,8 @@ export default function RegisterScreen() {
         </View>
         <View style={styles.containerForms}>
           <Input 
-            onChangeText={setUsername}
-            value={username}
+            onChangeText={setName}
+            value={name}
             icon1={
               <Ionicons
                 name="person"
@@ -133,7 +150,7 @@ export default function RegisterScreen() {
             secureTextEntry={showConfirmedPassword ? false : true}
           />
           <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
-          <Button title="Cadastrar"/>
+          <Button title="Cadastrar" onPress={handleRegister}/>
           <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
         </View>
       </View>

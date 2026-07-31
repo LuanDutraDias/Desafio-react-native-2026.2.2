@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export function useRegister() {
 
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmedPassword, setConfirmedPassword] = useState("");
@@ -23,8 +23,8 @@ export function useRegister() {
     }
 
     return {
-        username,
-        setUsername,
+        name,
+        setName,
         email,
         setEmail,
         password,
