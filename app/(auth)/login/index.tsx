@@ -43,8 +43,8 @@ export default function LoginScreen() {
           email,
           password,
         });
-
         console.log(response);
+        signIn();
       } catch (error) {
         console.log(error);
       }
@@ -113,7 +113,7 @@ export default function LoginScreen() {
         <CheckboxWithText label="Lembrar de mim" onPress={toggleRememberMe} checked={rememberMe}/>
         <Button 
           title="Entrar"
-          onPress={signIn}
+          onPress={handleLogin}
           />
         <AuthToggle 
           href="/register" 
