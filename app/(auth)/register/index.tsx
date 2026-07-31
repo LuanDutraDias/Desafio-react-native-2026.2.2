@@ -13,7 +13,7 @@ import Title from "@/components/Title";
 
 import {useRegister} from "@/hooks/useRegister";
 
-import { register } from "@/api/auth";
+import { register } from "@/services/auth";
 
 import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import CheckboxWithText from "@/components/CheckboxWithText";

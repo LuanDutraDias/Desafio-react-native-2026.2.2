@@ -10,9 +10,6 @@ export default function RootLayout() {
           animation: "fade"
         }}
       />;
-
-
-      
     </AuthProvider>
   )
 }

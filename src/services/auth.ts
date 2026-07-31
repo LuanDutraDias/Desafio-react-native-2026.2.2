@@ -6,7 +6,7 @@ type RegisterRequest = {
     password: string;
 };
 
-type LoginRequest= {
+type LoginRequest = {
     email: string;
     password: string;
 }
