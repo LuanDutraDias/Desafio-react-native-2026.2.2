@@ -38,19 +38,24 @@ export default function RegisterScreen() {
       } = useRegister();
 
   async function handleRegister(){
-    try {
-      const response = await register({
-        name,
-        email,
-        password,
-      });
 
-      console.log(response);
-
-    } catch (error: any) {
-    console.log(error.response?.data);
-}
-  }    
+    if (password === confirmedPassword){
+      try {
+        const response = await register({
+          name,
+          email,
+          password,
+        });
+  
+        console.log(response);
+  
+      } catch (error: any) {
+        console.log(error.response?.data);
+      }
+    } else {
+      alert("Senhas não coincidem");
+    }
+}    
 
   return (
     <KeyboardAwareScrollView 
