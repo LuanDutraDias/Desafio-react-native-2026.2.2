@@ -20,7 +20,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 import { AntDesign, EvilIcons, Fontisto } from "@expo/vector-icons";
 
-import { login } from "@/api/auth";
+import { login } from "@/services/auth";
 
 export default function LoginScreen() {
 
@@ -43,8 +43,8 @@ export default function LoginScreen() {
           email,
           password,
         });
-        console.log(response);
-        signIn();
+
+        await signIn(response.token);
       } catch (error) {
         console.log(error);
       }
