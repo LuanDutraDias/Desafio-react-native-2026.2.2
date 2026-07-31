@@ -1,22 +1,26 @@
 import { Image, TouchableOpacity, View } from "react-native";
 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { router } from "expo-router";
 
-import { colors } from "../../src/constants/colors";
-import { styles } from "../../src/styles/login";
+import { colors } from "@/constants/colors";
+import { styles } from "@/styles/login";
 
-import AuthToggle from "../../src/components/AuthToggle";
-import Button from "../../src/components/Button";
-import Input from "../../src/components/Input";
-import Subtitle from "../../src/components/Subtitle";
-import Title from "../../src/components/Title";
-import CheckboxWithText from "../../src/components/CheckboxWithText";
+import AuthToggle from "@/components/AuthToggle";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import Subtitle from "@/components/Subtitle";
+import Title from "@/components/Title";
+import CheckboxWithText from "@/components/CheckboxWithText";
 
 import {useLogin} from "@/hooks/useLogin";
 
+import { useAuth } from "@/hooks/useAuth";
+
 import { AntDesign, EvilIcons, Fontisto } from "@expo/vector-icons";
+
+import { login } from "@/api/auth";
 
 export default function LoginScreen() {
 
@@ -31,6 +35,21 @@ export default function LoginScreen() {
         toggleRememberMe,
     } = useLogin();
 
+    const {signIn} = useAuth();
+
+    async function handleLogin(){
+      try {
+        const response = await login({
+          email,
+          password,
+        });
+
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
   return (
     <KeyboardAwareScrollView 
     style={styles.sectionLogin}
@@ -41,7 +60,7 @@ export default function LoginScreen() {
     >
       <Image 
         style={styles.loginBanner} 
-        source={require("../../src/assets/images/banners/login-banner.png")}
+        source={require("@/assets/images/banners/login-banner.png")}
         />
     <View style={styles.containerContent}>
       <View style={styles.containerWelcome}>
@@ -94,7 +113,7 @@ export default function LoginScreen() {
         <CheckboxWithText label="Lembrar de mim" onPress={toggleRememberMe} checked={rememberMe}/>
         <Button 
           title="Entrar"
-          onPress={() => router.replace("/support")}
+          onPress={signIn}
           />
         <AuthToggle 
           href="/register" 
