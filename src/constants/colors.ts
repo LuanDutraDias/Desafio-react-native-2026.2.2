@@ -10,4 +10,5 @@ export const colors = {
     buttonSecondaryBackground: '#B0B3B8',
     buttonSecondaryText: '#161B22',
     rating: '#FFC107',
+    tabBarBackground: '#222A35',
 }
