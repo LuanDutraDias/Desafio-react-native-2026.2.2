@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Linking } from "react-native";
 
 import { colors } from "@/constants/colors";
 import { styles } from "./styles";
@@ -8,12 +8,13 @@ import {Entypo} from '@expo/vector-icons';
 type ContactProps = {
     icon1: React.ReactNode
     title: string
+    textLink: string
     link: string
 };
 
-export default function Contact({icon1, title, link}: ContactProps){
+export default function Contact({icon1, title, textLink, link}: ContactProps){
     return (
-        <TouchableOpacity style={styles.containerContact}>
+        <TouchableOpacity style={styles.containerContact} onPress={() => Linking.openURL(link)}>
             <View style={styles.containerIconContact}>
                 {icon1} 
             </View>
@@ -24,7 +25,7 @@ export default function Contact({icon1, title, link}: ContactProps){
                     {title}
                 </Text>
                 <Text style={styles.link}>
-                    {link}
+                    {textLink}
                 </Text>
             </View>    
             <View>
