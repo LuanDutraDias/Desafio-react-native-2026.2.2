@@ -39,7 +39,14 @@ export default function RegisterScreen() {
 
   async function handleRegister(){
 
-    if (password === confirmedPassword){
+    if (password !== confirmedPassword){
+      alert("Senhas não coincidem");
+
+    } 
+    else if (!acceptTerms){
+      alert("É necessário aceitar os termos de uso")
+    } 
+    else {
       try {
         const response = await register({
           name,
@@ -47,13 +54,9 @@ export default function RegisterScreen() {
           password,
         });
   
-        console.log(response);
-  
-      } catch (error: any) {
-        console.log(error.response?.data);
+      } catch (error) {
+        console.log(error);
       }
-    } else {
-      alert("Senhas não coincidem");
     }
 }    
 
