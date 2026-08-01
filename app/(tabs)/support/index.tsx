@@ -34,7 +34,8 @@ export default function SupportScreen(){
                     <SupportMessage/>
                     <Contact
                         title="E-mail"
-                        link="luandutracontato@gmail.com"
+                        link="mailto:luandutracontato@gmail.com?subject=Suporte"
+                        textLink="luandutracontato@gmail.com"
                         icon1={
                             <Fontisto
                                 name="email"
@@ -45,7 +46,8 @@ export default function SupportScreen(){
                     />
                     <Contact
                         title="Instagram"
-                        link="@luan.dutra"
+                        link="https://www.instagram.com/luan.dutra._?igsh=MmV0cmE2NmpiZmg3"
+                        textLink="@luan.dutra"
                         icon1={
                             <Entypo
                                 name="instagram"
@@ -56,7 +58,8 @@ export default function SupportScreen(){
                     />
                     <Contact
                         title="WhatsApp"
-                        link="(24) 99251-9459"
+                        link="https://wa.me/24992519459"
+                        textLink="(24) 99251-9459"
                         icon1={
                             <FontAwesome
                                 name="whatsapp"
