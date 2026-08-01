@@ -3,7 +3,6 @@ import { colors } from "../../constants/colors";
 
 export const styles = StyleSheet.create({
     button: {
-        backgroundColor: colors.primary,
         borderRadius: 12,
         height: 50,
         justifyContent: "center",

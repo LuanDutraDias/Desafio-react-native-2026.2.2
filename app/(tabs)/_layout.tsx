@@ -6,9 +6,13 @@ import { useAuth } from "@/hooks/useAuth";
 
 import { colors } from "@/constants/colors";
 
-export default function TabsLayout() {
-    const { isLoggedIn, signOut } = useAuth();
+import { useColorTheme } from "@/hooks/useColorTheme";
 
+export default function TabsLayout() {
+
+    const {primary, setPrimary} = useColorTheme();
+    const { isLoggedIn, signOut } = useAuth();
+    
     if (!isLoggedIn) {
         return <Redirect href="/login" />;
     }
@@ -17,7 +21,7 @@ export default function TabsLayout() {
         <Tabs
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: colors.primary,
+                tabBarActiveTintColor: primary,
                 tabBarInactiveTintColor: colors.secondary,
                 tabBarStyle: {
                     backgroundColor: colors.tabBarBackground,
