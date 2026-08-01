@@ -44,7 +44,7 @@ export default function LoginScreen() {
           password,
         });
 
-        await signIn(response.token);
+        await signIn(response.token, rememberMe);
       } catch (error) {
         console.log(error);
       }

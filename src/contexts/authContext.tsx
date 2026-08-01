@@ -7,7 +7,7 @@ import {router} from "expo-router";
 type AuthState = {
     isLoggedIn: boolean;
     isReadyAfterSearchingToken: boolean;
-    signIn: (token: string) => Promise<void>;
+    signIn: (token: string, rememberMe: boolean) => Promise<void>;
     signOut: () => Promise<void>;
 }
 
@@ -18,8 +18,10 @@ export function AuthProvider({children}: PropsWithChildren){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isReadyAfterSearchingToken, setIsReadyAfterSearchingToken] = useState(false);
 
-    async function signIn(token: string){
-        await SecureStore.setItemAsync("token", token);
+    async function signIn(token: string, rememberMe: boolean){
+        if (rememberMe){
+            await SecureStore.setItemAsync("token", token);
+        }
         setIsLoggedIn(true);
         router.replace("/home");
     }
