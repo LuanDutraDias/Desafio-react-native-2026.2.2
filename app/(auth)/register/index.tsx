@@ -1,5 +1,7 @@
 import { Image, TouchableOpacity, View, Text } from "react-native";
 
+import { router } from "expo-router";
+
 import { useState } from "react";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -55,12 +57,13 @@ export default function RegisterScreen() {
     } 
     else {
       try {
-        const response = await register({
+        await register({
           name,
           email,
           password,
         });
-  
+
+        router.replace("/login");
       } catch (error) {
         console.log(error);
       }
