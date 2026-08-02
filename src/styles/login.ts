@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native";
 import { colors } from "../constants/colors";
 
 export const styles = StyleSheet.create({
+    safeAreaView: {
+        flex: 1,
+        backgroundColor: colors.backgroundScreen,
+        paddingTop: 5,
+    },
     sectionLogin: {
         flex: 1,
         backgroundColor: colors.backgroundScreen,
@@ -25,6 +30,6 @@ export const styles = StyleSheet.create({
         gap: 5,
     },
     containerForms: {
-        gap: 15,
+        gap: 20,
     },
 });
