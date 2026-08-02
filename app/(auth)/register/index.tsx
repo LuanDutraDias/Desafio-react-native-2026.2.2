@@ -1,4 +1,6 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View, Text } from "react-native";
+
+import { useState } from "react";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -10,6 +12,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
+import ModalTermsOfUse from "@/components/ModalTermsOfUse";
 
 import {useRegister} from "@/hooks/useRegister";
 
@@ -21,6 +24,8 @@ import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import CheckboxWithText from "@/components/CheckboxWithText";
 
 export default function RegisterScreen() {
+
+  const [showModal, setShowModal] = useState(false);
 
   const {
           name,
@@ -73,6 +78,9 @@ export default function RegisterScreen() {
         extraScrollHeight={200}
         keyboardShouldPersistTaps="handled"
       >
+        <ModalTermsOfUse visible={showModal} onClose={() => setShowModal(false)}>
+
+        </ModalTermsOfUse>
         <Image 
           style={styles.registerBanner} 
           source={require("@/assets/images/banners/register-banner.png")}
@@ -162,7 +170,12 @@ export default function RegisterScreen() {
               placeholder="Confirmar senha" 
               secureTextEntry={showConfirmedPassword ? false : true}
             />
-            <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
+            <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
+              <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
+              <TouchableOpacity style={{backgroundColor: colors.buttonSecondaryBackground, borderRadius: 4, paddingHorizontal: 10, paddingVertical: 2}} onPress={() => setShowModal(true)}>
+                <Text style={{color: colors.buttonSecondaryText}}>Ler</Text>
+              </TouchableOpacity>
+            </View>
             <Button title="Cadastrar" onPress={handleRegister}/>
             <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
           </View>
