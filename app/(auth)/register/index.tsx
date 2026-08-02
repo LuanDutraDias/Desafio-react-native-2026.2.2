@@ -15,6 +15,8 @@ import {useRegister} from "@/hooks/useRegister";
 
 import { register } from "@/services/auth";
 
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import CheckboxWithText from "@/components/CheckboxWithText";
 
@@ -61,107 +63,111 @@ export default function RegisterScreen() {
 }    
 
   return (
-    <KeyboardAwareScrollView 
-      style={styles.sectionRegister}
-      contentContainerStyle={styles.scrollRegister}
-      enableOnAndroid
-      extraScrollHeight={200}
-      keyboardShouldPersistTaps="handled"
+    <SafeAreaView
+          style={styles.safeAreaView}
     >
-      <Image 
-        style={styles.registerBanner} 
-        source={require("@/assets/images/banners/register-banner.png")}
-      />
-      <View style={styles.containerContent}>
-        <View style={styles.containerWelcome}>
-          <Title>
-            Bem-vindo
-          </Title>
-          <Subtitle>
-            Faça login para continuar
-          </Subtitle>
-        </View>
-        <View style={styles.containerForms}>
-          <Input 
-            onChangeText={setName}
-            value={name}
-            icon1={
-              <Ionicons
-                name="person"
-                size={20}
-                color={colors.secondary}
-              />  
-            }
-            icon2= {
-              null
-            } 
-            placeholder="Usuário" 
-          />
-          <Input 
-            onChangeText={setEmail}
-            value={email}
-            icon1={
-              <Fontisto
-                name="email"
-                size={20}
-                color={colors.secondary}
-              />  
-            }
-            icon2= {
-              null
-            } 
-            placeholder="E-mail" 
-            keyboardType="email-address"
-          />
-          <Input
-            onChangeText={setPassword}
-            value={password}
-            icon1={
-              <EvilIcons
-                name="lock"
-                size={30}
-                color={colors.secondary}
-              />
-            }
-            icon2={
-              <TouchableOpacity onPress={togglePassword}>
-                <AntDesign
-                  name={showPassword ? "eye" : "eye-invisible"}
+      <KeyboardAwareScrollView 
+        style={styles.sectionRegister}
+        contentContainerStyle={styles.scrollRegister}
+        enableOnAndroid
+        extraScrollHeight={200}
+        keyboardShouldPersistTaps="handled"
+      >
+        <Image 
+          style={styles.registerBanner} 
+          source={require("@/assets/images/banners/register-banner.png")}
+        />
+        <View style={styles.containerContent}>
+          <View style={styles.containerWelcome}>
+            <Title>
+              Bem-vindo
+            </Title>
+            <Subtitle>
+              Faça login para continuar
+            </Subtitle>
+          </View>
+          <View style={styles.containerForms}>
+            <Input 
+              onChangeText={setName}
+              value={name}
+              icon1={
+                <Ionicons
+                  name="person"
                   size={20}
                   color={colors.secondary}
-                  />
-              </TouchableOpacity>
-            }
-            placeholder="Senha" 
-            secureTextEntry={showPassword ? false : true}
-          />
-          <Input
-            onChangeText={setConfirmedPassword}
-            value={confirmedPassword}
-            icon1={
-              <EvilIcons
-                name="lock"
-                size={30}
-                color={colors.secondary}
-              />
-            }
-            icon2={
-              <TouchableOpacity onPress={toggleConfirmedPassword}>
-                <AntDesign
-                  name={showConfirmedPassword ? "eye" : "eye-invisible"}
+                />  
+              }
+              icon2= {
+                null
+              } 
+              placeholder="Usuário" 
+            />
+            <Input 
+              onChangeText={setEmail}
+              value={email}
+              icon1={
+                <Fontisto
+                  name="email"
                   size={20}
+                  color={colors.secondary}
+                />  
+              }
+              icon2= {
+                null
+              } 
+              placeholder="E-mail" 
+              keyboardType="email-address"
+            />
+            <Input
+              onChangeText={setPassword}
+              value={password}
+              icon1={
+                <EvilIcons
+                  name="lock"
+                  size={30}
                   color={colors.secondary}
                 />
-              </TouchableOpacity>
-            }
-            placeholder="Confirmar senha" 
-            secureTextEntry={showConfirmedPassword ? false : true}
-          />
-          <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
-          <Button title="Cadastrar" onPress={handleRegister}/>
-          <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
+              }
+              icon2={
+                <TouchableOpacity onPress={togglePassword}>
+                  <AntDesign
+                    name={showPassword ? "eye" : "eye-invisible"}
+                    size={20}
+                    color={colors.secondary}
+                    />
+                </TouchableOpacity>
+              }
+              placeholder="Senha" 
+              secureTextEntry={showPassword ? false : true}
+            />
+            <Input
+              onChangeText={setConfirmedPassword}
+              value={confirmedPassword}
+              icon1={
+                <EvilIcons
+                  name="lock"
+                  size={30}
+                  color={colors.secondary}
+                />
+              }
+              icon2={
+                <TouchableOpacity onPress={toggleConfirmedPassword}>
+                  <AntDesign
+                    name={showConfirmedPassword ? "eye" : "eye-invisible"}
+                    size={20}
+                    color={colors.secondary}
+                  />
+                </TouchableOpacity>
+              }
+              placeholder="Confirmar senha" 
+              secureTextEntry={showConfirmedPassword ? false : true}
+            />
+            <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
+            <Button title="Cadastrar" onPress={handleRegister}/>
+            <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
+          </View>
         </View>
-      </View>
-    </KeyboardAwareScrollView>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 };
