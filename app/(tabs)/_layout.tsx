@@ -5,6 +5,7 @@ import { AntDesign, Feather, MaterialIcons, Ionicons } from "@expo/vector-icons"
 import { useAuth } from "@/hooks/useAuth";
 
 import { colors } from "@/constants/colors";
+import {styles} from "@/styles/tab-bar";
 
 import { useColorTheme } from "@/hooks/useColorTheme";
 
@@ -23,9 +24,9 @@ export default function TabsLayout() {
                 headerShown: false,
                 tabBarActiveTintColor: primary,
                 tabBarInactiveTintColor: colors.secondary,
-                tabBarStyle: {
-                    backgroundColor: colors.tabBarBackground,
-                },
+                tabBarStyle: styles.tabBarContainer,
+                tabBarLabelStyle: styles.tabBarLabel,
+                tabBarItemStyle: styles.itemContainer,
             }}
         >
             <Tabs.Screen
@@ -36,6 +37,19 @@ export default function TabsLayout() {
                         <AntDesign
                             name="home"
                             size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="create-review/index"
+                options={{
+                    title: "Criar",
+                    tabBarIcon: ({ color }) => (
+                        <AntDesign
+                            name="plus"
+                            size={30}
                             color={color}
                         />
                     ),
@@ -55,26 +69,13 @@ export default function TabsLayout() {
                 }}
             />
             <Tabs.Screen
-                name="create-review/index"
-                options={{
-                    title: "Criar",
-                    tabBarIcon: ({ color }) => (
-                        <AntDesign
-                            name="plus"
-                            size={35}
-                            color={color}
-                        />
-                    ),
-                }}
-            />
-            <Tabs.Screen
                 name="support/index"
                 options={{
                     title: "Suporte",
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarIcon: ({ color }) => (
                         <MaterialIcons
                             name="support-agent"
-                            size={size}
+                            size={32}
                             color={color}
                         />
                     ),

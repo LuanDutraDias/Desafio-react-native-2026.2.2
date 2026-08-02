@@ -19,7 +19,7 @@ export default function Input({icon1, icon2, ...props}: InputProps){
             style={styles.input}
             placeholderTextColor={colors.inputPlaceHolder}
             />
-            <View>
+            <View style={styles.inputButton}>
                 {icon2} 
             </View>
         </View>

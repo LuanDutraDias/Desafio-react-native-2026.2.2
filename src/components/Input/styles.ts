@@ -18,12 +18,19 @@ export const styles = StyleSheet.create({
         borderRadius: 12,
         flexDirection: "row",
         alignItems: "center",
-        paddingRight: 10,
-        height: 50,
+        height: 55,
     },
     input: {
         color: colors.secondary,
         flex: 1,
-        paddingLeft: 10
+        fontSize: 15,
+        paddingLeft: 10,
+        paddingRight: 5
     },
+    inputButton: {
+        height: "100%",
+        justifyContent: "center",
+        paddingRight: 10,
+        paddingLeft: 5,
+    }
 });

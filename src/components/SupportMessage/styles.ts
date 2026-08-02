@@ -11,9 +11,11 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         gap: 15,
         height: 50,
-        paddingHorizontal: 12
+        paddingLeft: 12,
+        paddingRight: 5,
     },
     message: {
         color: colors.textSecondary,
+        flex: 1,
     },
 });

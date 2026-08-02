@@ -3,7 +3,7 @@ import { colors } from "../../constants/colors";
 
 export const styles = StyleSheet.create({
     title: {
-        fontSize: 30,
+        fontSize: 28,
         textAlign: "center",
         color: colors.secondary,
     },

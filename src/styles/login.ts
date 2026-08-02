@@ -23,8 +23,8 @@ export const styles = StyleSheet.create({
     containerContent: {
         flex: 1,
         paddingHorizontal: 24,
-        paddingTop: 20,
-        gap: 30,
+        paddingTop: 10,
+        gap: 25,
     },
     containerWelcome: {
         gap: 5,

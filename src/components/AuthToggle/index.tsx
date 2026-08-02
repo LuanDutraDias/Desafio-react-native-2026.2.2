@@ -16,11 +16,13 @@ export default function AuthToggle({title, link, ...props}: linkProps){
     const {primary} = useColorTheme();
 
     return (
-        <Text style={styles.footerText}>
-            {title}
-            <Link style={[styles.footerLink, {color: primary}]} {...props}>
+        <Link style={styles.footerText} {...props}>
+            <Text>
+                {title}    
+            </Text>
+            <Text style={[styles.footerLink, {color: primary}]}>
                 {link}
-            </Link>
-        </Text>
+            </Text>
+        </Link>
     )
 };

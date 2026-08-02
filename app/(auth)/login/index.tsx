@@ -60,7 +60,7 @@ export default function LoginScreen() {
       style={styles.sectionLogin}
       contentContainerStyle={styles.scrollLogin}
       enableOnAndroid
-      extraScrollHeight={200}
+      extraScrollHeight={230}
       keyboardShouldPersistTaps="handled"
       >
         <Image 
@@ -99,7 +99,7 @@ export default function LoginScreen() {
             icon1={
               <EvilIcons
               name="lock"
-              size={30}
+              size={34}
               color={colors.secondary}
               />
             }
@@ -107,7 +107,7 @@ export default function LoginScreen() {
               <TouchableOpacity onPress={togglePassword}>
                 <AntDesign
                 name={showPassword ? "eye" : "eye-invisible"}
-                size={20}
+                size={22}
                 color={colors.secondary}
                 />
               </TouchableOpacity>

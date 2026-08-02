@@ -14,8 +14,8 @@ export const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderColor: colors.secondary,
-        width: 20,
-        height: 20,
+        width: 25,
+        height: 25,
     },
     checked: {
         backgroundColor: colors.secondary,

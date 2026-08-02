@@ -93,7 +93,7 @@ export default function RegisterScreen() {
               icon1={
                 <Ionicons
                   name="person"
-                  size={20}
+                  size={22}
                   color={colors.secondary}
                 />  
               }
@@ -124,7 +124,7 @@ export default function RegisterScreen() {
               icon1={
                 <EvilIcons
                   name="lock"
-                  size={30}
+                  size={34}
                   color={colors.secondary}
                 />
               }
@@ -132,7 +132,7 @@ export default function RegisterScreen() {
                 <TouchableOpacity onPress={togglePassword}>
                   <AntDesign
                     name={showPassword ? "eye" : "eye-invisible"}
-                    size={20}
+                    size={22}
                     color={colors.secondary}
                     />
                 </TouchableOpacity>
@@ -146,7 +146,7 @@ export default function RegisterScreen() {
               icon1={
                 <EvilIcons
                   name="lock"
-                  size={30}
+                  size={34}
                   color={colors.secondary}
                 />
               }
@@ -154,7 +154,7 @@ export default function RegisterScreen() {
                 <TouchableOpacity onPress={toggleConfirmedPassword}>
                   <AntDesign
                     name={showConfirmedPassword ? "eye" : "eye-invisible"}
-                    size={20}
+                    size={22}
                     color={colors.secondary}
                   />
                 </TouchableOpacity>

@@ -16,21 +16,21 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.backgroundScreen,
     },
     registerBanner: {
-        height: 250,
+        height: 220,
         width: "100%",
         resizeMode: "cover",
     },
     containerContent: {
         flex: 1,
         paddingHorizontal: 24,
-        paddingTop: 25,
-        gap: 20,
+        paddingTop: 10,
+        gap: 10,
     },
     containerWelcome: {
         gap: 5,
     },
     containerForms: {
         paddingTop: 10,
-        gap: 15,
+        gap: 16,
     },
 });

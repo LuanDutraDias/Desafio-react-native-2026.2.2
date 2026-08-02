@@ -4,7 +4,7 @@ import { colors } from "../../constants/colors";
 export const styles = StyleSheet.create({
     subtitle: {
         textAlign: "center",
-        fontSize: 20,
+        fontSize: 18,
         color: colors.textSecondary,
     },
 });
