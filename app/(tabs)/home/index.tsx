@@ -5,9 +5,7 @@ import Header from "@/components/Header";
 
 export default function HomeSreen(){
     return (
-        <SafeAreaView
-              style={styles.safeAreaView}
-        >
+        <SafeAreaView style={styles.safeAreaView}>
             <Header title="Início"/>
         </SafeAreaView>
     )

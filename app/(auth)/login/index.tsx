@@ -54,15 +54,13 @@ export default function LoginScreen() {
     }
 
   return (
-    <SafeAreaView
-      style={styles.safeAreaView}
-    >
+    <SafeAreaView style={styles.safeAreaView}>
       <KeyboardAwareScrollView 
-      style={styles.sectionLogin}
-      contentContainerStyle={styles.scrollLogin}
-      enableOnAndroid
-      extraScrollHeight={230}
-      keyboardShouldPersistTaps="handled"
+        style={styles.sectionLogin}
+        contentContainerStyle={styles.scrollLogin}
+        enableOnAndroid
+        extraScrollHeight={230}
+        keyboardShouldPersistTaps="handled"
       >
         <Image 
           style={styles.loginBanner} 
@@ -93,7 +91,7 @@ export default function LoginScreen() {
             } 
             placeholder="E-mail" 
             keyboardType="email-address"
-            />
+          />
           <Input
             value={password}
             onChangeText={setPassword}
@@ -115,17 +113,17 @@ export default function LoginScreen() {
             }
             placeholder="Senha" 
             secureTextEntry={showPassword ? false : true}
-            />
+          />
           <ChangeColorTheme/>
           <Button 
             title="Entrar"
             onPress={handleLogin}
-            />
+          />
           <AuthToggle 
             href="/register" 
             title="Não tem uma conta? " 
             link="Cadastre-se"
-            />
+          />
         </View>
       </View>
     </KeyboardAwareScrollView>

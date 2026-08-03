@@ -18,9 +18,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SupportScreen(){
     return (
-        <SafeAreaView
-                  style={styles.safeAreaView}
-        >
+        <SafeAreaView style={styles.safeAreaView}>
             <View style={styles.sectionSupport}>
                 <Image 
                     style={styles.supportBanner} 

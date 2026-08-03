@@ -72,9 +72,7 @@ export default function RegisterScreen() {
 }    
 
   return (
-    <SafeAreaView
-          style={styles.safeAreaView}
-    >
+    <SafeAreaView style={styles.safeAreaView}>
       <KeyboardAwareScrollView 
         style={styles.sectionRegister}
         contentContainerStyle={styles.scrollRegister}
@@ -82,9 +80,7 @@ export default function RegisterScreen() {
         extraScrollHeight={200}
         keyboardShouldPersistTaps="handled"
       >
-        <ModalTermsOfUse visible={showModal} onClose={() => setShowModal(false)}>
-
-        </ModalTermsOfUse>
+        <ModalTermsOfUse visible={showModal} onClose={() => setShowModal(false)}/>
         <Image 
           style={styles.registerBanner} 
           source={require("@/assets/images/banners/register-banner.png")}
