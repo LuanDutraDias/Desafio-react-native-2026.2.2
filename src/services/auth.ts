@@ -22,3 +22,11 @@ export async function login(data: LoginRequest){
 
     return response.data;
 }
+
+export async function logout() {
+    const response = await api.post("/logout");
+
+    console.log(response.data);
+
+    return response;
+}
