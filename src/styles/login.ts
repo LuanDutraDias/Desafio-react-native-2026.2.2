@@ -30,6 +30,6 @@ export const styles = StyleSheet.create({
         gap: 5,
     },
     containerForms: {
-        gap: 20,
+        gap: 15,
     },
 });

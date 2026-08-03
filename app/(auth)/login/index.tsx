@@ -13,6 +13,7 @@ import Input from "@/components/Input";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import CheckboxWithText from "@/components/CheckboxWithText";
+import ChangeColorTheme from "@/components/ChangeColorTheme";
 
 import {useLogin} from "@/hooks/useLogin";
 
@@ -46,7 +47,7 @@ export default function LoginScreen() {
           password,
         });
 
-        await signIn(response.token, rememberMe);
+        await signIn(response.token);
       } catch (error) {
         console.log(error);
       }
@@ -115,7 +116,7 @@ export default function LoginScreen() {
             placeholder="Senha" 
             secureTextEntry={showPassword ? false : true}
             />
-          <CheckboxWithText label="Lembrar de mim" onPress={toggleRememberMe} checked={rememberMe}/>
+          <ChangeColorTheme/>
           <Button 
             title="Entrar"
             onPress={handleLogin}
