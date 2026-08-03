@@ -1,7 +1,9 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {styles} from "./styles"
 import { colors } from "@/constants/colors";
+
+import Logo from "../Logo";
 
 import { useAuth } from "@/hooks/useAuth";
 
@@ -15,11 +17,12 @@ export default function Header({title}: HeaderProps){
 
     return (
         <View style={styles.headerContainer}>
+            <Logo/>
             <Text style={styles.title}>
                 {title}
             </Text>
-            <TouchableOpacity style={styles.logout} onPress={signOut}>
-                <Ionicons name="exit-outline" size={26} color={colors.secondary} />
+            <TouchableOpacity onPress={signOut}>
+                <Ionicons name="exit-outline" size={32} color={colors.secondary} />
             </TouchableOpacity>
         </View>
     )
