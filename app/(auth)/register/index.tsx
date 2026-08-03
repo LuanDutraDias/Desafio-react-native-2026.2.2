@@ -15,6 +15,7 @@ import Input from "@/components/Input";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import ModalTermsOfUse from "@/components/ModalTermsOfUse";
+import ButtonReadTermsOfUse from "@/components/ButtonReadTermsOfUse";
 
 import {useRegister} from "@/hooks/useRegister";
 
@@ -175,9 +176,7 @@ export default function RegisterScreen() {
             />
             <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
               <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
-              <TouchableOpacity style={{backgroundColor: colors.buttonSecondaryBackground, borderRadius: 4, paddingHorizontal: 10, paddingVertical: 2}} onPress={() => setShowModal(true)}>
-                <Text style={{color: colors.buttonSecondaryText}}>Ler</Text>
-              </TouchableOpacity>
+              <ButtonReadTermsOfUse onPress={() => setShowModal(true)}/>
             </View>
             <Button title="Cadastrar" onPress={handleRegister}/>
             <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
