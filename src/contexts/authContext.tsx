@@ -2,12 +2,14 @@ import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
 import * as SecureStore from "expo-secure-store";
 
+import { logout } from "@/services/auth";
+
 import {router} from "expo-router";
 
 type AuthState = {
     isLoggedIn: boolean;
     isReadyAfterSearchingToken: boolean;
-    signIn: (token: string, rememberMe: boolean) => Promise<void>;
+    signIn: (token: string) => Promise<void>;
     signOut: () => Promise<void>;
 }
 
@@ -18,10 +20,8 @@ export function AuthProvider({children}: PropsWithChildren){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isReadyAfterSearchingToken, setIsReadyAfterSearchingToken] = useState(false);
 
-    async function signIn(token: string, rememberMe: boolean){
-        if (rememberMe){
-            await SecureStore.setItemAsync("token", token);
-        }
+    async function signIn(token: string){
+        await SecureStore.setItemAsync("token", token);
         setIsLoggedIn(true);
         router.replace("/home");
     }
@@ -43,9 +43,15 @@ export function AuthProvider({children}: PropsWithChildren){
     }, []);
 
     async function signOut(){
-        await SecureStore.deleteItemAsync("token");
-        setIsLoggedIn(false);
-        router.replace("/login");
+        try {
+            await logout();
+        } catch (error) {
+            console.log(error);
+        } finally {
+            await SecureStore.deleteItemAsync("token");
+            setIsLoggedIn(false);
+            router.replace("/login");
+        }
     }
 
     return (
