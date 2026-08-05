@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: colors.border,
         borderRadius: 16,
+        justifyContent: "flex-end",
     },
     image: {
         width: "100%",

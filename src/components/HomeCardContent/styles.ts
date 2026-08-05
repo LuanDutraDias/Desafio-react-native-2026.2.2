@@ -3,18 +3,17 @@ import { colors } from "../../constants/colors";
 
 export const styles = StyleSheet.create({
     containerHomeCardContent: {
-        height: "100%",
         width: "100%",
-        justifyContent: "flex-end",
-        padding: 10,
         gap: 2,
+        paddingHorizontal: 10,
+        paddingBottom: 10,
     },
     author: {
-        fontSize: 9,
+        fontSize: 10,
         color: colors.textSecondary
     },
     title: {
-        fontSize: 13,
+        fontSize: 14,
         fontWeight: "bold",
         color: colors.secondary
     },
@@ -25,7 +24,7 @@ export const styles = StyleSheet.create({
     },
     rating: {
         color: colors.rating,
-        fontSize: 12
+        fontSize: 13
     },
     containerGenre: {
         justifyContent: "center",
@@ -36,7 +35,7 @@ export const styles = StyleSheet.create({
     },
     genre: {
         color: colors.textSecondary,
-        fontSize: 10,
+        fontSize: 11,
     },
     containerYear: {
         justifyContent: "center",
@@ -47,10 +46,10 @@ export const styles = StyleSheet.create({
     },
     year: {
         color: colors.iconBackground,
-        fontSize: 10,
+        fontSize: 11,
     },
     reviewComment: {
         color: colors.textSecondary,
-        fontSize: 10,
+        fontSize: 11,
     }
 });
