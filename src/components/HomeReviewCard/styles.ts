@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.inputBackground,
         padding: 10,
         width: "90%",
-        height: 140,
         alignSelf: "center",
         borderWidth: 1,
         borderColor: colors.border,
@@ -20,7 +19,7 @@ export const styles = StyleSheet.create({
         gap: 10,
     },
     image: {
-        height: "80%",
+        height: 100,
         width: "100%",
         borderRadius: 16,
     },

@@ -40,6 +40,7 @@ export default function CarouselCard({image, title, author, rating, genre, year,
                 genre={genre}
                 year={year}
                 review={review}
+                style={{justifyContent: "flex-end", paddingBottom: 10}}
             />
         </View>
     )

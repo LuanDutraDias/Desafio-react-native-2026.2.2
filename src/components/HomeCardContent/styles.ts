@@ -3,10 +3,9 @@ import { colors } from "../../constants/colors";
 
 export const styles = StyleSheet.create({
     containerHomeCardContent: {
-        width: "100%",
+        flex: 1,
         gap: 2,
         paddingHorizontal: 10,
-        paddingBottom: 10,
     },
     author: {
         fontSize: 10,
