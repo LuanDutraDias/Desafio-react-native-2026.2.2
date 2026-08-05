@@ -43,7 +43,7 @@ const games = [
         rating: 9.9,
         genre: "Action",
         year: 2018,
-        review: "Uma experiência emocionante que combina combate intenso, narrativa impecável e uma relação inesquecível entre Kratos e Atreus.",
+        review: "Uma experiência emocionante que combina combate intenso, narrativa impecável e uma relação inesquecível entre Kratos e Atreus. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
     },
 ];
@@ -53,7 +53,7 @@ export default function HomeSreen(){
         <SafeAreaView style={styles.safeAreaView} edges={["top"]}>
             <Header title="Início" />
             <FlatList
-                style={{flex: 1, marginBottom: 10}}
+                style={{flex: 1}}
                 ListHeaderComponent={
                     <Carousel />
                 }

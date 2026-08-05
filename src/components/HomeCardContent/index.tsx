@@ -29,7 +29,7 @@ export default function HomeCardContent({title, author, rating, genre, year, rev
             <View style={styles.containerRatingGenreYear}>
                 <AntDesign
                     name="star"
-                    size={18}
+                    size={17}
                     color={colors.rating}
                 />
                 <Text style={styles.rating}>

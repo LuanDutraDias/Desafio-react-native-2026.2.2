@@ -19,13 +19,13 @@ export const styles = StyleSheet.create({
         gap: 10,
     },
     image: {
-        height: 100,
+        height: 108,
         width: "100%",
         borderRadius: 16,
     },
     containerIcons: {
         flexDirection: "row",
-        gap: 5,
+        gap: 10,
     },
     containerButtonReadMore: {
         position: "absolute",

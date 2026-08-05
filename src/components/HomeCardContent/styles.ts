@@ -4,15 +4,15 @@ import { colors } from "../../constants/colors";
 export const styles = StyleSheet.create({
     containerHomeCardContent: {
         flex: 1,
-        gap: 2,
+        gap: 4,
         paddingHorizontal: 10,
     },
     author: {
-        fontSize: 10,
+        fontSize: 12,
         color: colors.textSecondary
     },
     title: {
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: "bold",
         color: colors.secondary
     },
@@ -34,21 +34,21 @@ export const styles = StyleSheet.create({
     },
     genre: {
         color: colors.textSecondary,
-        fontSize: 11,
+        fontSize: 10,
     },
     containerYear: {
         justifyContent: "center",
         paddingVertical: 2,
-        paddingHorizontal: 4,
+        paddingHorizontal: 6,
         backgroundColor: colors.textSecondary,
         borderRadius: 4,
     },
     year: {
         color: colors.iconBackground,
-        fontSize: 11,
+        fontSize: 10,
     },
     reviewComment: {
         color: colors.textSecondary,
-        fontSize: 11,
+        fontSize: 12,
     }
 });

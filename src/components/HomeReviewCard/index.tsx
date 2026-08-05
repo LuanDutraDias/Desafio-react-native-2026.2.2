@@ -65,7 +65,7 @@ export default function HomeReviewCard({title, author, rating, genre, year, revi
                 year={year}
                 review={review}
                 readMore={readMore}
-                style={{paddingBottom: 20}}
+                style={{paddingBottom: 25}}
             />
             <Pressable style={[styles.containerButtonReadMore, {backgroundColor: `${primary}1A`}]} onPress={() => setReadMore(!readMore)}>
                 <Text style={[styles.textButtonReadMore, {color: primary}]}>
