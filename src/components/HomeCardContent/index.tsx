@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleProp, ViewStyle } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
 
@@ -7,17 +7,19 @@ import { colors } from "@/constants/colors";
 import {styles} from "./styles";
 
 type HomeCardContentProps = {
+    style?: StyleProp<ViewStyle>;
     title: string;
     author: string;
     rating: number;
     genre: string;
     year: number;
     review: string;
+    readMore?: boolean;
 }
 
-export default function HomeCardContent({title, author, rating, genre, year, review}: HomeCardContentProps){
+export default function HomeCardContent({title, author, rating, genre, year, review, style, readMore}: HomeCardContentProps){
     return (
-        <View style={styles.containerHomeCardContent}>
+        <View style={[styles.containerHomeCardContent, style]}>
             <Text style={styles.author}>
                 {author} em 02/04/2018
             </Text>
@@ -44,7 +46,7 @@ export default function HomeCardContent({title, author, rating, genre, year, rev
                     </Text>
                 </View>
             </View>
-            <Text style={styles.reviewComment}>
+            <Text numberOfLines={readMore ? undefined : 3} style={styles.reviewComment}>
                 {/* Mario Odyssey é uma obra-prima absoluta do design de jogos. É um jogo vibrante, extremamente criativo e indispensável para qualquer dono do console... */review}
             </Text>
         </View>

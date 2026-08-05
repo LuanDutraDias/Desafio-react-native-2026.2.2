@@ -1,5 +1,7 @@
 import { View, Image, Pressable, Text } from "react-native";
 
+import { useState } from "react";
+
 import { MaterialCommunityIcons, FontAwesome6 } from "@expo/vector-icons";
 
 import { colors } from "@/constants/colors";
@@ -22,6 +24,8 @@ type HomeCardContentProps = {
 export default function HomeReviewCard({title, author, rating, genre, year, review, image}: HomeCardContentProps){
 
     const {primary} = useColorTheme();
+
+    const [readMore, setReadMore] = useState(false);
 
     return (
         <View style={styles.containerCard}>
@@ -60,10 +64,12 @@ export default function HomeReviewCard({title, author, rating, genre, year, revi
                 genre={genre}
                 year={year}
                 review={review}
+                readMore={readMore}
+                style={{paddingBottom: 20}}
             />
-            <Pressable style={[styles.containerButtonReadMore, {backgroundColor: `${primary}1A`}]}>
+            <Pressable style={[styles.containerButtonReadMore, {backgroundColor: `${primary}1A`}]} onPress={() => setReadMore(!readMore)}>
                 <Text style={[styles.textButtonReadMore, {color: primary}]}>
-                    Ler mais
+                    {readMore ? 'Ler menos' : 'Ler mais'}
                 </Text>
             </Pressable>
         </View>
