@@ -28,4 +28,15 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         gap: 5,
     },
+    containerButtonReadMore: {
+        position: "absolute",
+        bottom: 10,
+        right: 10,
+        borderRadius: 4,
+        paddingHorizontal: 5,
+        paddingVertical: 2,
+    },
+    textButtonReadMore: {
+        fontSize: 10
+    },
 });
