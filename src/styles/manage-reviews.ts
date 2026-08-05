@@ -6,5 +6,10 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundScreen,
         paddingTop: 5,
+    },
+    containerContent: {
+        paddingHorizontal: 10,
+        paddingVertical: 15,
+        flex: 1,
     }
 })

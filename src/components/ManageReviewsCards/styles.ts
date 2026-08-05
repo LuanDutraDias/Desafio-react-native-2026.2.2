@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
     containerCard: {
         backgroundColor: colors.inputBackground,
         padding: 10,
-        width: "90%",
         alignSelf: "center",
         borderWidth: 1,
         borderColor: colors.border,
