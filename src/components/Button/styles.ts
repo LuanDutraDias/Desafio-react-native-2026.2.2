@@ -6,6 +6,9 @@ export const styles = StyleSheet.create({
         borderRadius: 12,
         height: 50,
         justifyContent: "center",
+        gap: 10,
+        flexDirection: "row",
+        alignItems: "center",
     },
     buttonText: {
         color: colors.secondary,
