@@ -1,8 +1,11 @@
 import { FlatList } from "react-native";
 
+import { useState } from "react";
+
 import {styles} from "./styles";
 
 import CarouselCard from "../CarouselCard";
+import PaginationDots from "../PaginationDots";
 
 const games = [
     {
@@ -48,17 +51,32 @@ const games = [
 ];
 
 export default function Carousel(){
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
     return (
-        <FlatList
-            contentContainerStyle={styles.containerCarousel}
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            data={games}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-                <CarouselCard {...item} />
-            )}
-        />
+        <>
+            <FlatList
+                contentContainerStyle={styles.containerCarousel}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                onMomentumScrollEnd={(event) => {
+                    const index = Math.round(
+                        event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width
+                    );
+                    setCurrentIndex(index);
+                }}
+                data={games}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <CarouselCard {...item} />
+                )}
+                />
+            <PaginationDots
+                total={games.length}
+                current={currentIndex}
+            />
+        </>
     )
 }
