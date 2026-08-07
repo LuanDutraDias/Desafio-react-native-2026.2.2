@@ -11,5 +11,6 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 15,
         flex: 1,
+        justifyContent: "space-between",
     }
 })
