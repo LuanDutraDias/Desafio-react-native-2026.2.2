@@ -14,7 +14,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
-import ModalTermsOfUse from "@/components/ModalTermsOfUse";
+import ModalTermsOfUse from "@/overlays/ModalTermsOfUse";
 import ButtonReadTermsOfUse from "@/components/ButtonReadTermsOfUse";
 
 import {useRegister} from "@/hooks/useRegister";
