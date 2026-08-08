@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
         top: 10,
         backgroundColor: colors.primary1,
         borderRadius: "50%",
-        padding: 7,
+        width: 30,
+        height: 30,
+        alignItems: "center",
+        justifyContent: "center",
     },
 });

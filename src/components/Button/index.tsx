@@ -23,6 +23,10 @@ export default function Button({title, icon, variant = "primary", ...props}: but
         backgroundColor = primary
         textColor = colors.secondary
     }
+    else if (variant === "primary1"){
+        backgroundColor = colors.primary1
+        textColor = colors.secondary
+    }
     else {
         backgroundColor = colors.buttonSecondaryBackground
         textColor = colors.buttonSecondaryText

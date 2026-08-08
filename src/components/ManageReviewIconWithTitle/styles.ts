@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
     containerIcon: {
         borderWidth: 1,
         borderRadius: "50%",
-        padding: 20
+        width: 85,
+        height: 85,
+        alignItems: "center",
+        justifyContent: "center",
     },
 });

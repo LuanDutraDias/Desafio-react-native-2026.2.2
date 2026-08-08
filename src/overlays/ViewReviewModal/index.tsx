@@ -1,9 +1,10 @@
-import { Modal, Text, TouchableOpacity, View } from "react-native";
+import { Modal, View } from "react-native";
 
 import {styles} from "./styles";
-import { colors } from "@/constants/colors";
 
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { useColorTheme } from "@/hooks/useColorTheme";
+
+import { FontAwesome5 } from "@expo/vector-icons";
 import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
 import CommentInputWithTitle from "@/components/CommentInputWithTitle";
 import ManageReviewCard from "@/components/ManageReviewsCards";
@@ -25,6 +26,9 @@ type ModalProps = {
 }
 
 export default function ViewReviewModal({visible, onClose, review}: ModalProps){
+
+    const {primary} = useColorTheme();
+
     return (
         <Modal visible={visible} transparent> 
             <View style={styles.overlay}>
@@ -37,7 +41,7 @@ export default function ViewReviewModal({visible, onClose, review}: ModalProps){
                             <FontAwesome5 
                                 name="eye" 
                                 size={40} 
-                                color={colors.primary1}
+                                color={primary}
                             />
                         }
                         title="Visualizar review"

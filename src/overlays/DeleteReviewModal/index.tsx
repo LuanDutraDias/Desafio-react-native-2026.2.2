@@ -1,9 +1,9 @@
-import { Modal, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Text, View } from "react-native";
 
 import {styles} from "./styles";
 import { colors } from "@/constants/colors";
 
-import { Ionicons, FontAwesome5, Feather } from "@expo/vector-icons";
+import { FontAwesome5, Feather } from "@expo/vector-icons";
 import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
 import ManageReviewCard from "@/components/ManageReviewsCards";
 import Button from "@/components/Button";
@@ -26,6 +26,7 @@ type ModalProps = {
 }
 
 export default function DeleteReviewModal({visible, onClose, review}: ModalProps){
+
     return (
         <Modal visible={visible} transparent> 
             <View style={styles.overlay}>
@@ -34,6 +35,7 @@ export default function DeleteReviewModal({visible, onClose, review}: ModalProps
                         onClose={onClose}
                     />
                     <ManageReviewIconWithTitle
+                        variant="primary1"
                         icon={
                             <FontAwesome5 
                                 name="trash" 
@@ -70,6 +72,7 @@ export default function DeleteReviewModal({visible, onClose, review}: ModalProps
                         />
                         <Button
                             title="Excluir"
+                            variant="primary1"
                         />
                     </View>
                 </View>
