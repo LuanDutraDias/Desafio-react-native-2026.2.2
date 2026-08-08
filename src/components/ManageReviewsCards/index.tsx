@@ -1,12 +1,8 @@
-import { View, Image, Pressable, Text } from "react-native";
+import { View, Image, Text } from "react-native";
 
-import { useState } from "react";
-
-import { MaterialCommunityIcons, FontAwesome6, AntDesign } from "@expo/vector-icons";
+import {AntDesign } from "@expo/vector-icons";
 
 import { colors } from "@/constants/colors";
-
-import { useColorTheme } from "@/hooks/useColorTheme";
 
 import {styles} from "./styles";
 import ManageReviewsButtons from "../ManageReviewsButtons";
@@ -14,7 +10,7 @@ import ManageReviewsButtons from "../ManageReviewsButtons";
 type HomeCardContentProps = {
     image: any,
     title: string;
-    rating: number;
+    rating: string;
     genre: string;
     updated: string;
     showButtons?: boolean;
@@ -24,8 +20,6 @@ type HomeCardContentProps = {
 }
 
 export default function ManageReviewCard({title, rating, genre, image, updated, showButtons = true, onView, onEdit, onDelete}: HomeCardContentProps){
-
-    const {primary} = useColorTheme();
 
     return (
         <View style={styles.containerCard}>

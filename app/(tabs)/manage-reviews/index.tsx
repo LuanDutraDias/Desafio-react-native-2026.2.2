@@ -22,50 +22,56 @@ const games = [
     {
         id: "1",
         title: "Elden Ring",
-        rating: 9.7,
+        rating: "9,7",
         genre: "RPG",
         image: require("@/assets/images/game-cover/capa-elden-ring-teste.jpg"),
-        updated: "Editado em 02/12/2023"
+        updated: "Editado em 02/12/2023",
+        comment: "ELDEN RINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
     },
     {
         id: "2",
         title: "Zelda",
-        rating: 10,
+        rating: "10",
         genre: "Aventura",
         image: require("@/assets/images/game-cover/capa-zelda-teste.webp"),
-        updated: "Editado em 02/12/2023"
+        updated: "Editado em 02/12/2023",
+        comment: "ZELDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     },
     {
         id: "3",
         title: "Super Mario Odyssey",
-        rating: 9.8,
+        rating: "9,8",
         genre: "Platform",
         image: require("@/assets/images/game-cover/capa-super-mario-odyssey-teste.png"),
-        updated: "Editado em 02/12/2023"
+        updated: "Editado em 02/12/2023",
+        comment: "sei lá",
         },
     {
         id: "4",
         title: "God of War",
-        rating: 9.9,
+        rating: "9,9",
         genre: "Action",
         image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
-        updated: "Editado em 02/12/2023"
+        updated: "Editado em 02/12/2023",
+        comment: "sei lá",
     },
     {
         id: "5",
         title: "God of War",
-        rating: 9.9,
+        rating: "9,9",
         genre: "Action",
         image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
-        updated: "Editado em 02/12/2023"
+        updated: "Editado em 02/12/2023",
+        comment: "sei lá",
     },
     {
         id: "6",
         title: "God of War",
-        rating: 9.9,
+        rating: "9,9",
         genre: "Action",
         image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
-        updated: "Editado em 02/12/2023"
+        updated: "Editado em 02/12/2023",
+        comment: "sei lá",
     },
 ];
 

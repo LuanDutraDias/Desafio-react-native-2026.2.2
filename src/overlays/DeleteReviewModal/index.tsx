@@ -12,7 +12,7 @@ import CloseModalButton from "@/components/CloseModalButton";
 type Review = {
     id: string;
     title: string;
-    rating: number;
+    rating: string;
     genre: string;
     image: any;
     updated: string;

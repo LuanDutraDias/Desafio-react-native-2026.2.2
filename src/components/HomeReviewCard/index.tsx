@@ -15,7 +15,7 @@ type HomeCardContentProps = {
     image: any,
     title: string;
     author: string;
-    rating: number;
+    rating: string;
     genre: string;
     year: number;
     review: string;

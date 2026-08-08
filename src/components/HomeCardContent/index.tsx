@@ -10,7 +10,7 @@ type HomeCardContentProps = {
     style?: StyleProp<ViewStyle>;
     title: string;
     author: string;
-    rating: number;
+    rating: string;
     genre: string;
     year: number;
     review: string;

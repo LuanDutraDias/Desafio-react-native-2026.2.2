@@ -5,10 +5,11 @@ type ModalType = "view" | "edit" | "delete" | null;
 type Review = {
     id: string;
     title: string;
-    rating: number;
+    rating: string;
     genre: string;
     image: any;
     updated: string;
+    comment: string;
 };
 
 export function useManageReview() {
