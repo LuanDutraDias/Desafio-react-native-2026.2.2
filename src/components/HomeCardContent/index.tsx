@@ -47,7 +47,7 @@ export default function HomeCardContent({title, author, rating, genre, year, rev
                 </View>
             </View>
             <Text numberOfLines={readMore ? undefined : 3} style={styles.reviewComment}>
-                {/* Mario Odyssey é uma obra-prima absoluta do design de jogos. É um jogo vibrante, extremamente criativo e indispensável para qualquer dono do console... */review}
+                "{review}"
             </Text>
         </View>
     )
