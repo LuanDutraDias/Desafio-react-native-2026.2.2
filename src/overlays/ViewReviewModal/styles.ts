@@ -11,10 +11,10 @@ export const styles = StyleSheet.create({
     },
     modal: {
         width: "100%",
-        maxHeight: "80%",
+        height: "75%",
         backgroundColor: colors.backgroundScreen,
         borderRadius: 16,
         padding: 20,
-        gap: 20,
+        justifyContent: "space-between",
     },
 });

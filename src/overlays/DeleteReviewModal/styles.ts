@@ -11,11 +11,11 @@ export const styles = StyleSheet.create({
     },
     modal: {
         width: "100%",
-        maxHeight: "80%",
+        height: "70%",
         backgroundColor: colors.backgroundScreen,
         borderRadius: 16,
         padding: 20,
-        gap: 20,
+        justifyContent: "space-between",
     },
     alertContainer: {
         flexDirection: "row",
