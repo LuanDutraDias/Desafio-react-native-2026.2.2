@@ -2,6 +2,12 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
 
 export const styles = StyleSheet.create({
+    sectionEditReview: {
+        flex: 1,
+    },
+    scrollEditReview: {
+        flexGrow: 1,
+    },
     overlay: {
         flex: 1,
         justifyContent: "center",

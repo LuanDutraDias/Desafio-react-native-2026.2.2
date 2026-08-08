@@ -4,6 +4,8 @@ import {styles} from "./styles";
 
 import { useColorTheme } from "@/hooks/useColorTheme";
 
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import {FontAwesome5 } from "@expo/vector-icons";
 import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
 import CommentInputWithTitle from "@/components/CommentInputWithTitle";
@@ -34,6 +36,12 @@ export default function EditReviewModal({visible, onClose, review}: ModalProps){
     return (
         <Modal visible={visible} transparent> 
             <View style={styles.overlay}>
+                <KeyboardAwareScrollView 
+                    style={styles.sectionEditReview}
+                    contentContainerStyle={styles.scrollEditReview}
+                    enableOnAndroid
+                    keyboardShouldPersistTaps="handled"
+                >
                 <View style={styles.modal}>
                     <CloseModalButton
                         onClose={onClose}
@@ -74,6 +82,7 @@ export default function EditReviewModal({visible, onClose, review}: ModalProps){
                         />
                     </View>
                 </View>
+                </KeyboardAwareScrollView>
             </View>
         </Modal>
     )

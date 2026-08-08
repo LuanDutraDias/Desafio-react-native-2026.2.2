@@ -2,8 +2,9 @@ import { View } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import Header from "@/components/Header";
 import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
+
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { styles } from "@/styles/create-review";
 
@@ -21,28 +22,36 @@ export default function CreateReviewSreen(){
 
     return (
         <SafeAreaView style={styles.safeAreaView} edges={["top"]}>
-            <View style={styles.containerContent}>
-                <ManageReviewIconWithTitle
-                    icon={
-                        <MaterialCommunityIcons 
-                            name="file-plus"
-                            size={50} 
-                            color={primary}
-                        />
-                    }
-                    title={"Nova avaliação"}
-                />
-                <SearchBar placeholder="Escolha o jogo para avaliar"/>
-                <RatingInputWithTitle
-                    title="Sua nota:"
-                />
-                <CommentInputWithTitle
-                    title="Seu comentário:"
-                />
-                <Button
-                    title="Publicar avaliação"
-                />
-            </View>
+            <KeyboardAwareScrollView 
+                style={styles.sectionCreateReview}
+                contentContainerStyle={styles.scrollCreateReview}
+                enableOnAndroid
+                extraScrollHeight={50}
+                keyboardShouldPersistTaps="handled"
+            >
+                <View style={styles.containerContent}>
+                    <ManageReviewIconWithTitle
+                        icon={
+                            <MaterialCommunityIcons 
+                                name="file-plus"
+                                size={50} 
+                                color={primary}
+                            />
+                        }
+                        title={"Nova avaliação"}
+                    />
+                    <SearchBar placeholder="Escolha o jogo para avaliar"/>
+                    <RatingInputWithTitle
+                        title="Sua nota:"
+                    />
+                    <CommentInputWithTitle
+                        title="Seu comentário:"
+                    />
+                    <Button
+                        title="Publicar avaliação"
+                    />
+                </View>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     )
 }

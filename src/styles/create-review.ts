@@ -7,10 +7,18 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.backgroundScreen,
         paddingTop: 5,
     },
+    sectionCreateReview: {
+        flex: 1,
+        backgroundColor: colors.backgroundScreen,
+    },
+    scrollCreateReview: {
+        flexGrow: 1,
+        backgroundColor: colors.backgroundScreen,
+    },
     containerContent: {
         paddingHorizontal: 10,
         paddingVertical: 15,
         flex: 1,
-        justifyContent: "space-between",
+        gap: 20,
     }
 })
