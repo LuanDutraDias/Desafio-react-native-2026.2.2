@@ -12,7 +12,7 @@ type CommentInputWithTitleProps = {
 
 export default function CommentInputWithTitle({title, value, editable = true}: CommentInputWithTitleProps) {
 
-  const [comment, setComment] = useState("0");
+  const [comment, setComment] = useState("");
 
   return (
     <View style={styles.containerTitleAndInput}>
