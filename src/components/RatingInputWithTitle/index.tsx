@@ -1,15 +1,15 @@
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput, Text, TextInputProps } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "@/constants/colors";
 import { styles } from "./styles";
 
-type RatingInputWithTitleProps = {
+type RatingInputWithTitleProps = TextInputProps & {
   title: string;
-  value?: string;
   editable?: boolean;
+  rating?: string;
 };
 
-export default function RatingInputWithTitle({title, value, editable = true}: RatingInputWithTitleProps) {
+export default function RatingInputWithTitle({title, editable = true, rating, ...props}: RatingInputWithTitleProps) {
 
   return (
     <View style={styles.containerTitleInputAndIcon}>
@@ -18,10 +18,10 @@ export default function RatingInputWithTitle({title, value, editable = true}: Ra
       </Text>
       <View style={styles.containerInputAndIcon}>
           <TextInput
-              value={value}
+              {...props}
+              value={rating}
               editable={editable}
               keyboardType="decimal-pad"
-              placeholder="0.0"
               placeholderTextColor={colors.inputPlaceHolder}
               maxLength={4}
               style={styles.input}

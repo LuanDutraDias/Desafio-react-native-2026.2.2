@@ -13,10 +13,11 @@ import CloseModalButton from "@/components/CloseModalButton";
 type Review = {
     id: string;
     title: string;
-    rating: number;
+    rating: string;
     genre: string;
     image: any;
     updated: string;
+    comment: string;
 };
 
 type ModalProps = {
@@ -56,9 +57,13 @@ export default function ViewReviewModal({visible, onClose, review}: ModalProps){
                             updated={review.updated}
                         />
                     }
-                    <CommentInputWithTitle
-                        title="Comentário:"
-                    />
+                    {review &&
+                        <CommentInputWithTitle
+                            title="Comentário:"
+                            value={review.comment}
+                            editable={false}
+                        />
+                    }
                 </View>
             </View>
         </Modal>

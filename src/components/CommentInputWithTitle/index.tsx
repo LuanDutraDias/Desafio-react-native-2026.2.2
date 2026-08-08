@@ -1,18 +1,16 @@
-import { View, TextInput, Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { View, TextInput, Text, TextInputProps } from "react-native";
 import { colors } from "@/constants/colors";
 import { styles } from "./styles";
 import { useState } from "react";
 
-type CommentInputWithTitleProps = {
+type CommentInputWithTitleProps = TextInputProps & {
   title: string;
-  value?: string;
-  editable?: boolean;
+  comment?: string;
 };
 
-export default function CommentInputWithTitle({title, value, editable = true}: CommentInputWithTitleProps) {
+export default function CommentInputWithTitle({title, comment, ...props}: CommentInputWithTitleProps) {
 
-  const [comment, setComment] = useState("");
+  const [stateComment, setStateComment] = useState("");
 
   return (
     <View style={styles.containerTitleAndInput}>
@@ -20,18 +18,16 @@ export default function CommentInputWithTitle({title, value, editable = true}: C
         {title}
       </Text>
       <TextInput
-        value={value}
-        editable={editable}
-        placeholder="O que achou do jogo?"
+        {...props}
         placeholderTextColor={colors.inputPlaceHolder}
         maxLength={200}
-        onChangeText={setComment}
+        onChangeText={setStateComment}
         multiline
         style={styles.input}
         textAlignVertical="top"
       />
       <Text style={styles.caracterCounter}>
-        {comment.length}/200
+        {stateComment.length}/200
       </Text>
     </View>
   );

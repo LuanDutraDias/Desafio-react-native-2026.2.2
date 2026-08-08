@@ -43,9 +43,11 @@ export default function CreateReviewSreen(){
                     <SearchBar placeholder="Escolha o jogo para avaliar"/>
                     <RatingInputWithTitle
                         title="Sua nota:"
+                        placeholder="0,0"
                     />
                     <CommentInputWithTitle
                         title="Seu comentário:"
+                        placeholder="O que achou do jogo?"
                     />
                     <Button
                         title="Publicar avaliação"
