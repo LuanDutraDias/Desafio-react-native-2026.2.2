@@ -8,15 +8,14 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 20,
-    position: "relative",
   },
   title: {
     fontSize: 22,
     fontWeight: "bold",
     color: colors.secondary,
-    position: "absolute",
-    left: 0,
-    right: 0,
-    textAlign: "center",
   },
+  signOutContainer: {
+    width: 50,
+    alignItems: "flex-end",
+  }
 });

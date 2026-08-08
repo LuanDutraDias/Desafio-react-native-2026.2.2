@@ -21,7 +21,7 @@ export default function Header({title}: HeaderProps){
             <Text style={styles.title}>
                 {title}
             </Text>
-            <TouchableOpacity onPress={signOut}>
+            <TouchableOpacity onPress={signOut} style={styles.signOutContainer}>
                 <Ionicons name="exit-outline" size={32} color={colors.secondary} />
             </TouchableOpacity>
         </View>
