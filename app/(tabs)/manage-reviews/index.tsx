@@ -4,6 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import ManageReviewCard from "@/components/ManageReviewsCards";
 import Button from "@/components/Button";
+import ViewReviewModal from "@/overlays/ViewReviewModal";
+import EditReviewModal from "@/overlays/EditReviewModal";
+import DeleteReviewModal from "@/overlays/DeleteReviewModal";
+
+import { useManageReview } from "@/hooks/useManageReview";
 
 import { AntDesign } from "@expo/vector-icons";
 
@@ -47,6 +52,18 @@ const games = [
 ];
 
 export default function ManageReviewSreen(){
+
+    const {
+        selectedReview,
+        setSelectedReview,
+        modal,
+        setModal,
+        handleView,
+        handleEdit,
+        handleDelete,
+        closeModal,
+    } = useManageReview();
+
     return (
         <SafeAreaView style={styles.safeAreaView} edges={["top"]}>
             <Header
@@ -57,7 +74,13 @@ export default function ManageReviewSreen(){
                     style={{flex: 1}}
                     contentContainerStyle={{gap: 20}}
                     data={games}
-                    renderItem={({ item }) => <ManageReviewCard {...item} />}
+                    renderItem={({ item }) => (
+                        <ManageReviewCard 
+                            {...item} 
+                            onView={() => handleView(item)}
+                            onEdit={() => handleEdit(item)}
+                            onDelete={() => handleDelete(item)}
+                        />)}
                 />
                 <Button
                     title="Nova avaliação"
@@ -68,6 +91,21 @@ export default function ManageReviewSreen(){
                             color={colors.secondary}
                         />
                     }
+                />
+                <ViewReviewModal
+                    visible={modal === "view"}
+                    onClose={closeModal}
+                    review={selectedReview}
+                />
+                <EditReviewModal
+                    visible={modal === "edit"}
+                    onClose={closeModal}
+                    review={selectedReview}
+                />
+                <DeleteReviewModal
+                    visible={modal === "delete"}
+                    onClose={closeModal}
+                    review={selectedReview}
                 />
             </View>
         </SafeAreaView>
