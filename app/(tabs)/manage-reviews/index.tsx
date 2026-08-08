@@ -16,6 +16,8 @@ import { styles } from "@/styles/manage-reviews";
 
 import { colors } from "@/constants/colors";
 
+import { router } from "expo-router";
+
 const games = [
     {
         id: "1",
@@ -107,6 +109,7 @@ export default function ManageReviewSreen(){
                             color={colors.secondary}
                         />
                     }
+                    onPress={() => router.navigate("/create-review")}
                 />
                 <ViewReviewModal
                     visible={modal === "view"}
