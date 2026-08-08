@@ -8,27 +8,33 @@ import { useColorTheme } from "@/hooks/useColorTheme";
 
 import {styles} from "./styles";
 
-export default function ManageReviewsButtons(){
+type ManageReviewsButtonsProps = {
+    onView?: () => void;
+    onEdit?: () => void;
+    onDelete?: () => void;
+};
+
+export default function ManageReviewsButtons({onView, onEdit, onDelete}: ManageReviewsButtonsProps){
 
     const {primary} = useColorTheme();
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onView}>
                 <FontAwesome5 
                     name="eye" 
                     size={20} 
                     color={colors.secondary}
                 />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onEdit}>
                 <FontAwesome5 
                     name="pencil-alt" 
                     size={18} 
                     color={colors.secondary}
                 />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onDelete}>
                 <FontAwesome5 
                     name="trash" 
                     size={18} 

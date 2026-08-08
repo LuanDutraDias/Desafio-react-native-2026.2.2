@@ -18,9 +18,12 @@ type HomeCardContentProps = {
     genre: string;
     updated: string;
     showButtons?: boolean;
+    onView?: () => void;
+    onEdit?: () => void;
+    onDelete?: () => void;
 }
 
-export default function ManageReviewCard({title, rating, genre, image, updated, showButtons = true}: HomeCardContentProps){
+export default function ManageReviewCard({title, rating, genre, image, updated, showButtons = true, onView, onEdit, onDelete}: HomeCardContentProps){
 
     const {primary} = useColorTheme();
 
@@ -54,7 +57,11 @@ export default function ManageReviewCard({title, rating, genre, image, updated, 
                 </Text>
             </View>
             {showButtons && (
-                <ManageReviewsButtons/>
+                <ManageReviewsButtons
+                    onView={onView}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                />
             )}
         </View>
     )
