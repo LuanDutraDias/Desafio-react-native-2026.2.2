@@ -7,24 +7,31 @@ import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
 import CommentInputWithTitle from "@/components/CommentInputWithTitle";
 import ManageReviewCard from "@/components/ManageReviewsCards";
+import CloseModalButton from "@/components/CloseModalButton";
+
+type Review = {
+    id: string;
+    title: string;
+    rating: number;
+    genre: string;
+    image: any;
+    updated: string;
+};
 
 type ModalProps = {
     visible: boolean,
-    onClose: () => void
+    onClose: () => void,
+    review: Review | null,
 }
 
-export default function ViewReviewModal({visible, onClose}: ModalProps){
+export default function ViewReviewModal({visible, onClose, review}: ModalProps){
     return (
         <Modal visible={visible} transparent> 
             <View style={styles.overlay}>
                 <View style={styles.modal}>
-                    <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-                        <Ionicons
-                            name="close-circle"
-                            size={30}
-                            color={colors.primary1}
-                        />
-                    </TouchableOpacity>
+                    <CloseModalButton
+                        onClose={onClose}
+                    />
                     <ManageReviewIconWithTitle
                         icon={
                             <FontAwesome5 
@@ -35,14 +42,16 @@ export default function ViewReviewModal({visible, onClose}: ModalProps){
                         }
                         title="Visualizar review"
                     />
-                    <ManageReviewCard
-                        showButtons={false}
-                        title="Super Mario Odysseyyyy"
-                        rating={9.8}
-                        genre="Platform"
-                        image={require("@/assets/images/game-cover/capa-super-mario-odyssey-teste.png")}
-                        updated="Editado em 02/12/2023"
-                    />
+                    {review &&
+                        <ManageReviewCard
+                            showButtons={false}
+                            title={review.title}
+                            rating={review.rating}
+                            genre={review.genre}
+                            image={review.image}
+                            updated={review.updated}
+                        />
+                    }
                     <CommentInputWithTitle
                         title="Comentário:"
                     />

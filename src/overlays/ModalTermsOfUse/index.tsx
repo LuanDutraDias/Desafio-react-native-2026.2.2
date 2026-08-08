@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 type ModalProps = {
     visible: boolean,
-    onClose: () => void
+    onClose: () => void;
 }
 
 export default function ModalTermsOfUse({visible, onClose}: ModalProps){
