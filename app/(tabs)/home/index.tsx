@@ -57,7 +57,7 @@ export default function HomeSreen(){
                 ListHeaderComponent={
                     <Carousel />
                 }
-                contentContainerStyle={{gap: 10}}
+                contentContainerStyle={{gap: 10, paddingBottom: 15}}
                 data={games}
                 renderItem={({ item }) => <HomeReviewCard {...item} />}
             />

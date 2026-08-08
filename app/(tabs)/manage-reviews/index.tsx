@@ -49,6 +49,22 @@ const games = [
         image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
         updated: "Editado em 02/12/2023"
     },
+    {
+        id: "5",
+        title: "God of War",
+        rating: 9.9,
+        genre: "Action",
+        image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
+        updated: "Editado em 02/12/2023"
+    },
+    {
+        id: "6",
+        title: "God of War",
+        rating: 9.9,
+        genre: "Action",
+        image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
+        updated: "Editado em 02/12/2023"
+    },
 ];
 
 export default function ManageReviewSreen(){
@@ -72,7 +88,7 @@ export default function ManageReviewSreen(){
             <View style={styles.containerContent}>
                 <FlatList
                     style={{flex: 1}}
-                    contentContainerStyle={{gap: 20}}
+                    contentContainerStyle={{gap: 20, paddingBottom: 15}}
                     data={games}
                     renderItem={({ item }) => (
                         <ManageReviewCard 
