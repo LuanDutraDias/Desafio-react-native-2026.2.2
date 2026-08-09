@@ -5,10 +5,10 @@ import { useState } from "react";
 
 type CommentInputWithTitleProps = TextInputProps & {
   title: string;
-  comment?: string;
+  commentLength?: number;
 };
 
-export default function CommentInputWithTitle({title, comment, ...props}: CommentInputWithTitleProps) {
+export default function CommentInputWithTitle({title, commentLength, ...props}: CommentInputWithTitleProps) {
 
   const [stateComment, setStateComment] = useState("");
 
@@ -27,7 +27,7 @@ export default function CommentInputWithTitle({title, comment, ...props}: Commen
         textAlignVertical="top"
       />
       <Text style={styles.caracterCounter}>
-        {stateComment.length}/200
+          {commentLength ? commentLength: stateComment.length}/200
       </Text>
     </View>
   );

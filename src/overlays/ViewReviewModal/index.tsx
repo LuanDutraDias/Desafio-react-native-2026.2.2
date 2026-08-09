@@ -61,6 +61,7 @@ export default function ViewReviewModal({visible, onClose, review}: ModalProps){
                         <CommentInputWithTitle
                             title="Comentário:"
                             value={review.comment}
+                            commentLength={review.comment.length}
                             editable={false}
                         />
                     }
