@@ -15,9 +15,11 @@ type HomeCardContentProps = {
     year: number;
     review: string;
     readMore?: boolean;
+    commentLines: any;
+    onHasMoreLines?: (hasMore: boolean) => void
 }
 
-export default function HomeCardContent({title, author, rating, genre, year, review, style, readMore}: HomeCardContentProps){
+export default function HomeCardContent({title, author, rating, genre, year, review, style, readMore, commentLines, onHasMoreLines}: HomeCardContentProps){
     return (
         <View style={[styles.containerHomeCardContent, style]}>
             <Text style={styles.author}>
@@ -46,9 +48,23 @@ export default function HomeCardContent({title, author, rating, genre, year, rev
                     </Text>
                 </View>
             </View>
-            <Text numberOfLines={readMore ? undefined : 3} style={styles.reviewComment}>
-                "{review}"
-            </Text>
+            <View style={{ position: "relative" }}>
+                <Text
+                    style={[styles.reviewComment, { position: "absolute", opacity: 0, zIndex: -1 }]}
+                    onTextLayout={(e) => {
+                        const lines = e.nativeEvent.lines.length;
+                        onHasMoreLines?.(lines > commentLines);
+                    }}
+                    >
+                    "{review}"
+                </Text>
+                <Text 
+                    numberOfLines={readMore ? undefined : commentLines} 
+                    style={styles.reviewComment}
+                    >
+                    "{review}"
+                </Text>
+            </View>
         </View>
     )
 }

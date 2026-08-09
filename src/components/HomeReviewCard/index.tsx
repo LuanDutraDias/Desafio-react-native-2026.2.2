@@ -26,6 +26,7 @@ export default function HomeReviewCard({title, author, rating, genre, year, revi
     const {primary} = useColorTheme();
 
     const [readMore, setReadMore] = useState(false);
+    const [hasMoreLines, setHasMoreLines] = useState(false);
 
     return (
         <View style={styles.containerCard}>
@@ -66,12 +67,16 @@ export default function HomeReviewCard({title, author, rating, genre, year, revi
                 review={review}
                 readMore={readMore}
                 style={{paddingBottom: 25}}
+                commentLines={3}
+                onHasMoreLines={setHasMoreLines}
             />
-            <Pressable style={[styles.containerButtonReadMore, {backgroundColor: `${primary}1A`}]} onPress={() => setReadMore(!readMore)}>
-                <Text style={[styles.textButtonReadMore, {color: primary}]}>
-                    {readMore ? 'Ler menos' : 'Ler mais'}
-                </Text>
-            </Pressable>
+            {hasMoreLines && (
+                <Pressable style={[styles.containerButtonReadMore, {backgroundColor: `${primary}1A`}]} onPress={() => setReadMore(!readMore)}>
+                    <Text style={[styles.textButtonReadMore, {color: primary}]}>
+                        {readMore ? 'Ler menos' : 'Ler mais'}
+                    </Text>
+                </Pressable>
+            )}
         </View>
     )
 }
