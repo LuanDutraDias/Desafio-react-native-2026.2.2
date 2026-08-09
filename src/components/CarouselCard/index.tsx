@@ -12,7 +12,7 @@ type CarouselCardProps = {
     image: any;
     title: string;
     author: string;
-    rating: number;
+    rating: string;
     genre: string;
     year: number;
     review: string;
@@ -41,6 +41,7 @@ export default function CarouselCard({image, title, author, rating, genre, year,
                 year={year}
                 review={review}
                 style={{justifyContent: "flex-end", paddingBottom: 10}}
+                commentLines={undefined}
             />
         </View>
     )

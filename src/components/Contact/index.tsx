@@ -14,7 +14,7 @@ type ContactProps = {
 
 export default function Contact({icon1, title, textLink, link}: ContactProps){
     return (
-        <TouchableOpacity style={styles.containerContact} onPress={() => Linking.openURL(link)}>
+        <TouchableOpacity activeOpacity={0.7} style={styles.containerContact} onPress={() => Linking.openURL(link)}>
             <View style={styles.containerIconContact}>
                 {icon1} 
             </View>

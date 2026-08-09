@@ -19,7 +19,6 @@ export default function RatingInputWithTitle({title, editable = true, rating, ..
       <View style={styles.containerInputAndIcon}>
           <TextInput
               {...props}
-              value={rating}
               editable={editable}
               keyboardType="decimal-pad"
               placeholderTextColor={colors.inputPlaceHolder}

@@ -4,6 +4,7 @@ import { colors } from "../../constants/colors";
 export const styles = StyleSheet.create({
     sectionEditReview: {
         flex: 1,
+        width: "100%",
     },
     scrollEditReview: {
         flexGrow: 1,

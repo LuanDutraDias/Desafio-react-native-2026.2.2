@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
     },
     title: {
         color: colors.secondary,
-        fontWeight: "bold",
-        fontSize: 20,
+        fontWeight: 500,
+        fontSize: 18,
     },
     containerInputAndIcon: {
         flexDirection: "row",

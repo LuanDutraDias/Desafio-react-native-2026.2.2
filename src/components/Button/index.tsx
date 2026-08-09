@@ -34,7 +34,7 @@ export default function Button({title, icon, variant = "primary", ...props}: but
 
 
     return (
-        <TouchableOpacity style={[styles.button, {backgroundColor: backgroundColor} ]} {...props}>
+        <TouchableOpacity activeOpacity={0.7} style={[styles.button, {backgroundColor: backgroundColor} ]} {...props}>
             {icon}
             <Text style={[styles.buttonText, {color: textColor}]}>
                 {title}

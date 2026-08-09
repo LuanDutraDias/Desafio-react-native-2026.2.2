@@ -103,7 +103,7 @@ export default function LoginScreen() {
               />
             }
             icon2={
-              <TouchableOpacity onPress={togglePassword}>
+              <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
                 <AntDesign
                 name={showPassword ? "eye" : "eye-invisible"}
                 size={22}

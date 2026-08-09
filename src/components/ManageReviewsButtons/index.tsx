@@ -20,21 +20,21 @@ export default function ManageReviewsButtons({onView, onEdit, onDelete}: ManageR
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={onView}>
+            <TouchableOpacity activeOpacity={0.7} onPress={onView}>
                 <FontAwesome5 
                     name="eye" 
                     size={20} 
                     color={colors.secondary}
                 />
             </TouchableOpacity>
-            <TouchableOpacity onPress={onEdit}>
+            <TouchableOpacity activeOpacity={0.7} onPress={onEdit}>
                 <FontAwesome5 
                     name="pencil-alt" 
                     size={18} 
                     color={colors.secondary}
                 />
             </TouchableOpacity>
-            <TouchableOpacity onPress={onDelete}>
+            <TouchableOpacity activeOpacity={0.7} onPress={onDelete}>
                 <FontAwesome5 
                     name="trash" 
                     size={18} 

@@ -137,7 +137,7 @@ export default function RegisterScreen() {
                 />
               }
               icon2={
-                <TouchableOpacity onPress={togglePassword}>
+                <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
                   <AntDesign
                     name={showPassword ? "eye" : "eye-invisible"}
                     size={22}
@@ -159,7 +159,7 @@ export default function RegisterScreen() {
                 />
               }
               icon2={
-                <TouchableOpacity onPress={toggleConfirmedPassword}>
+                <TouchableOpacity onPress={toggleConfirmedPassword} activeOpacity={0.7}>
                   <AntDesign
                     name={showConfirmedPassword ? "eye" : "eye-invisible"}
                     size={22}

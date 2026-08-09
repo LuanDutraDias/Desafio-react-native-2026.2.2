@@ -11,7 +11,7 @@ type CloseModalButtonProps = {
 
 export default function CloseModalButton({onClose}: CloseModalButtonProps){
     return (
-        <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+        <TouchableOpacity activeOpacity={0.7} style={styles.closeButton} onPress={onClose}>
             <AntDesign
                 name="close"
                 size={16}

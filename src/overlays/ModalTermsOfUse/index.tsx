@@ -19,7 +19,7 @@ export default function ModalTermsOfUse({visible, onClose}: ModalProps){
                         <Text style={styles.title}>
                             Termos de Uso
                         </Text>
-                        <TouchableOpacity onPress={onClose}>
+                        <TouchableOpacity activeOpacity={0.7} onPress={onClose}>
                             <Ionicons
                                 name="close-circle"
                                 size={30}

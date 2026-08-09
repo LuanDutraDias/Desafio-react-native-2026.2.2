@@ -8,7 +8,7 @@ type SubtitleProps = {
 
 export default function ButtonReadTermsOfUse({onPress}: SubtitleProps){
     return (
-        <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+        <TouchableOpacity activeOpacity={0.7} style={styles.buttonContainer} onPress={onPress}>
             <Text style={styles.buttonText}>Ler</Text>
         </TouchableOpacity>
     )
