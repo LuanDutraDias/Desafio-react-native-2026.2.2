@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     tabBarContainer: {
         backgroundColor: colors.tabBarBackground,
         padding: 10,
-        height: 105,
+        height: 115,
         borderTopColor: "transparent"
     },
     itemContainer: {

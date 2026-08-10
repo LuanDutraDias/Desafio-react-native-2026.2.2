@@ -20,12 +20,12 @@ export const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 24,
         paddingTop: 5,
-        gap: 20,
+        gap: 15,
     },
     containerWelcome: {
         gap: 5,
     },
     containerInformations: {
-        gap: 11,
+        gap: 10,
     }
 });
