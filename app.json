@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Game Reviews",
-    "slug": "Game Reviews",
+    "slug": "game-reviews",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icons/icon.png",
@@ -14,9 +14,11 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/icons/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "resizeMode": "contain",
+        "backgroundColor": "#0D1117"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.luandutra.gamereviews"
     },
     "web": {
       "bundler": "metro",
@@ -29,15 +31,21 @@
         "expo-splash-screen",
         {
           "image": "./src/assets/images/icons/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "resizeMode": "cover",
+          "imageWidth": "100%",
+          "backgroundColor": "#0D1117"
         }
       ],
       "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1c09db44-302b-46bb-adea-a52780eda98f"
+      }
     }
   }
 }
