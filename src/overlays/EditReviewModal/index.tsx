@@ -29,9 +29,10 @@ type ModalProps = {
     genres: Genre[];
     platforms: Platform[];
     users?: User[];
+    onSuccess: () => void;
 }
 
-export default function EditReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
+export default function EditReviewModal({visible, onClose, review, games, genres, platforms, users, onSuccess}: ModalProps){
 
     const {primary} = useColorTheme();
 
@@ -43,7 +44,7 @@ export default function EditReviewModal({visible, onClose, review, games, genres
         comment,
         setComment,
         handleEditReview,
-    } = useEditReview(review);
+    } = useEditReview(review, onSuccess);
 
     return (
         <Modal visible={visible} transparent> 

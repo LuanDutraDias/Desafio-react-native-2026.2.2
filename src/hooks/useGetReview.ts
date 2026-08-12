@@ -58,5 +58,6 @@ export function useGetReview() {
         genres,
         platforms,
         loading,
+        reloadReviews: loadReviews,
     };
 }

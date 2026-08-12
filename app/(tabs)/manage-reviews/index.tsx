@@ -45,7 +45,13 @@ export default function ManageReviewSreen(){
             platforms,
             //users,
             loading,
+            reloadReviews,
         } = useGetReview();
+
+    function handleUpdateReviewSuccess() {
+        closeModal();
+        reloadReviews();
+    }
 
     const loggedUserReviews = reviews.filter(
         (review) => review.usuario_id === loggedUser?.id
@@ -108,6 +114,7 @@ export default function ManageReviewSreen(){
                 />
                 <EditReviewModal
                     visible={modal === "edit"}
+                    onSuccess={handleUpdateReviewSuccess}
                     onClose={closeModal}
                     review={selectedReview}
                     games={games}
@@ -117,6 +124,7 @@ export default function ManageReviewSreen(){
                 <DeleteReviewModal
                     visible={modal === "delete"}
                     onClose={closeModal}
+                    onSuccess={handleUpdateReviewSuccess}
                     review={selectedReview}
                     games={games}
                     genres={genres}

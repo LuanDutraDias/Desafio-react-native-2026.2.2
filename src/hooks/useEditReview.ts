@@ -4,7 +4,7 @@ import { getMe } from "@/services/auth";
 import { editReview } from "@/services/reviews";
 import { Review } from "@/types/review";
 
-export function useEditReview(review: Review | null) {
+export function useEditReview(review: Review | null, onSuccess?: () => void) {
 
     const [userId, setUserId] = useState<number | null>(null);
     const [rating, setRating] = useState("");
@@ -88,6 +88,7 @@ export function useEditReview(review: Review | null) {
 
                 setRating("");
                 setComment("");
+                onSuccess?.();
 
             } catch (error) {
 
