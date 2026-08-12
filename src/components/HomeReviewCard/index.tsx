@@ -18,6 +18,8 @@ import { Platform } from "@/types/platform";
 import { User } from "@/types/user";
 
 import { gameCovers } from "@/constants/gameCovers";
+import PlatformIcon from "../PlatformIcons";
+import { platformIcons } from "@/constants/platformIcons";
 
 
 type HomeReviewCardProps = {
@@ -51,6 +53,8 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
     //    (user) => user.id === review.usuario_id
     //);
 
+    const platformColor = platform?.nome ? platformIcons[platform.nome]?.color: undefined;
+
     const [readMore, setReadMore] = useState(false);
     const [hasMoreLines, setHasMoreLines] = useState(false);
 
@@ -62,26 +66,10 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
                     source={gameCovers[game.capa]}
                 />
                 <View style={styles.containerIcons}>
-                    <MaterialCommunityIcons 
-                        name="sony-playstation" 
-                        size={15}
-                        color="blue"
-                    />
-                    <MaterialCommunityIcons 
-                        name="microsoft-xbox" 
-                        size={15} 
-                        color="green"
-                    />
-                    <MaterialCommunityIcons 
-                        name="nintendo-switch" 
-                        size={15} 
-                        color="red"
-                    />
-                    <FontAwesome6 
-                        name="computer" 
-                        size={14} 
-                        color={colors.secondary} 
-                    />
+                    <PlatformIcon platformName={platform?.nome} />
+                    <Text style={[styles.platformName, { color: platformColor }]}>
+                        {platform?.nome}
+                    </Text>
                 </View>
             </View>
             <HomeCardContent

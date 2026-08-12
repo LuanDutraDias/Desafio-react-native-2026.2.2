@@ -38,4 +38,7 @@ export const styles = StyleSheet.create({
     textButtonReadMore: {
         fontSize: 10
     },
+    platformName: {
+        fontSize: 12,
+    }
 });
