@@ -15,6 +15,7 @@ import { Platform } from "@/types/platform";
 import { User } from "@/types/user";
 
 import { deleteReview } from "@/services/reviews";
+import { useDeleteReview } from "@/hooks/useDeleteReview";
 
 type ModalProps = {
     visible: boolean;
@@ -24,9 +25,15 @@ type ModalProps = {
     genres: Genre[];
     platforms: Platform[];
     users?: User[];
+    onSuccess: () => void;
 }
 
-export default function DeleteReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
+export default function DeleteReviewModal({visible, onClose, review, games, genres, platforms, users, onSuccess}: ModalProps){
+
+    const {
+        deleting,
+        handleDeleteReview
+    } = useDeleteReview();
 
     return (
         <Modal visible={visible} transparent> 
@@ -73,11 +80,11 @@ export default function DeleteReviewModal({visible, onClose, review, games, genr
                             onPress={onClose}
                         />
                         <Button
-                            title="Excluir"
+                            title={deleting ? "Excluindo" : "Excluir"}
                             variant="primary1"
                             onPress={() => {
-                                if (review) {
-                                    deleteReview(review.id);
+                                if(review){
+                                    handleDeleteReview(review, onSuccess);
                                 }
                             }}
                         />
