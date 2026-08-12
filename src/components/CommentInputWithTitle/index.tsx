@@ -5,12 +5,11 @@ import { useState } from "react";
 
 type CommentInputWithTitleProps = TextInputProps & {
   title: string;
+  comment: string;
   commentLength?: number;
 };
 
-export default function CommentInputWithTitle({title, commentLength, ...props}: CommentInputWithTitleProps) {
-
-  const [stateComment, setStateComment] = useState("");
+export default function CommentInputWithTitle({title, comment, commentLength, ...props}: CommentInputWithTitleProps) {
 
   return (
     <View style={styles.containerTitleAndInput}>
@@ -19,15 +18,15 @@ export default function CommentInputWithTitle({title, commentLength, ...props}: 
       </Text>
       <TextInput
         {...props}
+        value={comment}
         placeholderTextColor={colors.inputPlaceHolder}
         maxLength={200}
-        onChangeText={setStateComment}
         multiline
         style={styles.input}
         textAlignVertical="top"
       />
       <Text style={styles.caracterCounter}>
-          {commentLength ? commentLength: stateComment.length}/200
+          {commentLength ? commentLength: comment.length}/200
       </Text>
     </View>
   );

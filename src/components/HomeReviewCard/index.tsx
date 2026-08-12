@@ -11,19 +11,45 @@ import { useColorTheme } from "@/hooks/useColorTheme";
 import {styles} from "./styles";
 import HomeCardContent from "../HomeCardContent";
 
-type HomeCardContentProps = {
-    image: any,
-    title: string;
-    author: string;
-    rating: string;
-    genre: string;
-    year: number;
-    review: string;
-}
+import { Review } from "@/types/review";
+import { Game } from "@/types/game";
+import { Genre } from "@/types/genre";
+import { Platform } from "@/types/platform";
+import { User } from "@/types/user";
 
-export default function HomeReviewCard({title, author, rating, genre, year, review, image}: HomeCardContentProps){
+import { gameCovers } from "@/constants/gameCovers";
+
+
+type HomeReviewCardProps = {
+    review: Review;
+    games: Game[];
+    genres: Genre[];
+    platforms: Platform[];
+    users?: User[];
+};
+
+export default function HomeReviewCard({review, games, genres, platforms, users}: HomeReviewCardProps){
 
     const {primary} = useColorTheme();
+
+    const game = games.find(
+        (game) => game.id === review.jogo_id
+    );
+    
+    if (!game) return null;
+    
+    const genre = genres.find(
+        (genre) => genre.id === game.genero_id
+    );
+
+    const platform = platforms.find(
+        (platform) => platform.id === game.plataforma_id
+    );
+    
+
+    //const author = users.find(
+    //    (user) => user.id === review.usuario_id
+    //);
 
     const [readMore, setReadMore] = useState(false);
     const [hasMoreLines, setHasMoreLines] = useState(false);
@@ -33,7 +59,7 @@ export default function HomeReviewCard({title, author, rating, genre, year, revi
             <View style={styles.containerImageAndIcons}>
                 <Image
                     style={styles.image}
-                    source={image}
+                    source={gameCovers[game.capa]}
                 />
                 <View style={styles.containerIcons}>
                     <MaterialCommunityIcons 
@@ -59,12 +85,12 @@ export default function HomeReviewCard({title, author, rating, genre, year, revi
                 </View>
             </View>
             <HomeCardContent
-                title={title}
-                author={author}
-                rating={rating}
-                genre={genre}
-                year={year}
-                review={review}
+                title={game?.titulo}
+                //author={author?.name}
+                rating={review.nota}
+                genre={genre?.genero}
+                year={game?.ano_lancamento}
+                review={review.comentario}
                 readMore={readMore}
                 style={{paddingBottom: 25}}
                 commentLines={3}

@@ -1,59 +1,130 @@
-import { View } from "react-native";
+import { ActivityIndicator, View} from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
-
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
+import SearchBar from "@/components/SearchBar";
+import SelectedGameCard from "@/components/SelectedGameCard";
+import RatingInputWithTitle from "@/components/RatingInputWithTitle";
+import CommentInputWithTitle from "@/components/CommentInputWithTitle";
+import Button from "@/components/Button";
 
 import { styles } from "@/styles/create-review";
 
 import { useColorTheme } from "@/hooks/useColorTheme";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import SearchBar from "@/components/SearchBar";
-import RatingInputWithTitle from "@/components/RatingInputWithTitle";
-import CommentInputWithTitle from "@/components/CommentInputWithTitle";
-import Button from "@/components/Button";
+import { useCreateReview } from "@/hooks/useCreateReview";
 
-export default function CreateReviewSreen(){
+export default function CreateReviewScreen() {
 
-    const {primary} = useColorTheme();
+    const { primary } = useColorTheme();
+
+    const {
+        games,
+        selectedGame,
+        selectedGenre,
+        handleSelectGame,
+        rating,
+        setRating,
+        comment,
+        setComment,
+        loading,
+        loadingGenre,
+        publishing,
+        publishReview,
+    } = useCreateReview();
+
+    if (loading) {
+        return (
+            <SafeAreaView
+                style={styles.safeAreaView}
+            >
+                <ActivityIndicator
+                    size="large"
+                    color={primary}
+                />
+            </SafeAreaView>
+        );
+    }
 
     return (
-        <SafeAreaView style={styles.safeAreaView} edges={["top"]}>
-            <KeyboardAwareScrollView 
+
+        <SafeAreaView
+            style={styles.safeAreaView}
+            edges={["top"]}
+        >
+            <KeyboardAwareScrollView
                 style={styles.sectionCreateReview}
-                contentContainerStyle={styles.scrollCreateReview}
+                contentContainerStyle={
+                    styles.scrollCreateReview
+                }
                 enableOnAndroid
                 extraScrollHeight={50}
                 keyboardShouldPersistTaps="handled"
             >
-                <View style={styles.containerContent}>
+                <View
+                    style={styles.containerContent}
+                >
                     <ManageReviewIconWithTitle
                         icon={
-                            <MaterialCommunityIcons 
+                            <MaterialCommunityIcons
                                 name="file-plus"
-                                size={50} 
+                                size={50}
                                 color={primary}
                             />
                         }
-                        title={"Nova avaliação"}
+                        title="Nova avaliação"
                     />
-                    <SearchBar placeholder="Escolha o jogo para avaliar"/>
+                    <SearchBar
+                        placeholder={
+                            "Escolha o jogo para avaliar"
+                        }
+                        games={games}
+                        onSelect={handleSelectGame}
+                    />
+                    {selectedGame && (
+
+                        loadingGenre ? (
+                            <ActivityIndicator
+                                color={primary}
+                            />
+                        ) : (
+                            selectedGenre && (
+
+                                <SelectedGameCard
+                                    game={selectedGame}
+                                    genre={selectedGenre}
+                                />
+                            )
+                        )
+                    )}
                     <RatingInputWithTitle
                         title="Sua nota:"
                         placeholder="0,0"
+                        value={rating}
+                        onChangeText={setRating}
                     />
                     <CommentInputWithTitle
                         title="Seu comentário:"
                         placeholder="O que achou do jogo?"
+                        comment={comment}
+                        onChangeText={setComment}
                     />
                     <Button
-                        title="Publicar avaliação"
+                        title={
+                            publishing
+                                ? "Publicando..."
+                                : "Publicar avaliação"
+                        }
+                        onPress={publishReview}
+                        disabled={publishing}
                     />
                 </View>
             </KeyboardAwareScrollView>
         </SafeAreaView>
-    )
+    );
 }

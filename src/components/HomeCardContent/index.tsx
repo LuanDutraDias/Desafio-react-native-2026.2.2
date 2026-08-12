@@ -8,12 +8,12 @@ import {styles} from "./styles";
 
 type HomeCardContentProps = {
     style?: StyleProp<ViewStyle>;
-    title: string;
-    author: string;
-    rating: string;
-    genre: string;
-    year: number;
-    review: string;
+    title?: string;
+    author?: string;
+    rating?: number;
+    genre?: string;
+    year?: number;
+    review?: string;
     readMore?: boolean;
     commentLines: any;
     onHasMoreLines?: (hasMore: boolean) => void
