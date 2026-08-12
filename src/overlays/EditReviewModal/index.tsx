@@ -43,7 +43,7 @@ export default function EditReviewModal({visible, onClose, review, games, genres
         comment,
         setComment,
         handleEditReview,
-    } = useEditReview();
+    } = useEditReview(review);
 
     return (
         <Modal visible={visible} transparent> 

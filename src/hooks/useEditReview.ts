@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 
 import { getMe } from "@/services/auth";
 import { editReview } from "@/services/reviews";
+import { Review } from "@/types/review";
 
-export function useEditReview() {
+export function useEditReview(review: Review | null) {
 
     const [userId, setUserId] = useState<number | null>(null);
     const [rating, setRating] = useState("");
@@ -35,6 +36,13 @@ export function useEditReview() {
     useEffect(() => {
         loadLoggedUserData();
     }, []);
+
+    useEffect(() => {
+        if (review) {
+            setRating(String(review.nota));
+            setComment(review.comentario);
+        }
+    }, [review]);
 
     async function handleEditReview(reviewId: number, gameId: number) {
 
