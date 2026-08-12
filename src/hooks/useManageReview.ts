@@ -1,21 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { Review } from "@/types/review";
+import { User } from "@/types/user";
+import { getMe } from "@/services/auth";
 
 type ModalType = "view" | "edit" | "delete" | null;
-
-type Review = {
-    id: string;
-    title: string;
-    rating: string;
-    genre: string;
-    image: any;
-    updated: string;
-    comment: string;
-};
 
 export function useManageReview() {
 
     const [selectedReview, setSelectedReview] = useState<Review | null>(null);
     const [modal, setModal] = useState<ModalType>(null);
+    const [loadingUserData, setLoadingUserData] = useState(true);
+    const [loggedUser, setLoggedUser] = useState<User | null>(null)
 
     function handleView(review: Review) {
         setSelectedReview(review);
@@ -37,6 +33,26 @@ export function useManageReview() {
         setSelectedReview(null);
     }
 
+    async function loadLoggedUser(){
+        try {
+            const userResponse = await getMe();
+            setLoggedUser(userResponse.user);
+        } catch (error) {
+            
+            console.error(
+                "Erro ao carregar informações do usuário logado",
+                error
+            );
+            
+        } finally {
+            setLoadingUserData(false);
+        }
+    }
+
+    useEffect(() => {
+        loadLoggedUser();
+    }, []);
+
     return {
         selectedReview,
         setSelectedReview,
@@ -46,5 +62,7 @@ export function useManageReview() {
         handleEdit,
         handleDelete,
         closeModal,
+        loggedUser,
+        loadingUserData,
     };
 }
