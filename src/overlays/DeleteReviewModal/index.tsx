@@ -8,24 +8,25 @@ import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
 import ManageReviewCard from "@/components/ManageReviewsCards";
 import Button from "@/components/Button";
 import CloseModalButton from "@/components/CloseModalButton";
+import { Review } from "@/types/review";
+import { Game } from "@/types/game";
+import { Genre } from "@/types/genre";
+import { Platform } from "@/types/platform";
+import { User } from "@/types/user";
 
-type Review = {
-    id: string;
-    title: string;
-    rating: string;
-    genre: string;
-    image: any;
-    updated: string;
-};
-
+import { deleteReview } from "@/services/reviews";
 
 type ModalProps = {
     visible: boolean;
     onClose: () => void;
-    review: Review | null,
+    review: Review | null;
+    games: Game[];
+    genres: Genre[];
+    platforms: Platform[];
+    users?: User[];
 }
 
-export default function DeleteReviewModal({visible, onClose, review}: ModalProps){
+export default function DeleteReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
 
     return (
         <Modal visible={visible} transparent> 
@@ -48,11 +49,11 @@ export default function DeleteReviewModal({visible, onClose, review}: ModalProps
                     {review &&
                         <ManageReviewCard
                             showButtons={false}
-                            title={review.title}
-                            rating={review.rating}
-                            genre={review.genre}
-                            image={review.image}
-                            updated={review.updated}
+                            review={review}
+                            games={games}
+                            genres={genres}
+                            platforms={platforms}
+                            users={users}
                         />
                     }
                     <View style={[styles.alertContainer, {backgroundColor: `${colors.primary1}1F`, borderColor: `${colors.primary1}80`}]}>
@@ -69,10 +70,16 @@ export default function DeleteReviewModal({visible, onClose, review}: ModalProps
                         <Button
                             title="Cancelar"
                             variant="secondary"
+                            onPress={onClose}
                         />
                         <Button
                             title="Excluir"
                             variant="primary1"
+                            onPress={() => {
+                                if (review) {
+                                    deleteReview(review.id);
+                                }
+                            }}
                         />
                     </View>
                 </View>

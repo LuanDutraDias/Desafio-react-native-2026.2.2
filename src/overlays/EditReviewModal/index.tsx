@@ -13,26 +13,37 @@ import ManageReviewCard from "@/components/ManageReviewsCards";
 import RatingInputWithTitle from "@/components/RatingInputWithTitle";
 import Button from "@/components/Button";
 import CloseModalButton from "@/components/CloseModalButton";
-
-type Review = {
-    id: string;
-    title: string;
-    rating: string;
-    genre: string;
-    image: any;
-    updated: string;
-    comment: string;
-};
+import { Review } from "@/types/review";
+import { Genre } from "@/types/genre";
+import { Game } from "@/types/game";
+import { Platform } from "@/types/platform";
+import { User } from "@/types/user";
+import { useEditReview } from "@/hooks/useEditReview";
+import { editReview } from "@/services/reviews";
 
 type ModalProps = {
     visible: boolean;
     onClose: () => void;
-    review: Review | null,
+    review: Review | null;
+    games: Game[];
+    genres: Genre[];
+    platforms: Platform[];
+    users?: User[];
 }
 
-export default function EditReviewModal({visible, onClose, review}: ModalProps){
+export default function EditReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
 
     const {primary} = useColorTheme();
+
+    const {
+        loading,
+        editing,
+        rating,
+        setRating,
+        comment,
+        setComment,
+        handleEditReview,
+    } = useEditReview();
 
     return (
         <Modal visible={visible} transparent> 
@@ -60,32 +71,39 @@ export default function EditReviewModal({visible, onClose, review}: ModalProps){
                     {review &&
                         <ManageReviewCard
                             showButtons={false}
-                            title={review.title}
-                            rating={review.rating}
-                            genre={review.genre}
-                            image={review.image}
-                            updated={review.updated}
+                            review={review}
+                            games={games}
+                            genres={genres}
+                            platforms={platforms}
+                            users={users}
                         />
                     }
                     {review &&
                         <RatingInputWithTitle
                             title="Nova nota:"
-                            placeholder={review.rating}
+                            value={rating}
+                            onChangeText={setRating}
+                            placeholder={String(review.nota)}
                         />
                     }
                     {review &&
                         <CommentInputWithTitle
                             title="Novo comentário:"
-                            placeholder={review.comment}
+                            comment={comment}
+                            onChangeText={setComment}
+                            placeholder={review.comentario}
                         />
                     } 
                     <View style={styles.buttonsContainer}>
                         <Button
                             title="Cancelar"
                             variant="secondary"
+                            onPress={onClose}
                         />
                         <Button
-                            title="Salvar"
+                            title={editing ? "Salvando..." : "Salvar"}
+                            onPress={() => handleEditReview(review!.id, review!.jogo_id)}
+                            disabled={editing}
                         />
                     </View>
                 </View>

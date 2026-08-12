@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import {Text, FlatList, View} from "react-native";
+import {Text, FlatList, View, ActivityIndicator} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import ManageReviewCard from "@/components/ManageReviewsCards";
@@ -17,65 +17,13 @@ import { styles } from "@/styles/manage-reviews";
 import { colors } from "@/constants/colors";
 
 import { router } from "expo-router";
-
-const games = [
-    {
-        id: "1",
-        title: "Elden Ring",
-        rating: "9,7",
-        genre: "RPG",
-        image: require("@/assets/images/game-cover/capa-elden-ring-teste.jpg"),
-        updated: "Editado em 02/12/2023",
-        comment: "ELDEN RINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
-    },
-    {
-        id: "2",
-        title: "Zelda",
-        rating: "10",
-        genre: "Aventura",
-        image: require("@/assets/images/game-cover/capa-zelda-teste.webp"),
-        updated: "Editado em 02/12/2023",
-        comment: "ZELDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    },
-    {
-        id: "3",
-        title: "Super Mario Odyssey",
-        rating: "9,8",
-        genre: "Plataforma",
-        image: require("@/assets/images/game-cover/capa-super-mario-odyssey-teste.png"),
-        updated: "Editado em 02/12/2023",
-        comment: "Uma aventura extremamente criativa, divertida e cheia de personalidade. Cada reino apresenta mecânicas únicas e incentiva a exploração do início ao fim. Perfeito para se divertir e explorar muitoooooo",
-        },
-    {
-        id: "4",
-        title: "God of War",
-        rating: "9,9",
-        genre: "Ação",
-        image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
-        updated: "Editado em 02/12/2023",
-        comment: "sei lá",
-    },
-    {
-        id: "5",
-        title: "God of War",
-        rating: "9,9",
-        genre: "Ação",
-        image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
-        updated: "Editado em 02/12/2023",
-        comment: "sei lá",
-    },
-    {
-        id: "6",
-        title: "God of War",
-        rating: "9,9",
-        genre: "Ação",
-        image: require("@/assets/images/game-cover/capa-god-of-war-teste.png"),
-        updated: "Editado em 02/12/2023",
-        comment: "sei lá",
-    },
-];
+import { useColorTheme } from "@/hooks/useColorTheme";
+import { useGetReview } from "@/hooks/useGetReview";
+import { getMe } from "@/services/auth";
 
 export default function ManageReviewSreen(){
+
+    const {primary} = useColorTheme();
 
     const {
         selectedReview,
@@ -86,7 +34,36 @@ export default function ManageReviewSreen(){
         handleEdit,
         handleDelete,
         closeModal,
+        loggedUser,
+        loadingUserData,
     } = useManageReview();
+
+    const {
+            reviews,
+            games,
+            genres,
+            platforms,
+            //users,
+            loading,
+        } = useGetReview();
+
+    const loggedUserReviews = reviews.filter(
+        (review) => review.usuario_id === loggedUser?.id
+    )
+
+    if (loading || loadingUserData) {
+            return (
+    
+                <SafeAreaView
+                    style={styles.safeAreaView}
+                >
+                    <ActivityIndicator
+                        size="large"
+                        color={primary}
+                    />
+                </SafeAreaView>
+            );
+        }
 
     return (
         <SafeAreaView style={styles.safeAreaView} edges={["top"]}>
@@ -97,10 +74,13 @@ export default function ManageReviewSreen(){
                 <FlatList
                     style={{flex: 1}}
                     contentContainerStyle={{gap: 20, paddingBottom: 15}}
-                    data={games}
+                    data={loggedUserReviews}
                     renderItem={({ item }) => (
                         <ManageReviewCard 
-                            {...item} 
+                            review={item}
+                            games={games}
+                            genres={genres}
+                            platforms={platforms}
                             onView={() => handleView(item)}
                             onEdit={() => handleEdit(item)}
                             onDelete={() => handleDelete(item)}
@@ -121,16 +101,26 @@ export default function ManageReviewSreen(){
                     visible={modal === "view"}
                     onClose={closeModal}
                     review={selectedReview}
+                    games={games}
+                    genres={genres}
+                    platforms={platforms}
+
                 />
                 <EditReviewModal
                     visible={modal === "edit"}
                     onClose={closeModal}
                     review={selectedReview}
+                    games={games}
+                    genres={genres}
+                    platforms={platforms}
                 />
                 <DeleteReviewModal
                     visible={modal === "delete"}
                     onClose={closeModal}
                     review={selectedReview}
+                    games={games}
+                    genres={genres}
+                    platforms={platforms}
                 />
             </View>
         </SafeAreaView>

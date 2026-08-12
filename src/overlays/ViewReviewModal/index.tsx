@@ -9,24 +9,23 @@ import ManageReviewIconWithTitle from "@/components/ManageReviewIconWithTitle";
 import CommentInputWithTitle from "@/components/CommentInputWithTitle";
 import ManageReviewCard from "@/components/ManageReviewsCards";
 import CloseModalButton from "@/components/CloseModalButton";
-
-type Review = {
-    id: string;
-    title: string;
-    rating: string;
-    genre: string;
-    image: any;
-    updated: string;
-    comment: string;
-};
+import { Review } from "@/types/review";
+import { Game } from "@/types/game";
+import { Genre } from "@/types/genre";
+import { Platform } from "@/types/platform";
+import { User } from "@/types/user";
 
 type ModalProps = {
     visible: boolean,
     onClose: () => void,
-    review: Review | null,
+    review: Review | null;
+    games: Game[];
+    genres: Genre[];
+    platforms: Platform[];
+    users?: User[];
 }
 
-export default function ViewReviewModal({visible, onClose, review}: ModalProps){
+export default function ViewReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
 
     const {primary} = useColorTheme();
 
@@ -50,18 +49,18 @@ export default function ViewReviewModal({visible, onClose, review}: ModalProps){
                     {review &&
                         <ManageReviewCard
                             showButtons={false}
-                            title={review.title}
-                            rating={review.rating}
-                            genre={review.genre}
-                            image={review.image}
-                            updated={review.updated}
+                            review={review}
+                            games={games}
+                            genres={genres}
+                            platforms={platforms}
+                            users={users}
                         />
                     }
                     {review &&
                         <CommentInputWithTitle
                             title="Comentário:"
-                            value={review.comment}
-                            commentLength={review.comment.length}
+                            comment={review.comentario}
+                            commentLength={review.comentario.length}
                             editable={false}
                         />
                     }
