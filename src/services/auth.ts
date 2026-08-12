@@ -1,5 +1,7 @@
 import { api } from "./api";
 
+import { User } from "@/types/user";
+
 type RegisterRequest = {
     name: string;
     email: string;
@@ -9,6 +11,17 @@ type RegisterRequest = {
 type LoginRequest = {
     email: string;
     password: string;
+}
+
+type MeResponse = {
+    status: number;
+    user: User;
+};
+
+export async function getMe(): Promise<MeResponse> {
+    const response = await api.get("/me");
+
+    return response.data;
 }
 
 export async function register(data: RegisterRequest){
