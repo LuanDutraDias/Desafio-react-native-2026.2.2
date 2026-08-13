@@ -2,8 +2,6 @@ import { Image, TouchableOpacity, View } from "react-native";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { router } from "expo-router";
-
 import { colors } from "@/constants/colors";
 import { styles } from "@/styles/login";
 

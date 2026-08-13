@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import {Text, FlatList, View, ActivityIndicator} from "react-native";
+import {FlatList, View, ActivityIndicator} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import ManageReviewCard from "@/components/ManageReviewsCards";
@@ -19,7 +19,6 @@ import { colors } from "@/constants/colors";
 import { router } from "expo-router";
 import { useColorTheme } from "@/hooks/useColorTheme";
 import { useAppData } from "@/contexts/appDataContext";
-import { getMe } from "@/services/auth";
 
 export default function ManageReviewSreen(){
 

@@ -1,11 +1,10 @@
-
 import { View, Image } from "react-native";
 
 import {styles} from "@/styles/support";
 
 import {colors} from "@/constants/colors";
 
-import { Fontisto,  Entypo, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { Fontisto,  Entypo, FontAwesome} from "@expo/vector-icons";
 
 import Title from "@/components/Title";
 import Subtitle from "@/components/Subtitle";

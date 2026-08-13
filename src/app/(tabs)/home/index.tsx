@@ -1,4 +1,4 @@
-import {Text, FlatList, View, ActivityIndicator} from "react-native";
+import {FlatList, ActivityIndicator} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {styles} from "@/styles/home"
 import Header from "@/components/Header";
