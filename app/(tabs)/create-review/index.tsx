@@ -32,24 +32,10 @@ export default function CreateReviewScreen() {
         setRating,
         comment,
         setComment,
-        loading,
         loadingGenre,
         publishing,
         publishReview,
     } = useCreateReview();
-
-    if (loading) {
-        return (
-            <SafeAreaView
-                style={styles.safeAreaView}
-            >
-                <ActivityIndicator
-                    size="large"
-                    color={primary}
-                />
-            </SafeAreaView>
-        );
-    }
 
     return (
 

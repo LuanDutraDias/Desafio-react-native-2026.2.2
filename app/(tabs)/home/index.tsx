@@ -5,8 +5,8 @@ import Header from "@/components/Header";
 import Carousel from "@/components/Carousel";
 import HomeReviewCard from "@/components/HomeReviewCard";
 
-import { useGetReview } from "@/hooks/useGetReview";
 import { useColorTheme } from "@/hooks/useColorTheme";
+import { useAppData } from "@/contexts/appDataContext";
 
 export default function HomeSreen(){
 
@@ -19,7 +19,7 @@ export default function HomeSreen(){
         platforms,
         //users,
         loading,
-    } = useGetReview();
+    } = useAppData();
 
     const carouselReviews = reviews.slice(0,5);
     const remainingReviews = reviews.slice(5);
