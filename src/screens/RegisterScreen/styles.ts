@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../constants/colors";
+import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
     safeAreaView: {
@@ -7,16 +7,16 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.backgroundScreen,
         paddingTop: 5,
     },
-    sectionLogin: {
+    sectionRegister: {
         flex: 1,
         backgroundColor: colors.backgroundScreen,
     },
-    scrollLogin: {
+    scrollRegister: {
         flexGrow: 1,
         backgroundColor: colors.backgroundScreen,
     },
-    loginBanner: {
-        height: 330,
+    registerBanner: {
+        height: 220,
         width: "100%",
         resizeMode: "cover",
     },
@@ -24,12 +24,13 @@ export const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 24,
         paddingTop: 10,
-        gap: 25,
+        gap: 10,
     },
     containerWelcome: {
         gap: 5,
     },
     containerForms: {
-        gap: 15,
+        paddingTop: 10,
+        gap: 16,
     },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../constants/colors";
+import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
     safeAreaView: {
@@ -7,30 +7,25 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.backgroundScreen,
         paddingTop: 5,
     },
-    sectionRegister: {
+    sectionSupport: {
         flex: 1,
         backgroundColor: colors.backgroundScreen,
     },
-    scrollRegister: {
-        flexGrow: 1,
-        backgroundColor: colors.backgroundScreen,
-    },
-    registerBanner: {
-        height: 220,
+    supportBanner: {
+        height: 210,
         width: "100%",
         resizeMode: "cover",
     },
     containerContent: {
         flex: 1,
         paddingHorizontal: 24,
-        paddingTop: 10,
-        gap: 10,
+        paddingTop: 5,
+        gap: 15,
     },
     containerWelcome: {
         gap: 5,
     },
-    containerForms: {
-        paddingTop: 10,
-        gap: 16,
-    },
+    containerInformations: {
+        gap: 10,
+    }
 });
