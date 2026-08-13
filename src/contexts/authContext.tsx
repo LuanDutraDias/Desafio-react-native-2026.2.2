@@ -6,6 +6,8 @@ import { getMe, logout } from "@/services/auth";
 
 import {router} from "expo-router";
 
+import { login } from "@/services/auth";
+
 import { User } from "@/types/user";
 
 type AuthState = {
@@ -15,7 +17,7 @@ type AuthState = {
     isReadyAfterSearchingToken: boolean;
     user: User | null;
     loadingUser: boolean;
-    signIn: (token: string) => Promise<void>;
+    signIn: (email: string, password: string) => Promise<void>;
     signOut: () => Promise<void>;
     loadUser: () => Promise<void>;
 }
@@ -42,9 +44,10 @@ export function AuthProvider({children}: PropsWithChildren){
         }
     }
 
-    async function signIn(token: string){
+    async function signIn(email: string, password: string){
         try{
-            await SecureStore.setItemAsync("token", token);
+            const response = await login({ email, password }); 
+            await SecureStore.setItemAsync("token", response.token);
             setIsLoggedIn(true);
             await loadUser();
             router.replace("/home");

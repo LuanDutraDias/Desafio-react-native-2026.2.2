@@ -41,12 +41,7 @@ export default function LoginScreen() {
     async function handleLogin(){
       try {
         setLogging(true);
-        const response = await login({
-          email,
-          password,
-        });
-
-        await signIn(response.token);
+        await signIn(email, password); 
       } catch (error) {
         console.log(error);
       }
