@@ -2,6 +2,8 @@ import { Modal, View } from "react-native";
 
 import {styles} from "./styles";
 
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { useColorTheme } from "@/hooks/useColorTheme";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -39,6 +41,7 @@ export default function EditReviewModal({visible, onClose, review, games, genres
         loading,
         editing,
         rating,
+        handleRatingChange,
         setRating,
         comment,
         setComment,
@@ -47,68 +50,70 @@ export default function EditReviewModal({visible, onClose, review, games, genres
 
     return (
         <Modal visible={visible} transparent> 
-            <View style={styles.overlay}>
-                <KeyboardAwareScrollView 
-                    style={styles.sectionEditReview}
-                    contentContainerStyle={styles.scrollEditReview}
-                    enableOnAndroid
-                    keyboardShouldPersistTaps="handled"
-                >
-                <View style={styles.modal}>
-                    <CloseModalButton
-                        onClose={onClose}
-                    />
-                    <ManageReviewIconWithTitle
-                        icon={
-                            <FontAwesome5 
-                                name="pencil-alt" 
-                                size={40} 
-                                color={primary}
+            <SafeAreaView style={styles.safeArea} edges={["top"]}>
+                <View style={styles.overlay}>
+                    <KeyboardAwareScrollView 
+                        style={styles.sectionEditReview}
+                        contentContainerStyle={styles.scrollEditReview}
+                        enableOnAndroid
+                        keyboardShouldPersistTaps="handled"
+                    >
+                        <View style={styles.modal}>
+                            <CloseModalButton
+                                onClose={onClose}
                             />
-                        }
-                        title="Editar review"
-                    />
-                    {review &&
-                        <ManageReviewCard
-                            showButtons={false}
-                            review={review}
-                            games={games}
-                            genres={genres}
-                            platforms={platforms}
-                            users={users}
-                        />
-                    }
-                    {review &&
-                        <RatingInputWithTitle
-                            title="Nova nota:"
-                            value={rating}
-                            onChangeText={setRating}
-                            placeholder={String(review.nota)}
-                        />
-                    }
-                    {review &&
-                        <CommentInputWithTitle
-                            title="Novo comentário:"
-                            comment={comment}
-                            onChangeText={setComment}
-                            placeholder={review.comentario}
-                        />
-                    } 
-                    <View style={styles.buttonsContainer}>
-                        <Button
-                            title="Cancelar"
-                            variant="secondary"
-                            onPress={onClose}
-                        />
-                        <Button
-                            title={editing ? "Salvando..." : "Salvar"}
-                            onPress={() => handleEditReview(review!.id, review!.jogo_id, onClose)}
-                            disabled={editing}
-                        />
-                    </View>
+                            <ManageReviewIconWithTitle
+                                icon={
+                                    <FontAwesome5 
+                                        name="pencil-alt" 
+                                        size={40} 
+                                        color={primary}
+                                    />
+                                }
+                                title="Editar review"
+                            />
+                            {review &&
+                                <ManageReviewCard
+                                    showButtons={false}
+                                    review={review}
+                                    games={games}
+                                    genres={genres}
+                                    platforms={platforms}
+                                    users={users}
+                                />
+                            }
+                            {review &&
+                                <RatingInputWithTitle
+                                    title="Nova nota:"
+                                    value={rating == "10.0" ? "10" : rating}
+                                    onChangeText={handleRatingChange}
+                                    placeholder={String(review.nota) == "10.0" ? "10" : String(review.nota)}
+                                />
+                            }
+                            {review &&
+                                <CommentInputWithTitle
+                                    title="Novo comentário:"
+                                    comment={comment}
+                                    onChangeText={setComment}
+                                    placeholder={review.comentario}
+                                />
+                            } 
+                            <View style={styles.buttonsContainer}>
+                                <Button
+                                    title="Cancelar"
+                                    variant="secondary"
+                                    onPress={onClose}
+                                />
+                                <Button
+                                    title={editing ? "Salvando..." : "Salvar"}
+                                    onPress={() => handleEditReview(review!.id, review!.jogo_id, onClose)}
+                                    disabled={editing}
+                                />
+                            </View>
+                        </View>
+                    </KeyboardAwareScrollView>
                 </View>
-                </KeyboardAwareScrollView>
-            </View>
+            </SafeAreaView>
         </Modal>
     )
 }
