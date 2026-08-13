@@ -38,10 +38,11 @@ export default function LoginScreen() {
         toggleRememberMe,
     } = useLogin();
 
-    const {signIn} = useAuth();
+    const {signIn, logging, setLogging} = useAuth();
 
     async function handleLogin(){
       try {
+        setLogging(true);
         const response = await login({
           email,
           password,
@@ -116,8 +117,9 @@ export default function LoginScreen() {
           />
           <ChangeColorTheme/>
           <Button 
-            title="Entrar"
+            title={logging ? "Entrando..." : "Entrar"}
             onPress={handleLogin}
+            disabled={logging}
           />
           <AuthToggle 
             href="/register" 

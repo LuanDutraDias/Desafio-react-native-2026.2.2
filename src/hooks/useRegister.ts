@@ -9,6 +9,7 @@ export function useRegister() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
     const [acceptTerms, setAcceptTerms] = useState(false);
+    const [registering, setRegistering] = useState(false);
 
     function togglePassword() {
         setShowPassword(!showPassword);
@@ -36,6 +37,8 @@ export function useRegister() {
         showConfirmedPassword,
         toggleConfirmedPassword,
         acceptTerms,
-        toggleAcceptTerms
+        toggleAcceptTerms,
+        registering,
+        setRegistering,
     };
 }

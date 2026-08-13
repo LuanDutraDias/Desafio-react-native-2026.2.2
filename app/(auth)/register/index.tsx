@@ -45,6 +45,8 @@ export default function RegisterScreen() {
           toggleConfirmedPassword,
           acceptTerms,
           toggleAcceptTerms,
+          registering,
+          setRegistering,
       } = useRegister();
 
   async function handleRegister(){
@@ -58,6 +60,7 @@ export default function RegisterScreen() {
     } 
     else {
       try {
+        setRegistering(true);
         await register({
           name,
           email,
@@ -67,6 +70,9 @@ export default function RegisterScreen() {
         router.replace("/login");
       } catch (error) {
         console.log(error);
+      }
+      finally {
+        setRegistering(false);
       }
     }
 }    
@@ -174,7 +180,7 @@ export default function RegisterScreen() {
               <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
               <ButtonReadTermsOfUse onPress={() => setShowModal(true)}/>
             </View>
-            <Button title="Cadastrar" onPress={handleRegister}/>
+            <Button title={registering ? "Cadastrando..." : "Cadastrar"} onPress={handleRegister}/>
             <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
           </View>
         </View>
