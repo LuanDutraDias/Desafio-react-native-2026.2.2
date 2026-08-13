@@ -18,7 +18,7 @@ import { colors } from "@/constants/colors";
 
 import { router } from "expo-router";
 import { useColorTheme } from "@/hooks/useColorTheme";
-import { useGetReview } from "@/hooks/useGetReview";
+import { useAppData } from "@/contexts/appDataContext";
 import { getMe } from "@/services/auth";
 
 export default function ManageReviewSreen(){
@@ -34,8 +34,7 @@ export default function ManageReviewSreen(){
         handleEdit,
         handleDelete,
         closeModal,
-        loggedUser,
-        loadingUserData,
+        user
     } = useManageReview();
 
     const {
@@ -46,18 +45,13 @@ export default function ManageReviewSreen(){
             //users,
             loading,
             reloadReviews,
-        } = useGetReview();
-
-    function handleUpdateReviewSuccess() {
-        closeModal();
-        reloadReviews();
-    }
+        } = useAppData();
 
     const loggedUserReviews = reviews.filter(
-        (review) => review.usuario_id === loggedUser?.id
+        (review) => review.usuario_id === user?.id
     )
 
-    if (loading || loadingUserData) {
+    if (loading) {
             return (
     
                 <SafeAreaView
@@ -114,7 +108,6 @@ export default function ManageReviewSreen(){
                 />
                 <EditReviewModal
                     visible={modal === "edit"}
-                    onSuccess={handleUpdateReviewSuccess}
                     onClose={closeModal}
                     review={selectedReview}
                     games={games}
@@ -124,7 +117,6 @@ export default function ManageReviewSreen(){
                 <DeleteReviewModal
                     visible={modal === "delete"}
                     onClose={closeModal}
-                    onSuccess={handleUpdateReviewSuccess}
                     review={selectedReview}
                     games={games}
                     genres={genres}

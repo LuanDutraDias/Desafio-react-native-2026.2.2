@@ -1,41 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { getMe } from "@/services/auth";
 import { editReview } from "@/services/reviews";
 import { Review } from "@/types/review";
+import { useAppData } from "@/contexts/appDataContext"
+import { AuthContext } from "@/contexts/authContext";
 
-export function useEditReview(review: Review | null, onSuccess?: () => void) {
+export function useEditReview(review: Review | null) {
+
+    const { reloadReviews } = useAppData();
+    const {user} = useContext(AuthContext);
 
     const [userId, setUserId] = useState<number | null>(null);
     const [rating, setRating] = useState("");
     const [comment, setComment] = useState("");
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState(false);
-
-    
-    async function loadLoggedUserData() {
-        
-        try {
-            
-            setLoading(true);     
-            const meResponse = await getMe();     
-            setUserId(meResponse.user.id);
-            
-        } catch (error) {
-            
-            console.error(
-                "Erro ao carregar dados do usuário logado:",
-                error
-            );
-            
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        loadLoggedUserData();
-    }, []);
 
     useEffect(() => {
         if (review) {
@@ -44,14 +24,14 @@ export function useEditReview(review: Review | null, onSuccess?: () => void) {
         }
     }, [review]);
 
-    async function handleEditReview(reviewId: number, gameId: number) {
+    async function handleEditReview(reviewId: number, gameId: number, onClose: () => void) {
 
         if (!reviewId) {
             console.log("Bloqueou: sem reviewId");
             return;
         }
 
-        if (!userId) {
+        if (!user) {
             console.log("Bloqueou: sem userId");
             return;
         }
@@ -80,15 +60,17 @@ export function useEditReview(review: Review | null, onSuccess?: () => void) {
                 setEditing(true);
 
                 await editReview(reviewId, {
-                    usuario_id: userId,
+                    usuario_id: user.id,
                     jogo_id: gameId,
                     nota: normalizedRating,
                     comentario: comment.trim(),
                 });
 
+                await reloadReviews();
+
+                onClose();
                 setRating("");
                 setComment("");
-                onSuccess?.();
 
             } catch (error) {
 

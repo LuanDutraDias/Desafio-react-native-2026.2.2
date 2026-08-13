@@ -25,10 +25,9 @@ type ModalProps = {
     genres: Genre[];
     platforms: Platform[];
     users?: User[];
-    onSuccess: () => void;
 }
 
-export default function DeleteReviewModal({visible, onClose, review, games, genres, platforms, users, onSuccess}: ModalProps){
+export default function DeleteReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
 
     const {
         deleting,
@@ -80,11 +79,11 @@ export default function DeleteReviewModal({visible, onClose, review, games, genr
                             onPress={onClose}
                         />
                         <Button
-                            title={deleting ? "Excluindo" : "Excluir"}
+                            title={deleting ? "Excluindo..." : "Excluir"}
                             variant="primary1"
                             onPress={() => {
                                 if(review){
-                                    handleDeleteReview(review, onSuccess);
+                                    handleDeleteReview(review, onClose);
                                 }
                             }}
                         />

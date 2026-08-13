@@ -29,10 +29,9 @@ type ModalProps = {
     genres: Genre[];
     platforms: Platform[];
     users?: User[];
-    onSuccess: () => void;
 }
 
-export default function EditReviewModal({visible, onClose, review, games, genres, platforms, users, onSuccess}: ModalProps){
+export default function EditReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
 
     const {primary} = useColorTheme();
 
@@ -44,7 +43,7 @@ export default function EditReviewModal({visible, onClose, review, games, genres
         comment,
         setComment,
         handleEditReview,
-    } = useEditReview(review, onSuccess);
+    } = useEditReview(review);
 
     return (
         <Modal visible={visible} transparent> 
@@ -103,7 +102,7 @@ export default function EditReviewModal({visible, onClose, review, games, genres
                         />
                         <Button
                             title={editing ? "Salvando..." : "Salvar"}
-                            onPress={() => handleEditReview(review!.id, review!.jogo_id)}
+                            onPress={() => handleEditReview(review!.id, review!.jogo_id, onClose)}
                             disabled={editing}
                         />
                     </View>
