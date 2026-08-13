@@ -53,6 +53,14 @@ export function useCreateReview() {
         }
     }
 
+    function handleRatingChange(value: string) {
+        const regex = /^(?:[0-9](?:[.,][0-9]?)?|10)?$/;
+
+        if (regex.test(value)) {
+            setRating(value);
+        }
+    }
+
     async function publishReview() {
 
         console.log("userId:", user);
@@ -70,14 +78,15 @@ export function useCreateReview() {
             return;
         }
 
-        const normalizedRating = Number(
-            rating.trim().replace(",", ".")
-        );
+        const trimmedRating = rating.trim();
+        const isCompleteRating = /^(?:[0-9](?:[.,][0-9])?|10)$/.test(trimmedRating);
 
-        if (!rating.trim() || Number.isNaN(normalizedRating)) {
-            console.log("Bloqueou: rating inválido", normalizedRating);
+        if (!trimmedRating || !isCompleteRating) {
+            console.log("Bloqueou: rating inválido ou incompleto", trimmedRating);
             return;
         }
+
+        const normalizedRating = Number(trimmedRating.replace(",", "."));
 
         if (!comment.trim()) {
             console.log("Bloqueou: sem comment");
@@ -119,10 +128,12 @@ export function useCreateReview() {
     return {
         games,
         selectedGame,
+        setSelectedGame,
         selectedGenre,
         handleSelectGame,
         rating,
         setRating,
+        handleRatingChange,
         comment,
         setComment,
         loadingGenre,

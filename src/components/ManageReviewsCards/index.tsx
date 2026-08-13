@@ -58,7 +58,7 @@ export default function ManageReviewCard({review, games, genres, platforms, user
                         color={colors.rating}
                     />
                     <Text style={styles.rating}>
-                        {review.nota}
+                        {review.nota == 10 ? 10 : review.nota == 0 ? 0 : review.nota}
                     </Text>
                     <View style={styles.containerGenre}>
                         <Text style={styles.genre}>

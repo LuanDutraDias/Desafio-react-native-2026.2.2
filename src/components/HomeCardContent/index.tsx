@@ -35,7 +35,7 @@ export default function HomeCardContent({title, author, rating, genre, year, rev
                     color={colors.rating}
                 />
                 <Text style={styles.rating}>
-                    {rating}
+                    {rating == 10 ? 10 : rating == 0 ? 0 : rating}
                 </Text>
                 <View style={styles.containerGenre}>
                     <Text style={styles.genre}>

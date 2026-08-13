@@ -85,9 +85,9 @@ export default function EditReviewModal({visible, onClose, review, games, genres
                             {review &&
                                 <RatingInputWithTitle
                                     title="Nova nota:"
-                                    value={rating == "10.0" ? "10" : rating}
+                                    value={rating == "10.0" ? "10" : rating == "0.0" ? "0": rating}
                                     onChangeText={handleRatingChange}
-                                    placeholder={String(review.nota) == "10.0" ? "10" : String(review.nota)}
+                                    placeholder={String(review.nota) == "10.0" ? "10" : String(review.nota) == "0.0" ? "0" : String(review.nota)}
                                 />
                             }
                             {review &&
