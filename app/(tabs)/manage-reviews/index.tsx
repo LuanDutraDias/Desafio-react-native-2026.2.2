@@ -4,9 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import ManageReviewCard from "@/components/ManageReviewsCards";
 import Button from "@/components/Button";
-import ViewReviewModal from "@/overlays/ViewReviewModal";
-import EditReviewModal from "@/overlays/EditReviewModal";
-import DeleteReviewModal from "@/overlays/DeleteReviewModal";
+import ViewReviewModal from "@/components/overlays/ViewReviewModal";
+import EditReviewModal from "@/components/overlays/EditReviewModal";
+import DeleteReviewModal from "@/components/overlays/DeleteReviewModal";
 
 import { useManageReview } from "@/hooks/useManageReview";
 
