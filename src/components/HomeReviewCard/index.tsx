@@ -27,7 +27,7 @@ type HomeReviewCardProps = {
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
-    users?: User[];
+    users: User[];
 };
 
 export default function HomeReviewCard({review, games, genres, platforms, users}: HomeReviewCardProps){
@@ -49,9 +49,9 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
     );
     
 
-    //const author = users.find(
-    //    (user) => user.id === review.usuario_id
-    //);
+    const author = users.find(
+       (user) => user.id === review.usuario_id
+    );
 
     const platformColor = platform?.nome ? platformIcons[platform.nome]?.color: undefined;
 
@@ -74,7 +74,7 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
             </View>
             <HomeCardContent
                 title={game?.titulo}
-                //author={author?.name}
+                author={author?.name}
                 rating={review.nota}
                 genre={genre?.genero}
                 year={game?.ano_lancamento}

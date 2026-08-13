@@ -6,12 +6,15 @@ import { Genre } from "@/types/genre";
 import { Platform } from "@/types/platform";
 import { Review } from "@/types/review";
 
+import { getUsers } from "@/services/users";
 import { getGames } from "@/services/games";
 import { getGenres } from "@/services/genres";
 import { getPlatforms } from "@/services/platforms";
 import { getReview } from "@/services/reviews";
+import { User } from "@/types/user";
 
 type AppDataContextType = {
+    users: User[];
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
@@ -24,6 +27,7 @@ const AppDataContext = createContext<AppDataContextType | undefined>(undefined);
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
 
+    const [users, setUsers] = useState<User[]>([]);
     const [games, setGames] = useState<Game[]>([]);
     const [genres, setGenres] = useState<Genre[]>([]);
     const [platforms, setPlatforms] = useState<Platform[]>([]);
@@ -47,14 +51,16 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         try {
             setLoading(true);
 
-            const [gamesResponse, genresResponse, platformsResponse, reviewsResponse] =
+            const [usersResponse, gamesResponse, genresResponse, platformsResponse, reviewsResponse] =
                 await Promise.all([
+                    getUsers(),
                     getGames(),
                     getGenres(),
                     getPlatforms(),
                     getReview(),
                 ]);
 
+            setUsers(usersResponse)
             setGames(gamesResponse);
             setGenres(genresResponse);
             setPlatforms(platformsResponse);
@@ -68,7 +74,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <AppDataContext.Provider value={{ games, genres, platforms, reviews, loading, reloadReviews }}>
+        <AppDataContext.Provider value={{users, games, genres, platforms, reviews, loading, reloadReviews }}>
             {children}
         </AppDataContext.Provider>
     );

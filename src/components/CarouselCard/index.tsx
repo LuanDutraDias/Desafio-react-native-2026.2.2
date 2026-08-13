@@ -19,7 +19,7 @@ type CarouselCardProps = {
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
-    users?: User[];
+    users: User[];
 }
 
 export default function CarouselCard({review, games, genres, platforms, users}: CarouselCardProps){
@@ -38,10 +38,9 @@ export default function CarouselCard({review, games, genres, platforms, users}: 
         (platform) => platform.id === game.plataforma_id
     );
     
-
-    //const author = users.find(
-    //    (user) => user.id === review.usuario_id
-    //);
+    const author = users.find(
+       (user) => user.id === review.usuario_id
+    );
 
     return (
         <View style={styles.cardContainer}>
@@ -59,7 +58,7 @@ export default function CarouselCard({review, games, genres, platforms, users}: 
             />
             <HomeCardContent
                 title={game.titulo}
-                //author={}
+                author={author?.name}
                 rating={review.nota}
                 genre={genre?.genero}
                 year={game.ano_lancamento}

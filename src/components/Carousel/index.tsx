@@ -24,7 +24,7 @@ type CarouselProps = {
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
-    users?: User[];
+    users: User[];
 }
 
 export default function Carousel({reviews, games, genres, platforms, users}: CarouselProps){
@@ -55,7 +55,7 @@ export default function Carousel({reviews, games, genres, platforms, users}: Car
                         games={games}
                         genres={genres}
                         platforms={platforms}
-                        //users={users}
+                        users={users}
                     />
                 )}
                 />

@@ -17,7 +17,7 @@ export default function HomeSreen(){
         games,
         genres,
         platforms,
-        //users,
+        users,
         loading,
     } = useAppData();
 
@@ -49,6 +49,7 @@ export default function HomeSreen(){
                         games={games}
                         genres={genres}
                         platforms={platforms}
+                        users={users}
                     />
                 }
                 contentContainerStyle={{gap: 10, paddingBottom: 15}}
@@ -58,7 +59,7 @@ export default function HomeSreen(){
                     games={games}
                     genres={genres}
                     platforms={platforms}
-                    //users={users}
+                    users={users}
                 />}
             />
         </SafeAreaView>
