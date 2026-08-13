@@ -26,11 +26,19 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
         color: colors.secondary
     },
-    containerGenreOrYear: {
+    containerGenre: {
         justifyContent: "center",
         paddingVertical: 2,
         paddingHorizontal: 8,
         backgroundColor: colors.iconBackground,
+        borderRadius: 4,
+        alignSelf: "flex-start",
+    },
+    containerYear: {
+        justifyContent: "center",
+        paddingVertical: 2,
+        paddingHorizontal: 8,
+        backgroundColor: colors.textSecondary,
         borderRadius: 4,
         alignSelf: "flex-start",
     },
@@ -39,7 +47,17 @@ export const styles = StyleSheet.create({
         fontSize: 14,
     },
     year: {
-        color: colors.textSecondary,
+        color: colors.iconBackground,
         fontSize: 14,
+    },
+    removeButton: {
+        position: "absolute",
+        top: 5,
+        right: 5,
+        backgroundColor: colors.primary1,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "50%",
+        padding: 3,
     }
 });

@@ -27,9 +27,11 @@ export default function CreateReviewScreen() {
         games,
         selectedGame,
         selectedGenre,
+        setSelectedGame,
         handleSelectGame,
         rating,
         setRating,
+        handleRatingChange,
         comment,
         setComment,
         loadingGenre,
@@ -84,15 +86,16 @@ export default function CreateReviewScreen() {
                                 <SelectedGameCard
                                     game={selectedGame}
                                     genre={selectedGenre}
+                                    onRemove={() => setSelectedGame(null)}
                                 />
                             )
                         )
                     )}
                     <RatingInputWithTitle
                         title="Sua nota:"
-                        placeholder="0,0"
+                        placeholder="0.0"
                         value={rating}
-                        onChangeText={setRating}
+                        onChangeText={handleRatingChange}
                     />
                     <CommentInputWithTitle
                         title="Seu comentário:"
