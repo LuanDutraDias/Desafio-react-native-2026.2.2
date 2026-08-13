@@ -20,7 +20,7 @@ export default function SearchBar({games, onSelect, ...props}: SearchBarProps){
 
     const filteredGames = useMemo(() => {
         if (!search.trim()) {
-            return games;
+            return [];
         }
 
         return games.filter((game) =>
@@ -29,32 +29,35 @@ export default function SearchBar({games, onSelect, ...props}: SearchBarProps){
     }, [search, games]);
 
     function handleSelect(game: Game) {
-        setSearch(game.titulo);
+        setSearch("");
         onSelect(game);
     }
 
     return (
-        <View style={styles.containerInput}>
-            <Ionicons 
-                name="search-outline" 
-                size={28} 
-                color={colors.secondary} 
-            />
-            <TextInput
-                {...props}
-                value={search}
-                onChangeText={setSearch}
-                style={styles.input}
-                placeholderTextColor={colors.inputPlaceHolder}
-            />
-            {search.length > 0 && (
-                <View>
+        <View style={styles.container}>
+            <View style={styles.containerInput}>
+                <Ionicons 
+                    name="search-outline" 
+                    size={28} 
+                    color={colors.secondary} 
+                />
+                <TextInput
+                    {...props}
+                    value={search}
+                    onChangeText={setSearch}
+                    style={styles.input}
+                    placeholderTextColor={colors.inputPlaceHolder}
+                />
+            </View>
+            {search.length > 0 && filteredGames.length > 0 && (
+                <View style={styles.resultsContainer}>
                     {filteredGames.map((game) => (
                         <TouchableOpacity
                             key={game.id}
+                            style={styles.result}
                             onPress={() => handleSelect(game)}
                         >
-                            <Text>
+                            <Text style={styles.resultText}>
                                 {game.titulo}
                             </Text>
                         </TouchableOpacity>
