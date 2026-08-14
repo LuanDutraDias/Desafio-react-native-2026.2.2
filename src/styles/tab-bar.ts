@@ -4,8 +4,8 @@ import { colors } from "../constants/colors";
 export const styles = StyleSheet.create({
     tabBarContainer: {
         backgroundColor: colors.tabBarBackground,
-        padding: 10,
-        height: 115,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
         borderTopColor: "transparent"
     },
     itemContainer: {
