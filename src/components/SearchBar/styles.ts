@@ -33,9 +33,27 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderBottomWidth: 1,
         borderBottomColor: colors.border,
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
     resultText: {
-        color: colors.textSecondary,
+        color: colors.secondary,
         fontSize: 15,
     },
+    alreadyReviewedResult: {
+        color: colors.textSecondary
+    },
+    alreadyReviewedContainer: {
+        backgroundColor: colors.primary3,
+        flexDirection: "row",
+        borderRadius: 6,
+        gap: 3,
+        paddingVertical: 3,
+        paddingHorizontal: 5,
+        alignItems: "center",
+    },
+    alreadyReviewedText: {
+        color: colors.secondary,
+        fontSize: 12
+    }
 });

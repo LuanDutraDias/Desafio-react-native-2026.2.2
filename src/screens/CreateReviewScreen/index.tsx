@@ -18,8 +18,14 @@ import { styles } from "./styles";
 import { useColorTheme } from "@/hooks/useColorTheme";
 
 import { useCreateReview } from "@/hooks/useCreateReview";
+import { useAppData } from "@/contexts/appDataContext";
+
+import { useAuth } from "@/hooks/useAuth";
 
 export default function CreateReviewScreen() {
+
+    const {user} = useAuth();
+    const {reviews} = useAppData();
 
     const { primary } = useColorTheme();
 
@@ -38,6 +44,10 @@ export default function CreateReviewScreen() {
         publishing,
         publishReview,
     } = useCreateReview();
+
+    const loggedUserReviews = reviews.filter(
+        (review) => review.usuario_id === user?.id
+    )
 
     return (
 
@@ -72,6 +82,7 @@ export default function CreateReviewScreen() {
                             "Escolha o jogo para avaliar"
                         }
                         games={games}
+                        loggedUserReviews={loggedUserReviews}
                         onSelect={handleSelectGame}
                     />
                     {selectedGame && (
