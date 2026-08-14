@@ -75,6 +75,8 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
             <HomeCardContent
                 title={game?.titulo}
                 author={author?.name}
+                action={review.created_at === review.updated_at ? "publicou" : "editou"}
+                edited_at={review.updated_at}
                 rating={review.nota}
                 genre={genre?.genero}
                 year={game?.ano_lancamento}

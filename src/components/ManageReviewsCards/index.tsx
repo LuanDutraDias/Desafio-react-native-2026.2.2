@@ -12,20 +12,20 @@ import { Platform } from "@/types/platform";
 import { User } from "@/types/user";
 import { Review } from "@/types/review";
 import { gameCovers } from "@/constants/gameCovers";
+import { formatDateToBrasilia } from "@/utils/formatDate";
 
 type HomeCardContentProps = {
     review: Review;
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
-    users?: User[];
     showButtons?: boolean;
     onView?: () => void;
     onEdit?: () => void;
     onDelete?: () => void;
 }
 
-export default function ManageReviewCard({review, games, genres, platforms, users, showButtons = true, onView, onEdit, onDelete}: HomeCardContentProps){
+export default function ManageReviewCard({review, games, genres, platforms, showButtons = true, onView, onEdit, onDelete}: HomeCardContentProps){
 
     const game = games.find(
         (game) => game.id === review.jogo_id
@@ -67,7 +67,7 @@ export default function ManageReviewCard({review, games, genres, platforms, user
                     </View>
                 </View>
                 <Text style={styles.updated}>
-                    Atualizado em...
+                    {review.created_at === review.updated_at ? "Publicado" : "Editado"} em {formatDateToBrasilia(review.updated_at)}
                 </Text>
             </View>
             {showButtons && (

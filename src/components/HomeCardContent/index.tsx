@@ -6,6 +6,8 @@ import { colors } from "@/constants/colors";
 
 import {styles} from "./styles";
 
+import { formatDateToBrasilia } from "@/utils/formatDate";
+
 type HomeCardContentProps = {
     style?: StyleProp<ViewStyle>;
     title?: string;
@@ -14,16 +16,18 @@ type HomeCardContentProps = {
     genre?: string;
     year?: number;
     review?: string;
+    edited_at: string;
+    action: string;
     readMore?: boolean;
     commentLines: any;
     onHasMoreLines?: (hasMore: boolean) => void
 }
 
-export default function HomeCardContent({title, author, rating, genre, year, review, style, readMore, commentLines, onHasMoreLines}: HomeCardContentProps){
+export default function HomeCardContent({title, author, rating, genre, year, review, style, edited_at, action, readMore, commentLines, onHasMoreLines}: HomeCardContentProps){
     return (
         <View style={[styles.containerHomeCardContent, style]}>
             <Text style={styles.author}>
-                {author} em 02/04/2018
+                {author} {action} em {formatDateToBrasilia(edited_at)}
             </Text>
             <Text style={styles.title}>
                 {title}
