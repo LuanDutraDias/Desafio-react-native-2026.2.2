@@ -1,4 +1,4 @@
-import { Modal, View } from "react-native";
+import { Modal, Pressable, View } from "react-native";
 
 import {styles} from "./styles";
 
@@ -30,10 +30,9 @@ type ModalProps = {
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
-    users?: User[];
 }
 
-export default function EditReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
+export default function EditReviewModal({visible, onClose, review, games, genres, platforms}: ModalProps){
 
     const {primary} = useColorTheme();
 
@@ -51,14 +50,14 @@ export default function EditReviewModal({visible, onClose, review, games, genres
     return (
         <Modal visible={visible} transparent> 
             <SafeAreaView style={styles.safeArea} edges={["top"]}>
-                <View style={styles.overlay}>
+                <Pressable style={styles.overlay} onPress={onClose}>
                     <KeyboardAwareScrollView 
                         style={styles.sectionEditReview}
                         contentContainerStyle={styles.scrollEditReview}
                         enableOnAndroid
                         keyboardShouldPersistTaps="handled"
                     >
-                        <View style={styles.modal}>
+                        <Pressable style={styles.modal} onPress={() => {}}>
                             <CloseModalButton
                                 onClose={onClose}
                             />
@@ -79,7 +78,6 @@ export default function EditReviewModal({visible, onClose, review, games, genres
                                     games={games}
                                     genres={genres}
                                     platforms={platforms}
-                                    users={users}
                                 />
                             }
                             {review &&
@@ -110,9 +108,9 @@ export default function EditReviewModal({visible, onClose, review, games, genres
                                     disabled={editing}
                                 />
                             </View>
-                        </View>
+                        </Pressable>
                     </KeyboardAwareScrollView>
-                </View>
+                </Pressable>
             </SafeAreaView>
         </Modal>
     )

@@ -1,4 +1,4 @@
-import { Modal, Text, View } from "react-native";
+import { Modal, Pressable, Text, View } from "react-native";
 
 import {styles} from "./styles";
 import { colors } from "@/constants/colors";
@@ -24,10 +24,9 @@ type ModalProps = {
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
-    users?: User[];
 }
 
-export default function DeleteReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
+export default function DeleteReviewModal({visible, onClose, review, games, genres, platforms}: ModalProps){
 
     const {
         deleting,
@@ -36,8 +35,8 @@ export default function DeleteReviewModal({visible, onClose, review, games, genr
 
     return (
         <Modal visible={visible} transparent> 
-            <View style={styles.overlay}>
-                <View style={styles.modal}>
+            <Pressable style={styles.overlay} onPress={onClose}>
+                <Pressable style={styles.modal} onPress={() => {}}>
                     <CloseModalButton
                         onClose={onClose}
                     />
@@ -59,7 +58,6 @@ export default function DeleteReviewModal({visible, onClose, review, games, genr
                             games={games}
                             genres={genres}
                             platforms={platforms}
-                            users={users}
                         />
                     }
                     <View style={[styles.alertContainer, {backgroundColor: `${colors.primary1}1F`, borderColor: `${colors.primary1}80`}]}>
@@ -88,8 +86,8 @@ export default function DeleteReviewModal({visible, onClose, review, games, genr
                             }}
                         />
                     </View>
-                </View>
-            </View>
+                </Pressable>
+            </Pressable>
         </Modal>
     )
 }

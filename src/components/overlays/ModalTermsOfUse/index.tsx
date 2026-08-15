@@ -1,4 +1,4 @@
-import { Modal, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Pressable, Text, TouchableOpacity, View } from "react-native";
 
 import {styles} from "./styles";
 import { colors } from "@/constants/colors";
@@ -13,8 +13,8 @@ type ModalProps = {
 export default function ModalTermsOfUse({visible, onClose}: ModalProps){
     return (
         <Modal visible={visible} transparent> 
-            <View style={styles.overlay}>
-                <View style={styles.modal}>
+            <Pressable style={styles.overlay} onPress={onClose}>
+                <Pressable style={styles.modal} onPress={() => {}}>
                     <View style={styles.headerContainer}>
                         <Text style={styles.title}>
                             Termos de Uso
@@ -47,8 +47,8 @@ export default function ModalTermsOfUse({visible, onClose}: ModalProps){
 
                     • Ao utilizar o aplicativo, você concorda com estas condições.
                     </Text>
-                </View>
-            </View>
+                </Pressable>
+            </Pressable>
         </Modal>
     )
 }

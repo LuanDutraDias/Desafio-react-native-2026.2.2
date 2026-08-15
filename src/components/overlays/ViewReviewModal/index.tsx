@@ -1,4 +1,4 @@
-import { Modal, View } from "react-native";
+import { Modal, Pressable } from "react-native";
 
 import {styles} from "./styles";
 
@@ -22,17 +22,16 @@ type ModalProps = {
     games: Game[];
     genres: Genre[];
     platforms: Platform[];
-    users?: User[];
 }
 
-export default function ViewReviewModal({visible, onClose, review, games, genres, platforms, users}: ModalProps){
+export default function ViewReviewModal({visible, onClose, review, games, genres, platforms}: ModalProps){
 
     const {primary} = useColorTheme();
 
     return (
         <Modal visible={visible} transparent> 
-            <View style={styles.overlay}>
-                <View style={styles.modal}>
+            <Pressable style={styles.overlay} onPress={onClose}>
+                <Pressable style={styles.modal} onPress={() => {}}>
                     <CloseModalButton
                         onClose={onClose}
                     />
@@ -53,7 +52,6 @@ export default function ViewReviewModal({visible, onClose, review, games, genres
                             games={games}
                             genres={genres}
                             platforms={platforms}
-                            users={users}
                         />
                     }
                     {review &&
@@ -64,8 +62,8 @@ export default function ViewReviewModal({visible, onClose, review, games, genres
                             editable={false}
                         />
                     }
-                </View>
-            </View>
+                </Pressable>
+            </Pressable>
         </Modal>
     )
 }
