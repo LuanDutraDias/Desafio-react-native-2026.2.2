@@ -1,8 +1,7 @@
-import { FlatList, View, Dimensions} from "react-native";
+import { Animated, View, Dimensions } from "react-native";
+import { useRef, useState } from "react";
 
-import { useState } from "react";
-
-import {styles} from "./styles";
+import { styles } from "./styles";
 
 import CarouselCard from "../CarouselCard";
 import PaginationDots from "../PaginationDots";
@@ -27,42 +26,58 @@ type CarouselProps = {
     users: User[];
 }
 
-export default function Carousel({reviews, games, genres, platforms, users}: CarouselProps){
+export default function Carousel({ reviews, games, genres, platforms, users }: CarouselProps) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const scrollX = useRef(new Animated.Value(0)).current;
+
+    const handleScroll = Animated.event(
+        [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+        {
+            useNativeDriver: true,
+            listener: (event) => {
+                const offsetX = (event as any).nativeEvent.contentOffset.x;
+                const index = Math.round(offsetX / SNAP_INTERVAL);
+                if (index !== currentIndex && index >= 0 && index < reviews.length) {
+                    setCurrentIndex(index);
+                }
+            },
+        }
+    );
 
     return (
         <>
-            <FlatList
-                contentContainerStyle={[styles.containerCarousel, {paddingHorizontal: SIDE_PADDING}]}
+            <Animated.FlatList
+                contentContainerStyle={[styles.containerCarousel, { paddingHorizontal: SIDE_PADDING }]}
                 horizontal
                 snapToInterval={SNAP_INTERVAL}
                 showsHorizontalScrollIndicator={false}
                 decelerationRate="fast"
                 bounces={false}
-                onMomentumScrollEnd={(event) => {
-                    const index = Math.round(
-                        event.nativeEvent.contentOffset.x / SNAP_INTERVAL
-                    );
-                    setCurrentIndex(index);
-                }}
+                onScroll={handleScroll}
+                scrollEventThrottle={16}
                 data={reviews}
                 keyExtractor={(item) => String(item.id)}
                 ItemSeparatorComponent={() => <View style={{ width: CARD_SPACING }} />}
-                renderItem={({ item }) => (
+                getItemLayout={(_, index) => ({
+                    length: SNAP_INTERVAL,
+                    offset: SNAP_INTERVAL * index,
+                    index,
+                })}
+                renderItem={({ item, index }) => (
                     <CarouselCard
                         review={item}
                         games={games}
                         genres={genres}
                         platforms={platforms}
                         users={users}
+                        index={index}
+                        scrollX={scrollX}
                     />
                 )}
-                />
+            />
             <PaginationDots
                 total={reviews.length}
-
-                
                 current={currentIndex}
             />
         </>
