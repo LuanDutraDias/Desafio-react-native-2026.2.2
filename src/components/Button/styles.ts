@@ -1,9 +1,11 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { RFValue } from "react-native-responsive-fontsize";
+import { BORDER_RADIUS, FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     button: {
-        borderRadius: 12,
+        borderRadius: BORDER_RADIUS.lg,
         height: 50,
         justifyContent: "center",
         gap: 10,
@@ -12,7 +14,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     buttonText: {
-        fontSize: 20,
+        fontSize: FONT_SIZES.lg2,
         textAlign: "center",
     }
 });

@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../../constants/colors";
+import { BORDER_RADIUS } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     safeArea: {
@@ -23,11 +24,16 @@ export const styles = StyleSheet.create({
     },
     modal: {
         width: "100%",
-        height: "94%",
+        height: "92%",
         backgroundColor: colors.backgroundScreen,
-        borderRadius: 16,
-        padding: 20,
+        borderRadius: BORDER_RADIUS.xl,
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+    },
+    containerContent: {
+        paddingTop: 20,
         gap: 20,
+        paddingBottom: 20,
     },
     buttonsContainer: {
         justifyContent: "space-between",

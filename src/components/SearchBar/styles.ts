@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { BORDER_RADIUS, FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     container: {
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.inputBackground,
         borderColor:  colors.border,
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: BORDER_RADIUS.lg,
         flexDirection: "row",
         alignItems: "center",
         height: 55,
@@ -19,13 +20,13 @@ export const styles = StyleSheet.create({
     input: {
         color: colors.secondary,
         flex: 1,
-        fontSize: 15,
+        fontSize: FONT_SIZES.md2,
     },
     resultsContainer: {
         backgroundColor: colors.inputBackground,
         borderColor: colors.border,
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: BORDER_RADIUS.lg,
         overflow: "hidden",
     },
     result: {
@@ -36,9 +37,12 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
     },
+    resultTextContainer: {
+        width: "77%"
+    },
     resultText: {
         color: colors.secondary,
-        fontSize: 15,
+        fontSize: FONT_SIZES.md2,
     },
     alreadyReviewedResult: {
         color: colors.textSecondary
@@ -46,7 +50,7 @@ export const styles = StyleSheet.create({
     alreadyReviewedContainer: {
         backgroundColor: colors.primary3,
         flexDirection: "row",
-        borderRadius: 6,
+        borderRadius: BORDER_RADIUS.sm,
         gap: 3,
         paddingVertical: 3,
         paddingHorizontal: 5,
@@ -54,6 +58,6 @@ export const styles = StyleSheet.create({
     },
     alreadyReviewedText: {
         color: colors.secondary,
-        fontSize: 12
+        fontSize: FONT_SIZES.sm
     }
 });

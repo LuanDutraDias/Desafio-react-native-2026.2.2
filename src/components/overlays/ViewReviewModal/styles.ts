@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../../constants/colors";
+import { BORDER_RADIUS } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     overlay: {
@@ -11,9 +12,10 @@ export const styles = StyleSheet.create({
     },
     modal: {
         width: "100%",
-        height: "70%",
+        minHeight: "70%",
+        gap: 20,
         backgroundColor: colors.backgroundScreen,
-        borderRadius: 16,
+        borderRadius: BORDER_RADIUS.xl,
         padding: 20,
         justifyContent: "space-between",
     },

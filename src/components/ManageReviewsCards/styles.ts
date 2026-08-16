@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { BORDER_RADIUS, FONT_SIZES, FONT_WEIGHT } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     containerCard: {
@@ -8,13 +9,13 @@ export const styles = StyleSheet.create({
         alignSelf: "center",
         borderWidth: 1,
         borderColor: colors.border,
-        borderRadius: 16,
+        borderRadius: BORDER_RADIUS.xl,
         flexDirection: "row",
     },
     image: {
         height: 90,
         width: "28%",
-        borderRadius: 16,
+        borderRadius: BORDER_RADIUS.xl,
     },
     containerManageCardContent: {
         flex: 1,
@@ -23,8 +24,8 @@ export const styles = StyleSheet.create({
         justifyContent: "center"
     },
     title: {
-        fontSize: 16,
-        fontWeight: "bold",
+        fontSize: FONT_SIZES.md,
+        fontWeight: FONT_WEIGHT.bold,
         color: colors.secondary
     },
     containerRatingGenre: {
@@ -34,21 +35,21 @@ export const styles = StyleSheet.create({
     },
     rating: {
         color: colors.rating,
-        fontSize: 16
+        fontSize: FONT_SIZES.md
     },
     containerGenre: {
         justifyContent: "center",
         paddingVertical: 2,
         paddingHorizontal: 8,
         backgroundColor: colors.iconBackground,
-        borderRadius: 4,
+        borderRadius: BORDER_RADIUS.xs
     },
     genre: {
         color: colors.textSecondary,
-        fontSize: 14,
+        fontSize: FONT_SIZES.sm,
     },
     updated: {
         color: colors.textSecondary,
-        fontSize: 12,
+        fontSize: FONT_SIZES.sm,
     }
 });

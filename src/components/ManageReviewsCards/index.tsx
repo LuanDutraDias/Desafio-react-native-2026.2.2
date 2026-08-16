@@ -48,7 +48,7 @@ export default function ManageReviewCard({review, games, genres, platforms, show
                 source={gameCovers[game.capa]}
             />
             <View style={styles.containerManageCardContent}>
-                <Text style={styles.title}>
+                <Text style={styles.title} numberOfLines={1}>
                     {game.titulo}
                 </Text>
                 <View style={styles.containerRatingGenre}>

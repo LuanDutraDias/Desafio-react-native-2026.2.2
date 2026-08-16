@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { BORDER_RADIUS, FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     containerIconInput: {
@@ -15,15 +16,15 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.inputBackground,
         borderColor:  colors.border,
         borderWidth: 1,
-        borderRadius: 12,
+        borderRadius: BORDER_RADIUS.lg,
         flexDirection: "row",
         alignItems: "center",
-        height: 55,
+        height: 53,
     },
     input: {
         color: colors.secondary,
         flex: 1,
-        fontSize: 15,
+        fontSize: FONT_SIZES.md,
         paddingLeft: 10,
         paddingRight: 5
     },

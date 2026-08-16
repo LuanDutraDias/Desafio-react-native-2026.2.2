@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 import { colors } from "../../constants/colors";
+import { BORDER_RADIUS, FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     checkboxWithTextContainer: {
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
     checkboxContainer: {
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 4,
+        borderRadius: BORDER_RADIUS.xs,
         borderWidth: 1,
         borderColor: colors.secondary,
         width: 25,
@@ -22,5 +23,6 @@ export const styles = StyleSheet.create({
     },
     checkboxText: {
         color: colors.secondary,
+        fontSize: FONT_SIZES.sm,
     },
 });

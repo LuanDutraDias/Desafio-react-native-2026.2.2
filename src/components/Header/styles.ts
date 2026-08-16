@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
+import { FONT_SIZES, FONT_WEIGHT } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
   headerContainer: {
@@ -10,8 +11,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
-    fontSize: 22,
-    fontWeight: "bold",
+    fontSize: FONT_SIZES.xl2,
+    fontWeight: FONT_WEIGHT.bold,
     color: colors.secondary,
   },
   signOutContainer: {

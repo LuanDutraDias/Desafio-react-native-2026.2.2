@@ -68,9 +68,11 @@ export default function SearchBar({games, onSelect, loggedUserReviews, ...props}
                                 onPress={() => handleSelect(game)}
                                 disabled={alreadyReviewed}
                             >
-                                <Text style={[styles.resultText, alreadyReviewed && styles.alreadyReviewedResult]}>
-                                    {game.titulo}
-                                </Text>
+                                <View style={styles.resultTextContainer}>
+                                    <Text style={[styles.resultText, alreadyReviewed && styles.alreadyReviewedResult]}>
+                                        {game.titulo}
+                                    </Text>
+                                </View>
                                 {alreadyReviewed && 
                                     <View style={styles.alreadyReviewedContainer}>
                                         <Entypo 

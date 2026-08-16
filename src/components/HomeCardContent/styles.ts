@@ -1,19 +1,25 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { BORDER_RADIUS, FONT_SIZES, FONT_WEIGHT } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     containerHomeCardContent: {
         flex: 1,
-        gap: 4,
+        gap: Platform.OS == 'ios' ? 5 : 2, 
         paddingHorizontal: 10,
     },
     author: {
-        fontSize: 12,
-        color: colors.textSecondary
+        fontSize: FONT_SIZES.xxs,
+        color: colors.textSecondary,
+    },
+    containerTitleAndPlatform: {
+        flexDirection: "row",
+        gap: 5,
+        alignItems: "center",
     },
     title: {
-        fontSize: 13,
-        fontWeight: "bold",
+        fontSize: FONT_SIZES.sm,
+        fontWeight: FONT_WEIGHT.bold,
         color: colors.secondary
     },
     containerRatingGenreYear: {
@@ -23,32 +29,32 @@ export const styles = StyleSheet.create({
     },
     rating: {
         color: colors.rating,
-        fontSize: 13
+        fontSize: FONT_SIZES.sm2
     },
     containerGenre: {
         justifyContent: "center",
         paddingVertical: 2,
         paddingHorizontal: 4,
         backgroundColor: colors.iconBackground,
-        borderRadius: 4,
+        borderRadius: BORDER_RADIUS.xs
     },
     genre: {
         color: colors.textSecondary,
-        fontSize: 10,
+        fontSize: FONT_SIZES.xs,
     },
     containerYear: {
         justifyContent: "center",
         paddingVertical: 2,
         paddingHorizontal: 6,
         backgroundColor: colors.textSecondary,
-        borderRadius: 4,
+        borderRadius: BORDER_RADIUS.xs
     },
     year: {
         color: colors.iconBackground,
-        fontSize: 10,
+        fontSize: FONT_SIZES.xs,
     },
     reviewComment: {
         color: colors.textSecondary,
-        fontSize: 12,
+        fontSize: FONT_SIZES.sm,
     }
 });

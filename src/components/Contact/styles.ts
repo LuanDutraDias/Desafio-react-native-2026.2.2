@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { BORDER_RADIUS, FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     containerIconContact: {
         backgroundColor: colors.iconBackground,
-        borderRadius: 12,
+        borderRadius: BORDER_RADIUS.lg,
         height: "80%",
         aspectRatio: 1/1,
         alignItems: "center",
@@ -14,7 +15,7 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.inputBackground,
         borderColor:  colors.border,
         borderWidth: 1,
-        borderRadius: 12,
+        borderRadius: BORDER_RADIUS.lg,
         flexDirection: "row",
         alignItems: "center",
         paddingHorizontal: 5,
@@ -27,8 +28,10 @@ export const styles = StyleSheet.create({
     },
     title: {
         color: colors.secondary,
+        fontSize: FONT_SIZES.sm2,
     },
     link: {
-        color: colors.textSecondary
+        color: colors.textSecondary,
+        fontSize: FONT_SIZES.sm2,
     },
 });

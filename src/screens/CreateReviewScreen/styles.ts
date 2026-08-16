@@ -20,5 +20,9 @@ export const styles = StyleSheet.create({
         paddingVertical: 15,
         flex: 1,
         gap: 20,
+    },
+    buttonContainer: {
+        paddingHorizontal: 10,
+        paddingBottom: 15,
     }
 })

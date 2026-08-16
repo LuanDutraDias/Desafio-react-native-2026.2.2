@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { BORDER_RADIUS } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     container: {
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
     dot: {
         width: 10,
         height: 10,
-        borderRadius: 5,
+        borderRadius: BORDER_RADIUS.round,
         backgroundColor: colors.textSecondary,
     },
 });

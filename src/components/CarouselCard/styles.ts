@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
-import { CARD_WIDTH } from "@/constants/dimensions";
+import { BORDER_RADIUS, CARD_WIDTH } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     cardContainer: {
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         width: CARD_WIDTH,
         borderWidth: 1,
         borderColor: colors.border,
-        borderRadius: 16,
+        borderRadius: BORDER_RADIUS.xl,
         overflow: "hidden",
     },
     image: {
@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
     },
     gradient: {
         ...StyleSheet.absoluteFillObject,
-        borderRadius: 16,
+        borderRadius: BORDER_RADIUS.xl,
     },
 });

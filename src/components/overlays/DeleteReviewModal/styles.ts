@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../../constants/colors";
+import { BORDER_RADIUS, FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     overlay: {
@@ -11,22 +12,26 @@ export const styles = StyleSheet.create({
     },
     modal: {
         width: "100%",
-        height: "65%",
+        minHeight: "65%",
         backgroundColor: colors.backgroundScreen,
-        borderRadius: 16,
+        borderRadius: BORDER_RADIUS.xl,
         padding: 20,
         justifyContent: "space-between",
+        gap: 30,
     },
     alertContainer: {
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
         padding: 10,
-        gap: 10,
-        borderRadius: 12,
+        gap: 15,
+        borderRadius: BORDER_RADIUS.lg,
         borderWidth: 1,
     },
     alertMessage: {
-        color: colors.textSecondary
+        color: colors.textSecondary,
+        fontSize: FONT_SIZES.md,
+        maxWidth: "75%",
     },
     buttonsContainer: {
         justifyContent: "space-between",
