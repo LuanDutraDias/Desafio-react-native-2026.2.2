@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View} from "react-native";
+import { Image, Keyboard, Pressable, TouchableOpacity, View} from "react-native";
 
 import { router } from "expo-router";
 
@@ -86,104 +86,109 @@ export default function RegisterScreen() {
         extraScrollHeight={200}
         keyboardShouldPersistTaps="handled"
       >
-        <ModalTermsOfUse visible={showModal} onClose={() => setShowModal(false)}/>
-        <Image 
-          style={styles.registerBanner} 
-          source={require("@/assets/images/banners/register-banner.png")}
-        />
-        <View style={styles.containerContent}>
-          <View style={styles.containerWelcome}>
-            <Title>
-              Bem-vindo
-            </Title>
-            <Subtitle>
-              Faça login para continuar
-            </Subtitle>
-          </View>
-          <View style={styles.containerForms}>
-            <Input 
-              onChangeText={setName}
-              value={name}
-              icon1={
-                <Ionicons
-                  name="person"
-                  size={22}
-                  color={colors.secondary}
-                />  
-              }
-              icon2= {
-                null
-              } 
-              placeholder="Usuário" 
-            />
-            <Input 
-              onChangeText={setEmail}
-              value={email}
-              icon1={
-                <Fontisto
-                  name="email"
-                  size={20}
-                  color={colors.secondary}
-                />  
-              }
-              icon2= {
-                null
-              } 
-              placeholder="E-mail" 
-              keyboardType="email-address"
-            />
-            <Input
-              onChangeText={setPassword}
-              value={password}
-              icon1={
-                <EvilIcons
-                  name="lock"
-                  size={34}
-                  color={colors.secondary}
-                />
-              }
-              icon2={
-                <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
-                  <AntDesign
-                    name={showPassword ? "eye" : "eye-invisible"}
+        <Pressable
+          onPress={Keyboard.dismiss}
+          accessible={false}
+        >
+          <ModalTermsOfUse visible={showModal} onClose={() => setShowModal(false)}/>
+          <Image 
+            style={styles.registerBanner} 
+            source={require("@/assets/images/banners/register-banner.png")}
+          />
+          <View style={styles.containerContent}>
+            <View style={styles.containerWelcome}>
+              <Title>
+                Bem-vindo
+              </Title>
+              <Subtitle>
+                Faça login para continuar
+              </Subtitle>
+            </View>
+            <View style={styles.containerForms}>
+              <Input 
+                onChangeText={setName}
+                value={name}
+                icon1={
+                  <Ionicons
+                    name="person"
                     size={22}
                     color={colors.secondary}
-                    />
-                </TouchableOpacity>
-              }
-              placeholder="Senha" 
-              secureTextEntry={showPassword ? false : true}
-            />
-            <Input
-              onChangeText={setConfirmedPassword}
-              value={confirmedPassword}
-              icon1={
-                <EvilIcons
-                  name="lock"
-                  size={34}
-                  color={colors.secondary}
-                />
-              }
-              icon2={
-                <TouchableOpacity onPress={toggleConfirmedPassword} activeOpacity={0.7}>
-                  <AntDesign
-                    name={showConfirmedPassword ? "eye" : "eye-invisible"}
-                    size={22}
+                  />  
+                }
+                icon2= {
+                  null
+                } 
+                placeholder="Usuário" 
+              />
+              <Input 
+                onChangeText={setEmail}
+                value={email}
+                icon1={
+                  <Fontisto
+                    name="email"
+                    size={20}
+                    color={colors.secondary}
+                  />  
+                }
+                icon2= {
+                  null
+                } 
+                placeholder="E-mail" 
+                keyboardType="email-address"
+              />
+              <Input
+                onChangeText={setPassword}
+                value={password}
+                icon1={
+                  <EvilIcons
+                    name="lock"
+                    size={34}
                     color={colors.secondary}
                   />
-                </TouchableOpacity>
-              }
-              placeholder="Confirmar senha" 
-              secureTextEntry={showConfirmedPassword ? false : true}
-            />
-            <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
-              <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
-              <ButtonReadTermsOfUse onPress={() => setShowModal(true)}/>
+                }
+                icon2={
+                  <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
+                    <AntDesign
+                      name={showPassword ? "eye" : "eye-invisible"}
+                      size={22}
+                      color={colors.secondary}
+                      />
+                  </TouchableOpacity>
+                }
+                placeholder="Senha" 
+                secureTextEntry={showPassword ? false : true}
+              />
+              <Input
+                onChangeText={setConfirmedPassword}
+                value={confirmedPassword}
+                icon1={
+                  <EvilIcons
+                    name="lock"
+                    size={34}
+                    color={colors.secondary}
+                  />
+                }
+                icon2={
+                  <TouchableOpacity onPress={toggleConfirmedPassword} activeOpacity={0.7}>
+                    <AntDesign
+                      name={showConfirmedPassword ? "eye" : "eye-invisible"}
+                      size={22}
+                      color={colors.secondary}
+                    />
+                  </TouchableOpacity>
+                }
+                placeholder="Confirmar senha" 
+                secureTextEntry={showConfirmedPassword ? false : true}
+              />
+              <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
+                <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
+                <ButtonReadTermsOfUse onPress={() => setShowModal(true)}/>
+              </View>
+              <Button title={registering ? "Cadastrando..." : "Cadastrar"} onPress={handleRegister}/>
+              <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
             </View>
-            <Button title={registering ? "Cadastrando..." : "Cadastrar"} onPress={handleRegister}/>
-            <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
           </View>
-        </View>
+        </Pressable>     
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );

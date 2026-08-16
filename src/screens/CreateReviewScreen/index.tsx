@@ -1,4 +1,4 @@
-import { ActivityIndicator, View} from "react-native";
+import { ActivityIndicator, Keyboard, Pressable, View} from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -64,67 +64,71 @@ export default function CreateReviewScreen() {
                 extraScrollHeight={50}
                 keyboardShouldPersistTaps="handled"
             >
-                <View
+                <Pressable
                     style={styles.containerContent}
+                    onPress={Keyboard.dismiss}
+                    accessible={false}
                 >
-                    <ManageReviewIconWithTitle
-                        icon={
-                            <MaterialCommunityIcons
-                                name="file-plus"
-                                size={50}
-                                color={primary}
-                            />
-                        }
-                        title="Nova avaliação"
-                    />
-                    <SearchBar
-                        placeholder={
-                            "Escolha o jogo para avaliar"
-                        }
-                        games={games}
-                        loggedUserReviews={loggedUserReviews}
-                        onSelect={handleSelectGame}
-                    />
-                    {selectedGame && (
-
-                        loadingGenre ? (
-                            <ActivityIndicator
-                                color={primary}
-                            />
-                        ) : (
-                            selectedGenre && (
-
-                                <SelectedGameCard
-                                    game={selectedGame}
-                                    genre={selectedGenre}
-                                    onRemove={() => setSelectedGame(null)}
+                        <ManageReviewIconWithTitle
+                            icon={
+                                <MaterialCommunityIcons
+                                    name="file-plus"
+                                    size={50}
+                                    color={primary}
                                 />
+                            }
+                            title="Nova avaliação"
+                        />
+                        <SearchBar
+                            placeholder={
+                                "Escolha o jogo para avaliar"
+                            }
+                            games={games}
+                            loggedUserReviews={loggedUserReviews}
+                            onSelect={handleSelectGame}
+                        />
+                        {selectedGame && (
+
+                            loadingGenre ? (
+                                <ActivityIndicator
+                                    color={primary}
+                                />
+                            ) : (
+                                selectedGenre && (
+
+                                    <SelectedGameCard
+                                        game={selectedGame}
+                                        genre={selectedGenre}
+                                        onRemove={() => setSelectedGame(null)}
+                                    />
+                                )
                             )
-                        )
-                    )}
-                    <RatingInputWithTitle
-                        title="Sua nota:"
-                        placeholder="0.0"
-                        value={rating}
-                        onChangeText={handleRatingChange}
-                    />
-                    <CommentInputWithTitle
-                        title="Seu comentário:"
-                        placeholder="O que achou do jogo?"
-                        comment={comment}
-                        onChangeText={setComment}
-                    />
-                    <Button
-                        title={
-                            publishing
-                                ? "Publicando..."
-                                : "Publicar avaliação"
-                        }
-                        onPress={publishReview}
-                        disabled={publishing}
-                    />
-                </View>
+                        )}
+                        <RatingInputWithTitle
+                            title="Sua nota:"
+                            placeholder="0.0"
+                            value={rating}
+                            onChangeText={handleRatingChange}
+                        />
+                        <CommentInputWithTitle
+                            title="Seu comentário:"
+                            placeholder="O que achou do jogo?"
+                            comment={comment}
+                            onChangeText={setComment}
+                        />
+                </Pressable>
             </KeyboardAwareScrollView>
+            <View style={styles.buttonContainer}>
+                <Button
+                    title={
+                        publishing
+                            ? "Publicando..."
+                            : "Publicar avaliação"
+                    }
+                    onPress={publishReview}
+                    disabled={publishing}
+                />
+            </View>
         </SafeAreaView>
     );
 }

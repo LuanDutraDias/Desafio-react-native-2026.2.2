@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, Keyboard, Pressable, TouchableOpacity, View } from "react-native";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -56,71 +56,76 @@ export default function LoginScreen() {
         extraScrollHeight={230}
         keyboardShouldPersistTaps="handled"
       >
-        <Image 
-          style={styles.loginBanner} 
-          source={require("@/assets/images/banners/login-banner.png")}
-          />
-      <View style={styles.containerContent}>
-        <View style={styles.containerWelcome}>
-          <Title>
-            Bem-vindo
-          </Title>
-          <Subtitle>
-            Faça login para continuar
-          </Subtitle>
-        </View>
-        <View style={styles.containerForms}>
-          <Input 
-            value={email}
-            onChangeText={setEmail}
-            icon1={
-              <Fontisto
-              name="email"
-              size={20}
-              color={colors.secondary}
-              />  
-            }
-            icon2= {
-              null
-            } 
-            placeholder="E-mail" 
-            keyboardType="email-address"
-          />
-          <Input
-            value={password}
-            onChangeText={setPassword}
-            icon1={
-              <EvilIcons
-              name="lock"
-              size={34}
-              color={colors.secondary}
-              />
-            }
-            icon2={
-              <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
-                <AntDesign
-                name={showPassword ? "eye" : "eye-invisible"}
-                size={22}
+        <Pressable
+          onPress={Keyboard.dismiss}
+          accessible={false}
+        >
+          <Image 
+            style={styles.loginBanner} 
+            source={require("@/assets/images/banners/login-banner.png")}
+            />
+        <View style={styles.containerContent}>
+          <View style={styles.containerWelcome}>
+            <Title>
+              Bem-vindo
+            </Title>
+            <Subtitle>
+              Faça login para continuar
+            </Subtitle>
+          </View>
+          <View style={styles.containerForms}>
+            <Input 
+              value={email}
+              onChangeText={setEmail}
+              icon1={
+                <Fontisto
+                name="email"
+                size={20}
+                color={colors.secondary}
+                />  
+              }
+              icon2= {
+                null
+              } 
+              placeholder="E-mail" 
+              keyboardType="email-address"
+            />
+            <Input
+              value={password}
+              onChangeText={setPassword}
+              icon1={
+                <EvilIcons
+                name="lock"
+                size={34}
                 color={colors.secondary}
                 />
-              </TouchableOpacity>
-            }
-            placeholder="Senha" 
-            secureTextEntry={showPassword ? false : true}
-          />
-          <ChangeColorTheme/>
-          <Button 
-            title={logging ? "Entrando..." : "Entrar"}
-            onPress={handleLogin}
-            disabled={logging}
-          />
-          <AuthToggle 
-            href="/register" 
-            title="Não tem uma conta? " 
-            link="Cadastre-se"
-          />
+              }
+              icon2={
+                <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
+                  <AntDesign
+                  name={showPassword ? "eye" : "eye-invisible"}
+                  size={22}
+                  color={colors.secondary}
+                  />
+                </TouchableOpacity>
+              }
+              placeholder="Senha" 
+              secureTextEntry={showPassword ? false : true}
+            />
+            <ChangeColorTheme/>
+            <Button 
+              title={logging ? "Entrando..." : "Entrar"}
+              onPress={handleLogin}
+              disabled={logging}
+            />
+            <AuthToggle 
+              href="/register" 
+              title="Não tem uma conta? " 
+              link="Cadastre-se"
+            />
+          </View>
         </View>
-      </View>
+      </Pressable>
     </KeyboardAwareScrollView>
   </SafeAreaView>
   );
