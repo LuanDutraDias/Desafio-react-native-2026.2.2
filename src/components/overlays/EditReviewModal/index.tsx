@@ -1,4 +1,4 @@
-import { Modal, Pressable, View } from "react-native";
+import { Keyboard, Modal, Pressable, View } from "react-native";
 
 import {styles} from "./styles";
 
@@ -19,9 +19,8 @@ import { Review } from "@/types/review";
 import { Genre } from "@/types/genre";
 import { Game } from "@/types/game";
 import { Platform } from "@/types/platform";
-import { User } from "@/types/user";
 import { useEditReview } from "@/hooks/useEditReview";
-import { editReview } from "@/services/reviews";
+import { register } from "@/services/auth";
 
 type ModalProps = {
     visible: boolean;
@@ -51,65 +50,75 @@ export default function EditReviewModal({visible, onClose, review, games, genres
         <Modal visible={visible} transparent> 
             <SafeAreaView style={styles.safeArea} edges={["top"]}>
                 <Pressable style={styles.overlay} onPress={onClose}>
+                    <View style={styles.modal}>
+
+                        <CloseModalButton
+                            onClose={onClose}
+                            />
+
                     <KeyboardAwareScrollView 
                         style={styles.sectionEditReview}
+                        showsVerticalScrollIndicator={false}
                         contentContainerStyle={styles.scrollEditReview}
                         enableOnAndroid
+                        extraScrollHeight={50}
                         keyboardShouldPersistTaps="handled"
-                    >
-                        <Pressable style={styles.modal} onPress={() => {}}>
-                            <CloseModalButton
-                                onClose={onClose}
-                            />
-                            <ManageReviewIconWithTitle
-                                icon={
-                                    <FontAwesome5 
+                        >
+                        <Pressable
+                            onPress={Keyboard.dismiss}
+                            accessible={false}
+                            style={styles.containerContent}
+                            >
+                                <ManageReviewIconWithTitle
+                                    icon={
+                                        <FontAwesome5 
                                         name="pencil-alt" 
                                         size={40} 
                                         color={primary}
+                                        />
+                                    }
+                                    title="Editar review"
                                     />
-                                }
-                                title="Editar review"
-                            />
-                            {review &&
-                                <ManageReviewCard
+                                {review &&
+                                    <ManageReviewCard
                                     showButtons={false}
                                     review={review}
                                     games={games}
                                     genres={genres}
                                     platforms={platforms}
-                                />
-                            }
-                            {review &&
-                                <RatingInputWithTitle
+                                    />
+                                }
+                                {review &&
+                                    <RatingInputWithTitle
                                     title="Nova nota:"
                                     value={rating == "10.0" ? "10" : rating == "0.0" ? "0": rating}
                                     onChangeText={handleRatingChange}
                                     placeholder={String(review.nota) == "10.0" ? "10" : String(review.nota) == "0.0" ? "0" : String(review.nota)}
-                                />
-                            }
-                            {review &&
-                                <CommentInputWithTitle
+                                    />
+                                }
+                                {review &&
+                                    <CommentInputWithTitle
                                     title="Novo comentário:"
                                     comment={comment}
                                     onChangeText={setComment}
                                     placeholder={review.comentario}
-                                />
-                            } 
-                            <View style={styles.buttonsContainer}>
-                                <Button
-                                    title="Cancelar"
-                                    variant="secondary"
-                                    onPress={onClose}
-                                />
-                                <Button
-                                    title={editing ? "Salvando..." : "Salvar"}
-                                    onPress={() => handleEditReview(review!.id, review!.jogo_id, onClose)}
-                                    disabled={editing}
-                                />
-                            </View>
-                        </Pressable>
+                                    />
+                                } 
+                            </Pressable>
                     </KeyboardAwareScrollView>
+                    <View style={styles.buttonsContainer}>
+                        <Button
+                            title="Cancelar"
+                            variant="secondary"
+                            onPress={onClose}
+                            />
+                        <Button
+                            title={editing ? "Salvando..." : "Salvar"}
+                            onPress={() => handleEditReview(review!.id, review!.jogo_id, onClose)}
+                            disabled={editing}
+                            />
+                    </View>
+                            </View>
                 </Pressable>
             </SafeAreaView>
         </Modal>

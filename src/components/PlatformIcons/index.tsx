@@ -5,7 +5,7 @@ type PlatformIconProps = {
     size?: number;
 };
 
-export default function PlatformIcon({ platformName, size = 15 }: PlatformIconProps) {
+export default function PlatformIcon({ platformName, size = 17 }: PlatformIconProps) {
 
     if (!platformName || !platformIcons[platformName]) {
         return null;

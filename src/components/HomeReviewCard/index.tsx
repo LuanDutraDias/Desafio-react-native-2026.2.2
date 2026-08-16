@@ -2,8 +2,6 @@ import { View, Image, Pressable, Text } from "react-native";
 
 import { useState } from "react";
 
-import { MaterialCommunityIcons, FontAwesome6 } from "@expo/vector-icons";
-
 import { colors } from "@/constants/colors";
 
 import { useColorTheme } from "@/hooks/useColorTheme";
@@ -18,8 +16,8 @@ import { Platform } from "@/types/platform";
 import { User } from "@/types/user";
 
 import { gameCovers } from "@/constants/gameCovers";
-import PlatformIcon from "../PlatformIcons";
-import { platformIcons } from "@/constants/platformIcons";
+// import PlatformIcon from "../PlatformIcons";
+// import { platformIcons } from "@/constants/platformIcons";
 
 
 type HomeReviewCardProps = {
@@ -53,7 +51,7 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
        (user) => user.id === review.usuario_id
     );
 
-    const platformColor = platform?.nome ? platformIcons[platform.nome]?.color: undefined;
+    // const platformColor = platform?.nome ? platformIcons[platform.nome]?.color: undefined;
 
     const [readMore, setReadMore] = useState(false);
     const [hasMoreLines, setHasMoreLines] = useState(false);
@@ -65,12 +63,12 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
                     style={styles.image}
                     source={gameCovers[game.capa]}
                 />
-                <View style={styles.containerIcons}>
+                {/* <View style={styles.containerIcons}>
                     <PlatformIcon platformName={platform?.nome} />
                     <Text style={[styles.platformName, { color: platformColor }]}>
                         {platform?.nome}
                     </Text>
-                </View>
+                </View> */}   
             </View>
             <HomeCardContent
                 title={game?.titulo}
@@ -80,9 +78,10 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
                 rating={review.nota}
                 genre={genre?.genero}
                 year={game?.ano_lancamento}
+                platform={platform}
                 review={review.comentario}
                 readMore={readMore}
-                style={{paddingBottom: 25}}
+                style={{ paddingBottom: hasMoreLines ? 25 : 0 }}
                 commentLines={3}
                 onHasMoreLines={setHasMoreLines}
             />

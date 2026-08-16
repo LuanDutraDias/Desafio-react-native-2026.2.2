@@ -31,7 +31,7 @@ export default function SelectedGameCard({game, genre, onRemove}: SelectedGameCa
                 source={gameCovers[game.capa]}
             />
             <View style={styles.containerCardContent}>
-                <Text style={styles.title}>
+                <Text style={styles.title} numberOfLines={1}>
                     {game.titulo}
                 </Text>
                 <View style={styles.containerGenre}>

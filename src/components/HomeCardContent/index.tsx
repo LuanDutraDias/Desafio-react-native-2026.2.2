@@ -7,6 +7,8 @@ import { colors } from "@/constants/colors";
 import {styles} from "./styles";
 
 import { formatDateToBrasilia } from "@/utils/formatDate";
+import PlatformIcon from "../PlatformIcons";
+import { Platform } from "@/types/platform";
 
 type HomeCardContentProps = {
     style?: StyleProp<ViewStyle>;
@@ -20,22 +22,26 @@ type HomeCardContentProps = {
     action: string;
     readMore?: boolean;
     commentLines: any;
+    platform?: Platform;
     onHasMoreLines?: (hasMore: boolean) => void
 }
 
-export default function HomeCardContent({title, author, rating, genre, year, review, style, edited_at, action, readMore, commentLines, onHasMoreLines}: HomeCardContentProps){
+export default function HomeCardContent({title, author, rating, genre, year, review, style, edited_at, action, platform, readMore, commentLines, onHasMoreLines}: HomeCardContentProps){
     return (
         <View style={[styles.containerHomeCardContent, style]}>
             <Text style={styles.author}>
                 {author} {action} em {formatDateToBrasilia(edited_at)}
             </Text>
-            <Text style={styles.title}>
-                {title}
-            </Text>
+            <View style={styles.containerTitleAndPlatform}>
+                <Text style={styles.title}>
+                    {title}
+                </Text>
+                <PlatformIcon platformName={platform?.nome} />
+            </View>
             <View style={styles.containerRatingGenreYear}>
                 <AntDesign
                     name="star"
-                    size={17}
+                    size={16}
                     color={colors.rating}
                 />
                 <Text style={styles.rating}>

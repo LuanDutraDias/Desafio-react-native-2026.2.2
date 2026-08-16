@@ -23,7 +23,7 @@ export default function AppVersion(){
                     Versão do App
                 </Text>
             </View>
-            <Text style={{color: primary}}>
+            <Text style={[styles.versionData, {color: primary}]}>
                 1.0.0
             </Text>
         </View>
