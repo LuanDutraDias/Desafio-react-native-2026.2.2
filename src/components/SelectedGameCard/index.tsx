@@ -29,6 +29,7 @@ export default function SelectedGameCard({game, genre, onRemove}: SelectedGameCa
             <Image
                 style={styles.image}
                 source={gameCovers[game.capa]}
+                fadeDuration={0}
             />
             <View style={styles.containerCardContent}>
                 <Text style={styles.title} numberOfLines={1}>
