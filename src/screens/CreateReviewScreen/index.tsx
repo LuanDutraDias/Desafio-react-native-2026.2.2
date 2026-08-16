@@ -24,7 +24,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 export default function CreateReviewScreen() {
 
-    const {user} = useAuth();
+    const {user, loadingUser} = useAuth();
     const {reviews} = useAppData();
 
     const { primary } = useColorTheme();
@@ -126,7 +126,7 @@ export default function CreateReviewScreen() {
                             : "Publicar avaliação"
                     }
                     onPress={publishReview}
-                    disabled={publishing}
+                    disabled={publishing || loadingUser || !user}
                 />
             </View>
         </SafeAreaView>
