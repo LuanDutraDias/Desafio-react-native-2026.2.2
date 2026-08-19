@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
+import { FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     safeAreaView: {
@@ -14,6 +15,7 @@ export const styles = StyleSheet.create({
     scrollRegister: {
         flexGrow: 1,
         backgroundColor: colors.backgroundScreen,
+        paddingBottom: 15,
     },
     registerBanner: {
         height: 220,
@@ -33,4 +35,27 @@ export const styles = StyleSheet.create({
         paddingTop: 10,
         gap: 16,
     },
+    containerInputAndError: {
+        gap: 2,
+    },
+    generalErrorContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 5,
+    },
+    errorText: {
+        color: colors.primary1,
+        fontSize: FONT_SIZES.xs2,
+    },
+    containerPasswordRequirements: {
+        gap: 2,
+    },
+    containerTextPasswordRequirements: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 2,
+    },
+    textPasswordRequirements: {
+        color: colors.secondary
+    }
 });

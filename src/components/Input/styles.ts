@@ -33,5 +33,8 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         paddingRight: 10,
         paddingLeft: 5,
+    },
+    containerInputError: {
+        borderColor: colors.primary1,
     }
 });

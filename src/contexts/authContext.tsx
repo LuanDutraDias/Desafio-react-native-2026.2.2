@@ -52,7 +52,7 @@ export function AuthProvider({children}: PropsWithChildren){
             await loadUser();
             router.replace("/home");
         } catch (error) {
-
+            throw error;
         } finally {
             setLogging(false);
         }

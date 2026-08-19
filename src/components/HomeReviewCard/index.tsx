@@ -81,7 +81,7 @@ export default function HomeReviewCard({review, games, genres, platforms, users}
                 platform={platform}
                 review={review.comentario}
                 readMore={readMore}
-                style={{ paddingBottom: hasMoreLines ? 25 : 0 }}
+                style={{ paddingBottom: hasMoreLines ? 25 : 0}}
                 commentLines={3}
                 onHasMoreLines={setHasMoreLines}
             />

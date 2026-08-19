@@ -1,8 +1,4 @@
-import { Image, Keyboard, Pressable, TouchableOpacity, View} from "react-native";
-
-import { router } from "expo-router";
-
-import { useState } from "react";
+import { Image, Keyboard, Pressable, TouchableOpacity, View, Text} from "react-native";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -19,16 +15,12 @@ import ButtonReadTermsOfUse from "@/components/ButtonReadTermsOfUse";
 
 import {useRegister} from "@/hooks/useRegister";
 
-import { register } from "@/services/auth";
-
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { AntDesign, EvilIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import CheckboxWithText from "@/components/CheckboxWithText";
 
 export default function RegisterScreen() {
-
-  const [showModal, setShowModal] = useState(false);
 
   const {
           name,
@@ -47,35 +39,17 @@ export default function RegisterScreen() {
           toggleAcceptTerms,
           registering,
           setRegistering,
+          passwordFocused,
+          setPasswordFocused,
+          handleChangeName,
+          handleChangeEmail,
+          handleChangePassword,
+          handleRegister,
+          showModal,
+          setShowModal,
+          errors,
+          validatePasswordRequirements,
       } = useRegister();
-
-  async function handleRegister(){
-
-    if (password !== confirmedPassword){
-      alert("Senhas não coincidem");
-
-    } 
-    else if (!acceptTerms){
-      alert("É necessário aceitar os termos de uso")
-    } 
-    else {
-      try {
-        setRegistering(true);
-        await register({
-          name,
-          email,
-          password,
-        });
-
-        router.replace("/login");
-      } catch (error) {
-        console.log(error);
-      }
-      finally {
-        setRegistering(false);
-      }
-    }
-}    
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -105,62 +79,127 @@ export default function RegisterScreen() {
               </Subtitle>
             </View>
             <View style={styles.containerForms}>
-              <Input 
-                onChangeText={setName}
-                value={name}
-                icon1={
-                  <Ionicons
+              <View style={styles.containerInputAndError}>
+                {errors.general && (
+                  <View style={styles.generalErrorContainer}>
+                    <AntDesign name="exclamation-circle" size={16} color={colors.primary1} />
+                    <Text style={styles.errorText}>{errors.general}</Text>
+                  </View>
+                )}
+                <Input 
+                  error={!!errors.name}
+                  onChangeText={handleChangeName}
+                  value={name}
+                  icon1={
+                    <Ionicons
                     name="person"
                     size={22}
                     color={colors.secondary}
-                  />  
-                }
-                icon2= {
-                  null
-                } 
-                placeholder="Usuário" 
-              />
-              <Input 
-                onChangeText={setEmail}
-                value={email}
-                icon1={
-                  <Fontisto
-                    name="email"
-                    size={20}
-                    color={colors.secondary}
-                  />  
-                }
-                icon2= {
-                  null
-                } 
-                placeholder="E-mail" 
-                keyboardType="email-address"
-              />
-              <Input
-                onChangeText={setPassword}
-                value={password}
-                icon1={
-                  <EvilIcons
-                    name="lock"
-                    size={34}
-                    color={colors.secondary}
+                    />  
+                  }
+                  icon2= {
+                    null
+                  } 
+                  placeholder="Usuário" 
                   />
-                }
-                icon2={
-                  <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
-                    <AntDesign
-                      name={showPassword ? "eye" : "eye-invisible"}
-                      size={22}
+                {errors.name && (
+                  <Text style={styles.errorText}>{errors.name}</Text>
+                )}
+              </View>
+                <View style={styles.containerInputAndError}>
+                <Input 
+                  error={!!errors.email}
+                  onChangeText={handleChangeEmail}
+                  value={email}
+                  icon1={
+                    <Fontisto
+                      name="email"
+                      size={20}
                       color={colors.secondary}
-                      />
-                  </TouchableOpacity>
-                }
-                placeholder="Senha" 
-                secureTextEntry={showPassword ? false : true}
-              />
+                    />  
+                  }
+                  icon2= {
+                    null
+                  } 
+                  placeholder="E-mail" 
+                  keyboardType="email-address"
+                />
+                {errors.email && (
+                  <Text style={styles.errorText}>{errors.email}</Text>
+                )}
+              </View>
+              <View style={styles.containerInputAndError}>
+                <Input
+                  error={!!errors.password}
+                  onChangeText={handleChangePassword}
+                  value={password}
+                  onFocus={() => setPasswordFocused(true)}
+                  onBlur={() => setPasswordFocused(false)}
+                  icon1={
+                    <EvilIcons
+                      name="lock"
+                      size={34}
+                      color={colors.secondary}
+                    />
+                  }
+                  icon2={
+                    <TouchableOpacity onPress={togglePassword} activeOpacity={0.7}>
+                      <AntDesign
+                        name={showPassword ? "eye" : "eye-invisible"}
+                        size={22}
+                        color={colors.secondary}
+                        />
+                    </TouchableOpacity>
+                  }
+                  placeholder="Senha" 
+                  secureTextEntry={showPassword ? false : true}
+                />
+                {errors.password && (
+                  <Text style={styles.errorText}>{errors.password}</Text>
+                )}
+                {passwordFocused && (
+              <View style={styles.containerPasswordRequirements}>
+                <Text style={styles.textPasswordRequirements}>A sua senha deve conter, no mínimo:</Text>
+                <View style={styles.containerTextPasswordRequirements}>
+                  <AntDesign
+                    name={validatePasswordRequirements.length ? "check" : "close"}
+                    size={16}
+                    color={validatePasswordRequirements.length ? colors.primary3 : colors.primary1}
+                  />
+                  <Text style={styles.textPasswordRequirements}>8 caracteres</Text>
+                </View>
+                <View style={styles.containerTextPasswordRequirements}>
+                  <AntDesign
+                    name={validatePasswordRequirements.number ? "check" : "close"}
+                    size={16}
+                    color={validatePasswordRequirements.number ? colors.primary3 : colors.primary1}
+                  />
+                  <Text style={styles.textPasswordRequirements}>1 número</Text>
+                  </View>
+                <View style={styles.containerTextPasswordRequirements}>
+                  <AntDesign
+                    name={validatePasswordRequirements.case ? "check" : "close"}
+                    size={16}
+                    color={validatePasswordRequirements.case ? colors.primary3 : colors.primary1}
+                  />
+                  <Text style={styles.textPasswordRequirements}>1 letra maiúscula e minúscula</Text>
+                </View>
+                <View style={styles.containerTextPasswordRequirements}> 
+                  <AntDesign
+                    name={validatePasswordRequirements.simbol ? "check" : "close"}
+                    size={16}
+                    color={validatePasswordRequirements.simbol ? colors.primary3 : colors.primary1}
+                  />
+                  <Text style={styles.textPasswordRequirements}>1 símbolo</Text>
+                </View>
+              </View>
+                )}
+              </View>
+              <View style={styles.containerInputAndError}>
               <Input
                 onChangeText={setConfirmedPassword}
                 value={confirmedPassword}
+                error={!!errors.confirmedPassword}
                 icon1={
                   <EvilIcons
                     name="lock"
@@ -180,6 +219,10 @@ export default function RegisterScreen() {
                 placeholder="Confirmar senha" 
                 secureTextEntry={showConfirmedPassword ? false : true}
               />
+              {errors.confirmedPassword && (
+                <Text style={styles.errorText}>{errors.confirmedPassword}</Text>
+              )}
+              </View>
               <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
                 <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
                 <ButtonReadTermsOfUse onPress={() => setShowModal(true)}/>

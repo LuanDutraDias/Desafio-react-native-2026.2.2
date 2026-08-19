@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
+import { FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     safeAreaView: {
@@ -24,6 +25,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 24,
         paddingTop: 10,
+        paddingBottom: 15,
         gap: 25,
     },
     containerWelcome: {
@@ -31,5 +33,17 @@ export const styles = StyleSheet.create({
     },
     containerForms: {
         gap: 15,
+    },
+    containerInputAndError: {
+        gap: 2,
+    },
+    errorText: {
+        color: colors.primary1,
+        fontSize: FONT_SIZES.xs2
+    },
+    generalErrorContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 5,
     },
 });
