@@ -8,6 +8,7 @@ type RegisterErrors = {
   email?: string;
   password?: string;
   confirmedPassword?: string;
+  acceptTerms?: boolean;
   general?: string;
 };
 
@@ -33,6 +34,10 @@ export function useRegister() {
     
     function validateRegisterForm(name: string, email: string, password: string, confirmedPassword: string): RegisterErrors {
         const errors: RegisterErrors = {};
+
+        if (!acceptTerms){
+            errors.acceptTerms = true;
+        }
 
         if (!confirmedPassword.trim() && password.trim()){
           errors.confirmedPassword = "Confirmar a senha é obrigatório";
@@ -149,8 +154,23 @@ export function useRegister() {
         setShowConfirmedPassword(!showConfirmedPassword);
     }
 
-    function toggleAcceptTerms() {
-        setAcceptTerms(!acceptTerms);
+    function onAcceptTerms(){
+        setAcceptTerms(true);
+        setShowModal(false);
+    }
+
+    function onOpenModalTerms(){
+        setShowModal(true)
+        errors.acceptTerms = false;
+    }
+
+    function onCheckAcceptTerms(){
+        errors.acceptTerms = false;
+        if (!acceptTerms){
+            setShowModal(true);
+        } else {
+            setAcceptTerms(false);
+        }
     }
 
     return {
@@ -167,7 +187,7 @@ export function useRegister() {
         showConfirmedPassword,
         toggleConfirmedPassword,
         acceptTerms,
-        toggleAcceptTerms,
+        setAcceptTerms,
         registering,
         setRegistering,
         passwordFocused,
@@ -180,5 +200,8 @@ export function useRegister() {
         showModal,
         setShowModal,
         validatePasswordRequirements,
+        onAcceptTerms,
+        onCheckAcceptTerms,
+        onOpenModalTerms,
     };
 }

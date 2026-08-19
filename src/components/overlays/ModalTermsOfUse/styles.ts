@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.inputBackground,
         borderRadius: BORDER_RADIUS.xl,
         padding: 20,
+        justifyContent: "space-between",
     },
     headerContainer: {
         flexDirection: "row",

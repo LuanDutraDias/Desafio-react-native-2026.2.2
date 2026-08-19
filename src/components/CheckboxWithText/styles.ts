@@ -25,4 +25,7 @@ export const styles = StyleSheet.create({
         color: colors.secondary,
         fontSize: FONT_SIZES.sm,
     },
+    termsLinkText: {
+        textDecorationLine: "underline",
+    }
 });

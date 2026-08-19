@@ -11,7 +11,6 @@ import Input from "@/components/Input";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import ModalTermsOfUse from "@/components/overlays/ModalTermsOfUse";
-import ButtonReadTermsOfUse from "@/components/ButtonReadTermsOfUse";
 
 import {useRegister} from "@/hooks/useRegister";
 
@@ -24,11 +23,9 @@ export default function RegisterScreen() {
 
   const {
           name,
-          setName,
           email,
-          setEmail,
           password,
-          setPassword,
+          
           confirmedPassword,
           setConfirmedPassword,
           showPassword,
@@ -36,9 +33,7 @@ export default function RegisterScreen() {
           showConfirmedPassword,
           toggleConfirmedPassword,
           acceptTerms,
-          toggleAcceptTerms,
           registering,
-          setRegistering,
           passwordFocused,
           setPasswordFocused,
           handleChangeName,
@@ -49,10 +44,14 @@ export default function RegisterScreen() {
           setShowModal,
           errors,
           validatePasswordRequirements,
+          onAcceptTerms,
+          onCheckAcceptTerms,
+          onOpenModalTerms,
       } = useRegister();
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
+      <ModalTermsOfUse visible={showModal} onClose={() => setShowModal(false)} onAccept={onAcceptTerms}/>
       <KeyboardAwareScrollView 
         style={styles.sectionRegister}
         contentContainerStyle={styles.scrollRegister}
@@ -64,7 +63,6 @@ export default function RegisterScreen() {
           onPress={Keyboard.dismiss}
           accessible={false}
         >
-          <ModalTermsOfUse visible={showModal} onClose={() => setShowModal(false)}/>
           <Image 
             style={styles.registerBanner} 
             source={require("@/assets/images/banners/register-banner.png")}
@@ -224,8 +222,7 @@ export default function RegisterScreen() {
               )}
               </View>
               <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
-                <CheckboxWithText label="Aceito os Termos de Uso" onPress={toggleAcceptTerms} checked={acceptTerms}/>
-                <ButtonReadTermsOfUse onPress={() => setShowModal(true)}/>
+                <CheckboxWithText error={!!errors.acceptTerms} label="Li e Aceito os " termsLink="Termos de Uso" onOpen={onOpenModalTerms} onCheck={onCheckAcceptTerms} checked={acceptTerms}/>
               </View>
               <Button title={registering ? "Cadastrando..." : "Cadastrar"} onPress={handleRegister}/>
               <AuthToggle href="/login" title="Já tem uma conta? " link="Faça login"></AuthToggle>
