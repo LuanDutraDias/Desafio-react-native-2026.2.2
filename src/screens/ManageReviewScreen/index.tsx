@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 import ViewReviewModal from "@/components/overlays/ViewReviewModal";
 import EditReviewModal from "@/components/overlays/EditReviewModal";
 import DeleteReviewModal from "@/components/overlays/DeleteReviewModal";
+import MyReviewSearchBar from "@/components/MyReviewsSearchBar";
 
 import { useManageReview } from "@/hooks/useManageReview";
 
@@ -19,10 +20,14 @@ import { colors } from "@/constants/colors";
 import { router } from "expo-router";
 import { useColorTheme } from "@/hooks/useColorTheme";
 import { useAppData } from "@/contexts/appDataContext";
+import { useState } from "react";
+import NothingFound from "@/components/NothingFound";
 
 export default function ManageReviewSreen(){
 
     const {primary} = useColorTheme();
+
+    const [search, setSearch] = useState("");
 
     const {
         selectedReview,
@@ -50,6 +55,15 @@ export default function ManageReviewSreen(){
         (review) => review.usuario_id === user?.id
     )
 
+    const filteredReviews = loggedUserReviews.filter((review) => {
+        const game = games.find(
+            (game) => game.id === review.jogo_id
+        );
+
+        return game?.titulo.toLowerCase().includes(search.toLowerCase().trim());
+    })
+
+
     if (loading) {
             return (
     
@@ -70,10 +84,22 @@ export default function ManageReviewSreen(){
                 title="Minhas Reviews"
             />
             <View style={styles.containerContent}>
+                {loggedUserReviews.length > 0 && (
+                    <MyReviewSearchBar
+                        placeholder="Procure sua review"
+                        onSearch={setSearch}
+                    />
+                )}
+                {(loggedUserReviews.length == 0 || filteredReviews.length == 0) && (
+                    <NothingFound
+                        text={loggedUserReviews.length == 0 ? "Você ainda não tem reviews" : "Nenhuma review encontrada"}
+                        style={{marginTop: 15}}
+                    />
+                )}
                 <FlatList
                     style={{flex: 1}}
-                    contentContainerStyle={{gap: 20, paddingBottom: 15}}
-                    data={loggedUserReviews}
+                    contentContainerStyle={{gap: 20, paddingBottom: 15, paddingTop: 15}}
+                    data={filteredReviews}
                     renderItem={({ item }) => (
                         <ManageReviewCard 
                             review={item}

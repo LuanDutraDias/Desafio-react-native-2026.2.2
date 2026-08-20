@@ -33,7 +33,7 @@ export default function HomeCardContent({title, author, rating, genre, year, rev
                 {author} {action} em {formatDateToBrasilia(edited_at)}
             </Text>
             <View style={styles.containerTitleAndPlatform}>
-                <Text style={styles.title}>
+                <Text style={styles.title} numberOfLines={1}>
                     {title}
                 </Text>
                 <PlatformIcon platformName={platform?.nome} />

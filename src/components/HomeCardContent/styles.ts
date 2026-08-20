@@ -16,11 +16,12 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         gap: 5,
         alignItems: "center",
+        maxWidth: "95%"
     },
     title: {
         fontSize: FONT_SIZES.sm,
         fontWeight: FONT_WEIGHT.bold,
-        color: colors.secondary
+        color: colors.secondary,
     },
     containerRatingGenreYear: {
         flexDirection: "row",
