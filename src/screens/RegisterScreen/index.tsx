@@ -39,6 +39,7 @@ export default function RegisterScreen() {
           handleChangeName,
           handleChangeEmail,
           handleChangePassword,
+          handleChangeConfirmedPassword,
           handleRegister,
           showModal,
           setShowModal,
@@ -195,7 +196,7 @@ export default function RegisterScreen() {
               </View>
               <View style={styles.containerInputAndError}>
               <Input
-                onChangeText={setConfirmedPassword}
+                onChangeText={handleChangeConfirmedPassword}
                 value={confirmedPassword}
                 error={!!errors.confirmedPassword}
                 icon1={

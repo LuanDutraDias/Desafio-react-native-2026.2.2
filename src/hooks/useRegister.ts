@@ -69,7 +69,7 @@ export function useRegister() {
     function handleChangeName(text: string) {
         setName(text);
         if (errors.name || errors.general) {
-        setErrors((prev) => ({ ...prev, name: undefined, general: undefined }));
+            setErrors((prev) => ({ ...prev, name: undefined, general: undefined }));
         }
 
     }
@@ -77,7 +77,7 @@ export function useRegister() {
     function handleChangeEmail(text: string) {
         setEmail(text);
         if (errors.email || errors.general) {
-        setErrors((prev) => ({ ...prev, email: undefined, general: undefined }));
+            setErrors((prev) => ({ ...prev, email: undefined, general: undefined }));
         }
     }
         
@@ -85,7 +85,14 @@ export function useRegister() {
         setPassword(text);
         securePassword(text);
         if (errors.password || errors.general) {
-        setErrors((prev) => ({ ...prev, password: undefined, general: undefined }));
+            setErrors((prev) => ({ ...prev, password: undefined, general: undefined }));
+        }
+    }
+
+    function handleChangeConfirmedPassword(text: string){
+        setConfirmedPassword(text);
+        if (errors.confirmedPassword || errors.general) {
+            setErrors((prev) => ({ ...prev, confirmedPassword: undefined, general: undefined }));
         }
     }
 
@@ -139,10 +146,10 @@ export function useRegister() {
         const regexSimbol = /^(?=.*[^a-zA-Z0-9]).+$/;
 
         setValidatePasswordRequirements({
-        length: password.length >= 8,
-        number: regexNumber.test(password),
-        case: regexUppercase.test(password) && regexLowercase.test(password),
-        simbol: regexSimbol.test(password),
+            length: password.length >= 8,
+            number: regexNumber.test(password),
+            case: regexUppercase.test(password) && regexLowercase.test(password),
+            simbol: regexSimbol.test(password),
         })
     }
 
@@ -195,6 +202,7 @@ export function useRegister() {
         handleChangeName,
         handleChangeEmail,
         handleChangePassword,
+        handleChangeConfirmedPassword,
         handleRegister,
         errors,
         showModal,
