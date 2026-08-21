@@ -18,8 +18,11 @@ import { useAuth } from "@/hooks/useAuth";
 import { AntDesign, EvilIcons, Fontisto } from "@expo/vector-icons";
 
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useColorTheme } from "@/hooks/useColorTheme";
 
 export default function LoginScreen() {
+
+  const {primary} = useColorTheme();
 
   const {
     email,
@@ -59,7 +62,7 @@ export default function LoginScreen() {
             <View style={styles.containerForms}>
               <View style={styles.containerInputAndError}>
                 {errors.general && (
-                  <View style={styles.generalErrorContainer}>
+                  <View style={[styles.generalErrorContainer, {backgroundColor: `${colors.primary1}1F`, borderColor: `${colors.primary1}80`}]}>
                     <AntDesign name="exclamation-circle" size={16} color={colors.primary1} />
                     <Text style={styles.errorText}>{errors.general}</Text>
                   </View>

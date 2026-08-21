@@ -80,7 +80,7 @@ export default function RegisterScreen() {
             <View style={styles.containerForms}>
               <View style={styles.containerInputAndError}>
                 {errors.general && (
-                  <View style={styles.generalErrorContainer}>
+                  <View style={[styles.generalErrorContainer, {backgroundColor: `${colors.primary1}1F`, borderColor: `${colors.primary1}80`}]}>
                     <AntDesign name="exclamation-circle" size={16} color={colors.primary1} />
                     <Text style={styles.errorText}>{errors.general}</Text>
                   </View>

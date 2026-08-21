@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
-import { FONT_SIZES } from "@/constants/dimensions";
+import { BORDER_RADIUS, FONT_SIZES } from "@/constants/dimensions";
 
 export const styles = StyleSheet.create({
     safeAreaView: {
@@ -44,6 +44,12 @@ export const styles = StyleSheet.create({
     generalErrorContainer: {
         flexDirection: "row",
         alignItems: "center",
+        borderWidth: 1,
+        borderRadius: BORDER_RADIUS.sm,
+        paddingHorizontal: 5,
+        paddingVertical: 2,
+        marginTop: -5,
+        marginBottom: 5,
         gap: 5,
     },
 });
