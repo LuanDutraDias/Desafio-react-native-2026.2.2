@@ -44,13 +44,15 @@ export default function EditReviewModal({visible, onClose, review, games, genres
         comment,
         setComment,
         handleEditReview,
+        nothingEdited,
+        isFormComplete,
     } = useEditReview(review);
 
     return (
         <Modal visible={visible} transparent> 
             <SafeAreaView style={styles.safeArea} edges={["top"]}>
                 <Pressable style={styles.overlay} onPress={onClose}>
-                    <View style={styles.modal}>
+                    <Pressable style={styles.modal} onPress={() => {}}>
 
                         <CloseModalButton
                             onClose={onClose}
@@ -61,7 +63,7 @@ export default function EditReviewModal({visible, onClose, review, games, genres
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={styles.scrollEditReview}
                         enableOnAndroid
-                        extraScrollHeight={50}
+                        extraScrollHeight={120}
                         keyboardShouldPersistTaps="handled"
                         >
                         <Pressable
@@ -115,10 +117,10 @@ export default function EditReviewModal({visible, onClose, review, games, genres
                         <Button
                             title={editing ? "Salvando..." : "Salvar"}
                             onPress={() => handleEditReview(review!.id, review!.jogo_id, onClose)}
-                            disabled={editing}
+                            disabled={editing || nothingEdited || !isFormComplete}
                             />
                     </View>
-                            </View>
+                            </Pressable>
                 </Pressable>
             </SafeAreaView>
         </Modal>

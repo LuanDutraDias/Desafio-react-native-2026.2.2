@@ -78,6 +78,9 @@ export default function DeleteReviewModal({visible, onClose, review, games, genr
                         />
                         <Button
                             title={deleting ? "Excluindo..." : "Excluir"}
+                            disabled={deleting
+                                
+                            }
                             variant="primary1"
                             onPress={() => {
                                 if(review){

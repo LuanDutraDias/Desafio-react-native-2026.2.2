@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 
 import { Game } from "@/types/game";
 import { Genre } from "@/types/genre";
@@ -22,6 +22,11 @@ export function useCreateReview() {
     const [comment, setComment] = useState("");
     const [loadingGenre, setLoadingGenre] = useState(false);
     const [publishing, setPublishing] = useState(false);
+
+    const isFormComplete =
+    selectedGame !== null &&
+    rating.trim() !== "" &&
+    comment.trim() !== "";
 
     async function handleSelectGame(game: Game) {
 
@@ -139,5 +144,6 @@ export function useCreateReview() {
         loadingGenre,
         publishing,
         publishReview,
+        isFormComplete,
     };
 }

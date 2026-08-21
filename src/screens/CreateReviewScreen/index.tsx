@@ -43,6 +43,7 @@ export default function CreateReviewScreen() {
         loadingGenre,
         publishing,
         publishReview,
+        isFormComplete,
     } = useCreateReview();
 
     const loggedUserReviews = reviews.filter(
@@ -126,7 +127,7 @@ export default function CreateReviewScreen() {
                             : "Publicar avaliação"
                     }
                     onPress={publishReview}
-                    disabled={publishing || loadingUser || !user}
+                    disabled={publishing || loadingUser || !user || !isFormComplete}
                 />
             </View>
         </SafeAreaView>

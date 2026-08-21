@@ -10,9 +10,10 @@ type buttonProps = TouchableOpacityProps & {
     title: string;
     icon?: React.ReactNode;
     variant?: string;
+    disabled?: boolean;
 };
 
-export default function Button({title, icon, variant = "primary", ...props}: buttonProps){
+export default function Button({title, icon, variant = "primary", disabled, ...props}: buttonProps){
 
     const {primary} = useColorTheme();
 
@@ -34,9 +35,9 @@ export default function Button({title, icon, variant = "primary", ...props}: but
 
 
     return (
-        <TouchableOpacity activeOpacity={0.7} style={[styles.button, {backgroundColor: backgroundColor} ]} {...props}>
+        <TouchableOpacity activeOpacity={disabled? 0.5 : 0.7} style={[styles.button, {backgroundColor: backgroundColor}, disabled && {opacity: 0.5}]} disabled={disabled} {...props}>
             {icon}
-            <Text style={[styles.buttonText, {color: textColor}]}>
+            <Text style={[styles.buttonText, {color: textColor}, disabled && {opacity: 0.8 }]}>
                 {title}
             </Text>            
         </TouchableOpacity>

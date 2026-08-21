@@ -17,6 +17,12 @@ export function useEditReview(review: Review | null) {
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState(false);
 
+    const nothingEdited = 
+    Number(rating.replace(",", ".")) === Number(review?.nota) &&
+    comment.trim() === review?.comentario.trim();
+
+    const isFormComplete = rating !== "" && comment.trim() !== "";
+
     useEffect(() => {
         if (review) {
             setRating(String(review.nota));
@@ -105,6 +111,8 @@ export function useEditReview(review: Review | null) {
         handleRatingChange,
         comment,
         setComment,
+        nothingEdited,
+        isFormComplete,
         handleEditReview,
     };
 }
