@@ -9,12 +9,17 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.gamereviews.ios",
+      "supportsTablet": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/icons/adaptive-icon.png",
         "resizeMode": "contain",
+        "imageWidth": 350,
         "backgroundColor": "#0D1117"
       },
       "edgeToEdgeEnabled": true,
@@ -31,12 +36,17 @@
         "expo-splash-screen",
         {
           "image": "./src/assets/images/icons/splash-icon.png",
-          "resizeMode": "cover",
-          "imageWidth": "100%",
+          "resizeMode": "contain",
           "backgroundColor": "#0D1117"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.19685421021-k5r88m40kvad7ibc7k0nenao7cq7v3uc"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
