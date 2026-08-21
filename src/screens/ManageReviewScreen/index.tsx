@@ -98,7 +98,7 @@ export default function ManageReviewSreen(){
                 )}
                 <FlatList
                     style={{flex: 1}}
-                    contentContainerStyle={{gap: 20, paddingBottom: 15, paddingTop: 15}}
+                    contentContainerStyle={{gap: 15, paddingBottom: 15, paddingTop: 15}}
                     data={filteredReviews}
                     renderItem={({ item }) => (
                         <ManageReviewCard 

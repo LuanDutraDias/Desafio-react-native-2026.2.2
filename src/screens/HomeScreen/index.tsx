@@ -55,7 +55,7 @@ export default function HomeSreen(){
     return (
         <SafeAreaView style={styles.safeAreaView} edges={["top"]}>
             <Header title="Início"/>
-            <View style={{paddingHorizontal: 20, paddingBottom: 10}}>
+            <View style={{paddingHorizontal: 20}}>
                 <MyReviewSearchBar
                     onSearch={setSearch}
                     placeholder="Pesquise um jogo"
@@ -68,7 +68,7 @@ export default function HomeSreen(){
                 )}
             </View>
             <FlatList
-                style={{flex: 1}}
+                style={{flex: 1, paddingTop: 10}}
                 ListHeaderComponent={
                     !search.trim() && carouselReviews.length > 0 ? (
                         <Carousel 
@@ -80,7 +80,7 @@ export default function HomeSreen(){
                         />
                     ) : null
                 }
-                contentContainerStyle={{gap: 10, paddingBottom: 15}}
+                contentContainerStyle={{gap: 10, paddingBottom: 20}}
                 data={filteredReviews}
                 renderItem={({ item }) => <HomeReviewCard 
                     review={item}
