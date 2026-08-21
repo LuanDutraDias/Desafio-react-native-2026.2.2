@@ -32,7 +32,7 @@ export function useRegister() {
         simbol: false,
     })
     
-    function validateRegisterForm(name: string, email: string, password: string, confirmedPassword: string): RegisterErrors {
+    function validateRegisterForm(name: string, email: string, password: string, confirmedPassword: string, acceptTerms: boolean): RegisterErrors {
         const errors: RegisterErrors = {};
 
         if (!acceptTerms){
@@ -98,7 +98,7 @@ export function useRegister() {
 
     async function handleRegister(){
 
-        const validationErrors = validateRegisterForm(name, email, password, confirmedPassword);
+        const validationErrors = validateRegisterForm(name, email, password, confirmedPassword, acceptTerms);
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
 
@@ -120,12 +120,12 @@ export function useRegister() {
             if(isAxiosError(error)) {
             const status = error.response?.status;
             if (status === 422) {
-                const apiMessage = error.response?.data?.message;
                 const apiErrors = error.response?.data?.errors;
+                console.log(apiErrors?.email);
                 setErrors({
-                name: apiErrors?.name ? "O nome de usuário é obrigatório" : undefined,
-                email: apiMessage == "The email field must be a valid email address." ? "Informe um email válido" : apiErrors?.email ? "Este email já está em uso" : undefined,
-                password: apiErrors?.password ? "A senha é obrigatória" : undefined,
+                name: apiErrors?.name?.[0] ? "O nome de usuário é obrigatório" : undefined,
+                email: apiErrors?.email?.[0] === "The email field must be a valid email address." ? "Informe um email válido" : apiErrors?.email?.[0] === "The email has already been taken." ? "Este email já está em uso" : undefined,
+                password: apiErrors?.password?.[0] ? "A senha é obrigatória" : undefined,
                 });
             } else {
                 setErrors({ general: "Não foi possível fazer login. Tente novamente."});
@@ -168,11 +168,11 @@ export function useRegister() {
 
     function onOpenModalTerms(){
         setShowModal(true)
-        errors.acceptTerms = false;
+        setErrors(prev => ({...prev, acceptTerms: false,}));
     }
 
     function onCheckAcceptTerms(){
-        errors.acceptTerms = false;
+        setErrors(prev => ({...prev, acceptTerms: false,}));
         if (!acceptTerms){
             setShowModal(true);
         } else {
