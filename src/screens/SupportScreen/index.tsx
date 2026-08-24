@@ -1,4 +1,4 @@
-import { View, Image } from "react-native";
+import { View, Image, ScrollView } from "react-native";
 
 import {styles} from "./styles";
 
@@ -17,8 +17,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SupportScreen(){
     return (
-        <SafeAreaView style={styles.safeAreaView}>
-            <View style={styles.sectionSupport}>
+        <SafeAreaView style={styles.safeAreaView} edges={["top"]}>
+            <ScrollView style={styles.sectionSupport} contentContainerStyle={styles.scrollContent}>
                 <Image 
                     style={styles.supportBanner} 
                     source={require("@/assets/images/banners/support-banner.png")}    
@@ -74,7 +74,7 @@ export default function SupportScreen(){
                         <ChangeColorTheme/>
                     </View>
                 </View>      
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }

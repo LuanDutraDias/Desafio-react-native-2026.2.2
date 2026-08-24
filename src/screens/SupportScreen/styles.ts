@@ -11,6 +11,10 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.backgroundScreen,
     },
+    scrollContent: {
+        flexGrow: 1,
+        paddingBottom: 10,
+    },
     supportBanner: {
         height: 210,
         width: "100%",
