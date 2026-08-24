@@ -21,6 +21,7 @@ type AppDataContextType = {
     reviews: Review[];
     loading: boolean;
     reloadReviews: () => Promise<void>;
+    reloadUsers: () => Promise<void>;
 };
 
 const AppDataContext = createContext<AppDataContextType | undefined>(undefined);
@@ -41,6 +42,15 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         } catch (error) {
             console.error("Erro ao recarregar reviews:", error);
         }
+    }, []);
+
+    const reloadUsers = useCallback(async () => {
+        try {
+            const usersResponse = await getUsers();
+            setUsers(usersResponse);
+            } catch (error) {
+                console.error("Erro ao recarregar usuários:", error);
+            }
     }, []);
 
     useEffect(() => {
@@ -74,7 +84,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <AppDataContext.Provider value={{users, games, genres, platforms, reviews, loading, reloadReviews }}>
+        <AppDataContext.Provider value={{users, games, genres, platforms, reviews, loading, reloadReviews, reloadUsers}}>
             {children}
         </AppDataContext.Provider>
     );
