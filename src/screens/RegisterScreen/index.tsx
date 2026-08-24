@@ -10,7 +10,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
-import ModalTermsOfUse from "@/components/overlays/ModalTermsOfUse";
+import ModalTermsOfUse from "@/components/Overlays/ModalTermsOfUse";
 
 import {useRegister} from "@/hooks/useRegister";
 
