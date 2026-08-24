@@ -1,4 +1,4 @@
-import {FlatList, ActivityIndicator, View} from "react-native";
+import {FlatList, ActivityIndicator, View, Text} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {styles} from "./styles"
 import Header from "@/components/Header";
@@ -12,6 +12,9 @@ import { useAppData } from "@/contexts/appDataContext";
 import MyReviewSearchBar from "@/components/MyReviewsSearchBar";
 import { useState } from "react";
 import NothingFound from "@/components/NothingFound";
+import { AntDesign, FontAwesome6 } from "@expo/vector-icons";
+import { colors } from "@/constants/colors";
+import { BORDER_RADIUS } from "@/constants/dimensions";
 
 export default function HomeSreen(){
 
@@ -71,13 +74,27 @@ export default function HomeSreen(){
                 style={{flex: 1, paddingTop: 10}}
                 ListHeaderComponent={
                     !search.trim() && carouselReviews.length > 0 ? (
-                        <Carousel 
-                            reviews={carouselReviews}
-                            games={games}
-                            genres={genres}
-                            platforms={platforms}
-                            users={users}
-                        />
+                        <View>
+                            <View style={[styles.containerWeekHighlights]}>
+                                <View style={styles.containerRatingIcon}>
+                                    <View style={styles.ratingInsideIcon}>
+                                    </View>
+                                    <FontAwesome6
+                                        name="fire"
+                                        color={colors.primary1}
+                                        size={19}
+                                    />
+                                </View>
+                                <Text style={styles.weekHighlightsText}>Destaques da Semana</Text>
+                            </View>
+                            <Carousel 
+                                reviews={carouselReviews}
+                                games={games}
+                                genres={genres}
+                                platforms={platforms}
+                                users={users}
+                            />
+                        </View>
                     ) : null
                 }
                 contentContainerStyle={{gap: 10, paddingBottom: 20}}
