@@ -45,7 +45,7 @@ export function useLogin() {
         try {
             setErrors({});
             setLogging(true);
-            await signIn(email, password);
+            await signIn(email.trim(), password);
         } catch (error) {
             if (isAxiosError(error)) {
             const status = error.response?.status;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { register } from "@/services/auth";
 import { isAxiosError } from "axios";
 import { router } from "expo-router";
+import { useAppData } from "@/contexts/appDataContext";
 
 type RegisterErrors = {
   name?: string;
@@ -14,6 +15,8 @@ type RegisterErrors = {
 
 export function useRegister() {
 
+    const {reloadUsers} = useAppData();
+    const {users} = useAppData();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -46,8 +49,11 @@ export function useRegister() {
         }
 
         if (!name.trim()) {
-
             errors.name = "O nome de usuário é obrigatório";
+        } else if (users.find(
+            (user) => user.name === name.trim()
+        )) {
+            errors.name = "Este nome de usuário já está em uso"
         }
 
         if (!email.trim()) {
@@ -67,7 +73,8 @@ export function useRegister() {
     }
 
     function handleChangeName(text: string) {
-        setName(text);
+        const cleaned = text.replace(/\s+/g, " ").replace(/^\s+/, "");
+        setName(cleaned);
         if (errors.name || errors.general) {
             setErrors((prev) => ({ ...prev, name: undefined, general: undefined }));
         }
@@ -75,7 +82,8 @@ export function useRegister() {
     }
 
     function handleChangeEmail(text: string) {
-        setEmail(text);
+        const cleaned = text.replace(/\s/g, "");
+        setEmail(cleaned);
         if (errors.email || errors.general) {
             setErrors((prev) => ({ ...prev, email: undefined, general: undefined }));
         }
@@ -110,11 +118,11 @@ export function useRegister() {
             setErrors({});
             setRegistering(true);
             await register({
-            name,
-            email,
+            name: name.trim(),
+            email: email.trim(),
             password,
             });
-
+            await reloadUsers();
             router.replace("/login");
         } catch (error) {
             if(isAxiosError(error)) {
