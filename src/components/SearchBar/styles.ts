@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         borderRadius: BORDER_RADIUS.lg,
         flexDirection: "row",
         alignItems: "center",
-        height: 55,
+        height: 50,
         paddingHorizontal: 10,
         gap: 10,
     },
